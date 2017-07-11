@@ -4,3 +4,23 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+customer_index:
+    path: /customer/index
+    defaults: { _controller: Appbundle:Customer:index }
+
+customer_create:
+    path: /customer/create
+    defaults: { _controller: Appbundle:Customer:create }
+
+customer_update:
+    path: /customer/update/{id}
+    defaults: { _controller: Appbundle:Customer:update }
+    requirements:
+        page: '\d+'
+
+customer_delete:
+    path: /customer/delete/{id}
+    defaults: { _controller: Appbundle:Customer:delete }
+    requirements:
+        page: '\d+'

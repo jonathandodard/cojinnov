@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th class="center">number account</th>
+                <th class="center">entitled</th>
+                <th class="center">ranking</th>
+                <th class="center">nameRepresentative</th>
+                <th class="center">name</th>
+                <th class="center">email</th>
+                <th class="center">address</th>
+                <th class="center">additionalAddress</th>
+                <th class="center">zipCode</th>
+                <th class="center">city</th>
+                <th class="center">phoneNumber</th>
+                <th class="center">action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+
+                    <td class="center"><a href="{{ path('customer_index_by_costumer', {'id': customer.id}) }}">{{ customer.numberAccount }}</a></td>
+                    <td class="center">{{ customer.entitled }}</td>
+                    <td class="center">{{ customer.ranking }}</td>
+                    <td class="center">{{ customer.nameRepresentative }}</td>
+                    <td class="center">{{ customer.name }}</td>
+                    <td class="center">{{ customer.email }}</td>
+                    <td class="center">{{ customer.address }}</td>
+                    <td class="center">{{ customer.additionalAddress }}</td>
+                    <td class="center">{{ customer.zipCode }}</td>
+                    <td class="center">{{ customer.city }}</td>
+                    <td class="center">{{ customer.phoneNumber }}</td>
+                    <td class="center">
+                        <a href="{{ path('customer_update', {'id': customer.id })  }}">update</a>
+                        <a href="{{ path('customer_delete', {'id': customer.id })  }}">delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}
