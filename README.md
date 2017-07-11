@@ -1,2 +1,0 @@
-# cojinnov
-suivi commercial
