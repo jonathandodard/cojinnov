@@ -15,17 +15,3 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-Supprimerait .gitignore
-Supprimerait .idea/
-Supprimerait README.md
-Supprimerait app/
-Supprimerait bin/
-Supprimerait composer.json
-Supprimerait composer.lock
-Supprimerait phpunit.xml.dist
-Supprimerait src/
-Supprimerait tests/
-Supprimerait var/
-Supprimerait web/
-.idea
-
