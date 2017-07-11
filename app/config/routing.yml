@@ -1,26 +1,28 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 customer_index:
     path: /customer/index
-    defaults: { _controller: Appbundle:Customer:index }
+    defaults: { _controller: AppBundle:Customer:index }
 
 customer_create:
     path: /customer/create
-    defaults: { _controller: Appbundle:Customer:create }
+    defaults: { _controller: AppBundle:Customer:create }
 
 customer_update:
     path: /customer/update/{id}
-    defaults: { _controller: Appbundle:Customer:update }
+    defaults: { _controller: AppBundle:Customer:update }
     requirements:
         page: '\d+'
 
 customer_delete:
     path: /customer/delete/{id}
-    defaults: { _controller: Appbundle:Customer:delete }
+    defaults: { _controller: AppBundle:Customer:delete }
+    requirements:
+        page: '\d+'
+
+customer_index_by_costumer:
+    path: /customer/show/{id}
+    defaults: { _controller: AppBundle:Customer:indexByCustomer }
     requirements:
         page: '\d+'
