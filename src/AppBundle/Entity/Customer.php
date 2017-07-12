@@ -74,6 +74,17 @@ class Customer
 
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="customers")
+     */
+    protected $user;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -345,6 +356,38 @@ class Customer
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
 

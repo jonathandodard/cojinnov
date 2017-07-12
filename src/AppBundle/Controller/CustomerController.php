@@ -35,16 +35,19 @@ class CustomerController extends Controller
     public function createAction(Request $request)
     {
         $customer = new Customer();
-
         $form = $this->createForm(CustomerType::class, $customer);
 
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $customer->setUser($this->getUser());
+            $user = $this->getUser()->addCustomer($customer);
             $em->persist($customer);
+            $em->persist($user);
             $em->flush();
 
+            dump($this->getUser());die;
             return $this->redirectToRoute('customer_create');
         }
 
