@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th class="center">numero commande</th>
+            <th class="center">client</th>
+            <th class="center">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for orderCustomer in orderCustomers %}
+            <tr>
+                <td class="center">{{ orderCustomer.id }}</td>
+                <td class="center">{{ orderCustomer.user }}</td>
+                <td class="center">
+                    <a href="{{ path('orderCustomer_update', {'id': orderCustomer.id })  }}">update</a>
+                    <a href="{{ path('orderCustomer_delete', {'id': orderCustomer.id })  }}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

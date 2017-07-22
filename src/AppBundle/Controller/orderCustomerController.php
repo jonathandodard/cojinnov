@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\OrderCustomer;
+use AppBundle\Form\OrderCustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,16 +18,16 @@ class orderCustomerController extends Controller
 {
     public function indexAction()
     {
-        $orderCustomer = $this->repositoryCustomer()->findAll();
+        $orderCustomers = $this->repositoryCustomer()->findAll();
         return $this->render('AppBundle:orderCustomer:index.html.twig', [
-            'orderCustomer' => $orderCustomer
+            'orderCustomers' => $orderCustomers
         ]);
     }
 
     public function indexByCustomerAction(OrderCustomer $orderCustomer)
     {
         return $this->render('AppBundle:orderCustomer:indexByOrderCustomer.html.twig', [
-            'product' => $orderCustomer
+            'orderCustomer' => $orderCustomer
         ]);
     }
 
@@ -34,7 +35,7 @@ class orderCustomerController extends Controller
     {
 
         $orderCustomer = new OrderCustomer();
-        $form = $this->createForm(ProductType::class, $orderCustomer);
+        $form = $this->createForm(OrderCustomerType::class, $orderCustomer);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {

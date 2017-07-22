@@ -35,7 +35,6 @@ class OrderCustomer
     protected $customer;
 
     /**
-     * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Product")
      * @ORM\JoinTable(name="orderCustomer_product",
      *      joinColumns={@ORM\JoinColumn(name="orderCustomer", referencedColumnName="id")},
@@ -58,6 +57,54 @@ class OrderCustomer
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
     }
 }
 
