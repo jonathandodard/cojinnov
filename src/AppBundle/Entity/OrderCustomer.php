@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,33 @@ class OrderCustomer
      */
     private $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="OrderCustomer")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="OrderCustomer")
+     * @ORM\JoinColumn(name="Customer_id", referencedColumnName="id")
+     */
+    protected $customer;
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Product")
+     * @ORM\JoinTable(name="orderCustomer_product",
+     *      joinColumns={@ORM\JoinColumn(name="orderCustomer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $products;
+
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * Get id
