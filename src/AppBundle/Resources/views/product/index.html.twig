@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th class="center">type</th>
+            <th class="center">entitled</th>
+            <th class="center">reference</th>
+            <th class="center">nom commerciale</th>
+            <th class="center">categorie</th>
+            <th class="center">condition</th>
+            <th class="center">pcb</th>
+            <th class="center">prix unité</th>
+            <th class="center">tg</th>
+            <th class="center">ts</th>
+            <th class="center">tb</th>
+            <th class="center">taOne</th>
+            <th class="center">taTwo</th>
+            <th class="center">ppdia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td class="center">{{ product.type }}</td>
+                <td class="center">{{ product.reference }}</td>
+                <td class="center"><a href="{{ path('product_index_by_product', {'id': product.id}) }}">{{ product.name }}</a></td>
+                 <td class="center">{{ product.category }}</td>
+                <td class="center">{{ product.conditionProduct }}</td>
+                <td class="center">{{ product.duration }}</td>
+                <td class="center">{{ product.pcb }}</td>
+                <td class="center">{{ product.saleUnit }}</td>
+                <td class="center">{{ product.tg }}</td>
+                <td class="center">{{ product.ts }}</td>
+                <td class="center">{{ product.tb }}</td>
+                <td class="center">{{ product.taOne }}</td>
+                <td class="center">{{ product.taTwo }}</td>
+                <td class="center">{{ product.ppdia }}</td>
+                <td class="center">
+                    <a href="{{ path('product_update', {'id': product.id })  }}">update</a>
+                    <a href="{{ path('product_delete', {'id': product.id })  }}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -22,7 +22,37 @@ customer_delete:
         page: '\d+'
 
 customer_index_by_costumer:
-    path: /customer/show/{id}
+    path: /customer/show/customer/{id}
     defaults: { _controller: AppBundle:Customer:indexByCustomer }
     requirements:
         page: '\d+'
+
+################################product##############################
+
+product_index:
+    path: /products/index
+    defaults: { _controller: AppBundle:Product:index }
+
+product_create:
+    path: /product/create
+    defaults: { _controller: AppBundle:Product:create }
+
+product_update:
+   path: /product/update/{id}
+   defaults: { _controller: AppBundle:Product:update }
+   requirements:
+      id: '\d+'
+
+product_delete:
+   path: /product/delete/{id}
+   defaults: { _controller: AppBundle:Product:delete }
+   requirements:
+         id: '\d+'
+
+product_index_by_product:
+   path: /product/show/product/{id}
+   defaults: { _controller: AppBundle:Product:indexByCustomer }
+   requirements:
+         id: '\d+'
+
+################################order##############################
