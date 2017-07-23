@@ -6,8 +6,22 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body style="margin: 0;">
+        <header style="width: 100%; height: 60px; border-bottom: 1px black solid">
+            <img src="" style=" width:20%; height: 60px; display:inline-block;">
+            <div style="width: 53%; display:inline-block;">
+                {% block page %}{% endblock %}
+            </div>
+            <div style=" width:15%; display:inline-block;">{{ user.username }}</div>
+            <div style="width: 10%; display: inline-block">parametres</div>
+        </header>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+<style>
+    div {
+        margin: 0;
+        padding: 0;
+    }
+</style>

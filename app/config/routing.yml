@@ -1,6 +1,10 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+home:
+    path: /
+    defaults: { _controller: AppBundle:Home:index }
+
 customer_index:
     path: /customer/index
     defaults: { _controller: AppBundle:Customer:index }
