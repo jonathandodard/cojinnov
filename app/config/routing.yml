@@ -6,7 +6,7 @@ home:
     defaults: { _controller: AppBundle:Home:index }
 
 customer_index:
-    path: /customer/index
+    path: /customers/index
     defaults: { _controller: AppBundle:Customer:index }
 
 customer_create:
@@ -62,7 +62,7 @@ product_index_by_product:
 ################################order##############################
 
 orderCustomer_index:
-    path: /orderCustomer/index
+    path: /ordersCustomer/index
     defaults: { _controller: AppBundle:OrderCustomer:index }
 
 orderCustomer_create:
