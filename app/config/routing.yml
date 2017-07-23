@@ -60,3 +60,29 @@ product_index_by_product:
          id: '\d+'
 
 ################################order##############################
+
+orderCustomer_index:
+    path: /orderCustomer/index
+    defaults: { _controller: AppBundle:OrderCustomer:index }
+
+orderCustomer_create:
+    path: /orderCustomer/create
+    defaults: { _controller: AppBundle:OrderCustomer:create }
+
+orderCustomer_update:
+   path: /orderCustomer/update/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:update }
+   requirements:
+      id: '\d+'
+
+orderCustomer_delete:
+   path: /orderCustomer/delete/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:delete }
+   requirements:
+         id: '\d+'
+
+orderCustomer_index_by_orderCustomer:
+   path: /orderCustomer/show/product/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:indexByCustomer }
+   requirements:
+         id: '\d+'
