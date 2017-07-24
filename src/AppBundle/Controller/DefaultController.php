@@ -11,7 +11,6 @@ class DefaultController extends Controller
 
     public function indexAction(Request $request)
     {
-        die('test');
         return $this->redirect('home');
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [

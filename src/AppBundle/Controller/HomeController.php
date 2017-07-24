@@ -17,7 +17,8 @@ class HomeController extends Controller
     {
 
         return $this->render('AppBundle:page:home.html.twig', [
-            'user'=>$this->getUser()
+            'user'=>$this->getUser(),
+            'page'=>'home'
         ]);
 
     }
