@@ -15,9 +15,7 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-
         return $this->render('AppBundle:page:home.html.twig', [
-            'user'=>$this->getUser(),
             'page'=>'home'
         ]);
 
