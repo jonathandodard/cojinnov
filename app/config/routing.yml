@@ -74,8 +74,10 @@ orderCustomer_index:
     defaults: { _controller: AppBundle:OrderCustomer:index }
 
 orderCustomer_create:
-    path: /orderCustomer/create
+    path: /orderCustomer/create/{id}
     defaults: { _controller: AppBundle:OrderCustomer:create }
+    requirements:
+          id: '\d+'
 
 orderCustomer_update:
    path: /orderCustomer/update/{id}

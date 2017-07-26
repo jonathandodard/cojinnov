@@ -1,3 +1,84 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">Liste commandes</a>
+                <a href="{{ path('product_create') }}" class="breadcrumb">creation commande</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row form-orderCustomer-row">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">cloud</i>creation commande</a>
+        </div>
+    </div>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6">
+            <img src="">
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <div><p>Bon de commande N°</p><p>2017</p></div>
+            <label>Société :</label>
+                <p>{{ customer.ranking }}</p>
+            <label>Facturation :</label>
+                <p>{{ customer.id }}</p>
+            <label>livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Tél :</label>
+                <p>{{ customer.phoneNumber }}</p>
+            <label>Fax :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6 form-orderCustomer-col">
+            <label>Représentant :</label>
+                <p>{{ customer.id }}</p>
+            <label>Mode de Règlement :</label>
+                <p>{{ customer.id }}</p>
+            <label>date livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Commentaire :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <label>Siret :</label>
+                <p>{{ customer.id }}</p>
+            <label>N° Intracom :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <table class="responsive-table striped">
+        <thead>
+            <tr>
+                <th class="center">Reference</th>
+                <th class="center">Nom commercial</th>
+                <th class="center">page</th>
+                <th class="center">Condition</th>
+                <th class="center">Prix U HT</th>
+                <th class="center">Quantié</th>
+                <th class="center">Prix HT</th>
+            </tr>
+        </thead>
+    <tbody class="co-js-search">
+        <tr>
+            <td class="center"><input type="text" class="search-order" data-url="{{ path('product_search') }}" data-type="Reference" ></td>
+            <td class="center"><input type="text" ></td>
+            <td class="center"><input type="text" ></td>
+            <td class="center"><input type="text" ></td>
+            <td class="center"><input type="text" ></td>
+            <td class="center"><input type="text" ></td>
+            <td class="center"><input type="text" ></td>
+        </tr>
+    </tbody>
+    <input type="hidden">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{{ asset('js/formOrder.js') }}"></script>
+{% endblock %}

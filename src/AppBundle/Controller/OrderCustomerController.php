@@ -9,12 +9,13 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Customer;
 use AppBundle\Entity\OrderCustomer;
 use AppBundle\Form\OrderCustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class orderCustomerController extends Controller
+class OrderCustomerController extends Controller
 {
     public function indexAction()
     {
@@ -31,15 +32,16 @@ class orderCustomerController extends Controller
         ]);
     }
 
-    public function createAction(Request $request)
+    public function createAction(Request $request, Customer $customer)
     {
-
         $orderCustomer = new OrderCustomer();
         $form = $this->createForm(OrderCustomerType::class, $orderCustomer);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $orderCustomer->setCustomer($customer);
+            $orderCustomer->setUser($this->getUser());
             $em->persist($orderCustomer);
             $em->flush();
 
@@ -47,7 +49,8 @@ class orderCustomerController extends Controller
         }
 
         return $this->render('AppBundle:orderCustomer:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'customer' => $customer
         ]);
     }
 
