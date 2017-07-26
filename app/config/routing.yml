@@ -26,10 +26,14 @@ customer_delete:
         page: '\d+'
 
 customer_index_by_costumer:
-    path: /customer/show/customer/{id}
+    path: /customer/show/{id}
     defaults: { _controller: AppBundle:Customer:indexByCustomer }
     requirements:
         page: '\d+'
+
+customer_search:
+    path: /customer/search
+    defaults: { _controller: AppBundle:Customer:search }
 
 ################################product##############################
 
@@ -54,10 +58,14 @@ product_delete:
          id: '\d+'
 
 product_index_by_product:
-   path: /product/show/product/{id}
+   path: /product/show/{id}
    defaults: { _controller: AppBundle:Product:indexByCustomer }
    requirements:
          id: '\d+'
+
+product_search:
+    path: /product/search
+    defaults: { _controller: AppBundle:Product:search }
 
 ################################order##############################
 

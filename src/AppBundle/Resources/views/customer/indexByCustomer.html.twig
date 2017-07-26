@@ -1,4 +1,81 @@
 {% extends '::base.html.twig' %}
 {% block body %}
-    {{ dump(customer) }}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste clients</a>
+                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id}) }}" class="breadcrumb">client : {{ customer.name }}</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col s4 center-align">
+            <img src="{{ asset('img/man.png') }}">
+        </div>
+        <div class="col s8">
+            <div class="row show-by-client-row">
+                <div class="col s4">
+                    <label>N° Compte Client</label>
+                    <p>{{ customer.numberAccount }}</p>
+                </div>
+                <div class="col s4">
+                    <label>Intitulé Client</label>
+                    <p>{{ customer.entitled }}</p>
+                </div>
+                <div class="col s4">
+                    <label>Intitulé Client</label>
+                    <p>{{ customer.ranking }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s12">
+                    <label>Tarif</label>
+                    <p>tarif</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s12">
+                    <label>Contact</label>
+                    <p>{{ customer.name }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Adresse</label>
+                    <p>{{ customer.address }}</p>
+                </div>
+                <div class="col s6">
+                    <label>Adresse complement</label>
+                    <p>{{ customer.additionalAddress }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Code Postal</label>
+                    <p>{{ customer.city }}</p>
+                </div>
+                <div class="col s6">
+                    <label>Ville</label>
+                    <p>{{ customer.zipCode }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Téléphone</label>
+                    <p>{{ customer.phoneNumber }}</p>
+                </div>
+                <div class="col s6">
+                    <label>E-mail</label>
+                    <p>{{ customer.email }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6">6-columns (one-half)</div>
+                <div class="col s6">6-columns (one-half)</div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Customer;
 use AppBundle\Form\CustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class CustomerController extends Controller
@@ -47,7 +48,6 @@ class CustomerController extends Controller
             $em->persist($user);
             $em->flush();
 
-            dump($this->getUser());die;
             return $this->redirectToRoute('customer_create');
         }
 
@@ -79,6 +79,31 @@ class CustomerController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('customer_index');
+    }
+
+    public function searchAction(Request $request)
+    {
+        $tabCustomer =[];
+        if($request->isXmlHttpRequest()) {
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
+            foreach ($entities as $entity ) {
+                array_push($tabCustomer, array(
+                    'Id' => $entity->getId(),
+                    'NumberAccount' => $entity->getNumberAccount(),
+                    'Entitled' => $entity->getEntitled(),
+                    'Ranking' => $entity->getRanking(),
+                    'NameRepresentative' => $entity->getNameRepresentative(),
+                    'Name' => $entity->getName(),
+                    'Email' => $entity->getEmail(),
+                    'Address' => $entity->getAddress(),
+                    'AdditionalAddress' => $entity->getAdditionalAddress(),
+                    'ZipCode' => $entity->getZipCode(),
+                    'City' => $entity->getCity(),
+                    'PhoneNumber' => $entity->getPhoneNumber(),
+                ));
+            }
+        }
+        return new JsonResponse($tabCustomer);
     }
 
     public function repositoryCustomer()

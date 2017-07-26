@@ -7,7 +7,18 @@ div {
     padding: 0;
 }
 nav {
-    background-color: #b9b8b8;!important;
+    background-color: #f2f2f2;!important;
+}
+header {
+    margin-bottom: 20px;
+}
+
+.height-130 {
+    height: 130px;
+}
+
+.height-150 {
+    height: 150px;
 }
 
 .float-l {
@@ -16,12 +27,62 @@ nav {
 .float-r {
     float: right;
 }
+.search-content {
+    margin: 15px 0px 15px 0px;
+}
+
+.search-icon {
+    position: relative;
+    top: 10px;
+    right: 25px;
+}
+.search {
+    /*width: 50%;*/
+}
+.nav-wrapper a:first-child {
+    margin-left: 15px;
+}
+
+/**************login********************/
+.block-login-form {
+    border: 1px solid #c8c8c8;
+    border-radius: 3px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 130px;
+}
+.block-login-img {
+    width: 100%;
+}
+
+.block-login-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.block-login-form button {
+    background-color: #67bec8;
+}
+
+.block-login-form button:hover{
+    background-color: #3a629e;
+}
+
+.block-login-form row {
+    width: 100%;
+}
+
 
 /**************header*******************/
 .all-header {
     background-color: #b9b8b8;
     width: 100%;
-    height: 60px;
+    height: 64px;
+}
+
+.all-header nav div a{
+    color: #7991c1;
 }
 
 .all-header-img {
@@ -76,3 +137,64 @@ nav {
 .btn-floating.btn-large {
     height: 58px;
 }
+
+
+/**************header*******************/
+.nav-wrapper .col a {
+    color: #7991c1;
+}
+.breadcrumb:before {
+    color: #7991c1;
+}
+
+
+
+/*************home********************/
+.home-content {
+    width: 80%;
+}
+
+.button-home-link {
+    color: #FFFFFF;
+}
+
+.button-home {
+    background-color: #2bbbad;
+}
+
+.button-home:hover {
+    background-color: #3a629e;
+}
+
+.button-home i{
+    color: #FFFFFF;
+}
+
+.button-home img{
+    width: 60%;
+    padding: 10px;
+}
+
+.button-home p{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.button-home-statistical {
+    background-color: #f2f2f2;
+}
+
+.button-home-statistical:hover {
+    background-color: #d9d9d9;
+}
+
+.button-home-statistical-link {
+    color: #000000;
+    font-weight: 800;
+}
+/********************show by client************/
+.show-by-client-row {
+
+    margin: 0;
+}
+

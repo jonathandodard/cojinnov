@@ -1,9 +1,12 @@
-<header class="all-header float-l">
+<header class="all-header">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img class="all-header-img float-l" src="{{ asset('img/logo_cojinnov.png') }}"></a>
+
+            <a href="{{ path('home') }}" class="brand-logo"><img class="all-header-img float-l" src="{{ asset('img/logo_cojinnov.png') }}"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a><i class="material-icons left all-header-user-icon">perm_identity</i>{{ app.user.username }}</a></li>
+                {% if app.user.username is defined  %}
+                    <li><a><i class="material-icons left all-header-user-icon">perm_identity</i>{{ app.user.username }}</a></li>
+                {% endif %}
                 <li><a><i class="material-icons">menu</i></a>
                 </li>
             </ul>

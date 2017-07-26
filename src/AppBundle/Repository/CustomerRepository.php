@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function searchByAll($data)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->where("s.numberAccount LIKE '$data%'")
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }

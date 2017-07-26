@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchByAll($data)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where("p.reference LIKE '$data%'")
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }

@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Product;
 use AppBundle\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends Controller
@@ -74,6 +75,34 @@ class ProductController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('customer_index');
+    }
+
+    public function searchAction(Request $request)
+    {
+        $tabProduct =[];
+        if($request->isXmlHttpRequest()) {
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
+            foreach ($entities as $entity ) {
+                array_push($tabProduct, array(
+                    'Id' => $entity->getId(),
+                    'Type' => $entity->getType(),
+                    'Reference' => $entity->getReference(),
+                    'Name' => $entity->getName(),
+                    'Category' => $entity->getCategory(),
+                    'ConditionProduct' => $entity->getConditionProduct(),
+                    'Duration' => $entity->getDuration(),
+                    'Pcb' => $entity->getPcb(),
+                    'SaleUnit' => $entity->getSaleUnit(),
+                    'Tg' => $entity->getTg(),
+                    'Ts' => $entity->getTs(),
+                    'Tb' => $entity->getTb(),
+                    'TaOne' => $entity->getTaOne(),
+                    'TaTwo' => $entity->getTaTwo(),
+                    'Ppdia' => $entity->getPpdia(),
+                ));
+            }
+        }
+        return new JsonResponse($tabProduct);
     }
 
     public function repositoryCustomer()
