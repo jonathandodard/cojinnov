@@ -34,16 +34,6 @@ class OrderCustomer
      */
     protected $customer;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="orderCustomer_product",
-     *      joinColumns={@ORM\JoinColumn(name="orderCustomer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
-     *      )
-     */
-    protected $products;
-
-
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -89,22 +79,6 @@ class OrderCustomer
     public function setCustomer($customer)
     {
         $this->customer = $customer;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
-
-    /**
-     * @param mixed $products
-     */
-    public function setProducts($products)
-    {
-        $this->products = $products;
     }
 }
 

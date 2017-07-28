@@ -96,3 +96,7 @@ orderCustomer_index_by_orderCustomer:
    defaults: { _controller: AppBundle:OrderCustomer:indexByCustomer }
    requirements:
          id: '\d+'
+
+order_insert_product:
+   path: /order/product/insert
+   defaults: { _controller: AppBundle:OrderCustomer:insertProduct}
