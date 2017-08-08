@@ -4,16 +4,12 @@
         <div class="nav-wrapper">
             <div class="col s12">
                 <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('product_index') }}" class="breadcrumb">Liste commandes</a>
+                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste client</a>
+                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id } ) }}" class="breadcrumb">Client : {{ customer.name }}</a>
                 <a href="{{ path('product_create') }}" class="breadcrumb">creation commande</a>
             </div>
         </div>
     </nav>
-    <div class="row form-orderCustomer-row">
-        <div class="col s12">
-            <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">cloud</i>creation commande</a>
-        </div>
-    </div>
     <div class="row form-orderCustomer-row">
         <div class="col s6">
             <img src="">
@@ -55,14 +51,16 @@
             <tr>
                 <th class="center">Reference</th>
                 <th class="center">Nom commercial</th>
-                <th class="center">Prix par produit</th>
+                <th class="center">Prix unitaire</th>
                 <th class="center">Quantité</th>
-                <th class="center">Prix totale par produit</th>
+                <th class="center">Prix totale HT</th>
+                <th class="center">Prix totale TCC</th>
             </tr>
         </thead>
     <tbody class="co-js-search">
         <tr>
             <td class="center"><input type="text" class="search-order" data-url="{{ path('product_search') }}" data-url-insert ={{ path('order_insert_product') }}></td>
+            <td class="center"><input type="text" ></td>
             <td class="center"><input type="text" ></td>
             <td class="center"><input type="text" ></td>
             <td class="center"><input type="text" ></td>
@@ -85,6 +83,16 @@
         <div class="modal-content">
             <h4>Definir quantité</h4>
             <input type="number" class="co-js-quantity-modal">
+        </div>
+    </div>
+    <div id="modalDoublon" class="modal">
+        <div class="modal-content center">
+            <h4>vous avez deja enregister ce produit</h4>
+        </div>
+    </div>
+    <div id="modalReferenceNotExist" class="modal">
+        <div class="modal-content center">
+            <h4>la reference n'existe pas</h4>
         </div>
     </div>
 

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\date;
 
 /**
  * OrderCustomer
@@ -13,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OrderCustomer
 {
+//    use date;
+
     /**
      * @var int
      *
@@ -34,6 +37,25 @@ class OrderCustomer
      */
     protected $customer;
 
+    /**
+     * @ORM\Column(type="integer", length=255, nullable=false)
+     */
+    protected $tva;
+
+    /**
+     * @ORM\Column(type="integer", length=255, nullable=false)
+     */
+    protected $totalHT;
+
+    /**
+     * @ORM\Column(type="integer", length=255, nullable=false)
+     */
+    protected $totalTTC;
+
+
+    /**
+     * OrderCustomer constructor.
+     */
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -79,6 +101,54 @@ class OrderCustomer
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTva()
+    {
+        return $this->tva;
+    }
+
+    /**
+     * @param mixed $tva
+     */
+    public function setTva($tva)
+    {
+        $this->tva = $tva;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalHT()
+    {
+        return $this->totalHT;
+    }
+
+    /**
+     * @param mixed $totalHT
+     */
+    public function setTotalHT($totalHT)
+    {
+        $this->totalHT = $totalHT;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalTTC()
+    {
+        return $this->totalTTC;
+    }
+
+    /**
+     * @param mixed $totalTTC
+     */
+    public function setTotalTTC($totalTTC)
+    {
+        $this->totalTTC = $totalTTC;
     }
 }
 

@@ -28,8 +28,11 @@ class CustomerController extends Controller
 
     public function indexByCustomerAction(Customer $customer)
     {
+        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findByCustomer($customer);
+
         return $this->render('AppBundle:customer:indexByCustomer.html.twig', [
-            'customer' => $customer
+            'customer' => $customer,
+            'orders' => $orders
         ]);
     }
 

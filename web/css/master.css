@@ -43,6 +43,22 @@ header {
     margin-left: 15px;
 }
 
+.mgr-T-10 {
+    margin-top: 10px;
+}
+
+.mgr-R-10 {
+    margin-right: 10px;
+}
+
+.mgr-B-10 {
+    margin-bottom: 10px;
+}
+
+.mgr-L-10 {
+    margin-bottom: 10px;
+}
+
 /**************login********************/
 .block-login-form {
     border: 1px solid #c8c8c8;

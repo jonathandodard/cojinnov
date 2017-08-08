@@ -27,10 +27,23 @@ class OrderCustomerController extends Controller
         ]);
     }
 
-    public function indexByCustomerAction(OrderCustomer $orderCustomer)
+    public function indexByOrderCustomerAction(Request $request)
     {
+        $product = [];
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($request->get('Customer'));
+
+        $productByOrders = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findBy([
+            'orderId' => $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findById($request->get('OrderCustomer')),
+            'customer' => $customer
+
+        ]);
+        foreach ($productByOrders as $productByOrder) {
+            array_push($product, $this->getDoctrine()->getRepository('AppBundle:Product')->findOneById($productByOrder->getProduct()->getId()));
+        }
+
         return $this->render('AppBundle:orderCustomer:indexByOrderCustomer.html.twig', [
-            'orderCustomer' => $orderCustomer
+            'productByOrders' => $productByOrders,
+            'customer' => $customer
         ]);
     }
 
@@ -62,7 +75,7 @@ class OrderCustomerController extends Controller
                 $em->flush();
             }
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('customer_index_by_costumer', ['id' => $customer->getId()]);
         }
 
         return $this->render('AppBundle:orderCustomer:form.html.twig', [

@@ -92,10 +92,12 @@ orderCustomer_delete:
          id: '\d+'
 
 orderCustomer_index_by_orderCustomer:
-   path: /orderCustomer/show/product/{id}
-   defaults: { _controller: AppBundle:OrderCustomer:indexByCustomer }
+   path: /orderCustomer/show/product/{OrderCustomer}/{Customer}
+   defaults: { _controller: AppBundle:OrderCustomer:indexByOrderCustomer }
    requirements:
-         id: '\d+'
+         OrderCustomer: '\d+'
+         Customer: '\d+'
+
 
 order_insert_product:
    path: /order/product/insert

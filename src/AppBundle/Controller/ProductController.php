@@ -82,24 +82,28 @@ class ProductController extends Controller
         $tabProduct =[];
         if($request->isXmlHttpRequest()) {
             $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
-            foreach ($entities as $entity ) {
-                array_push($tabProduct, array(
-                    'Id' => $entity->getId(),
-                    'Type' => $entity->getType(),
-                    'Reference' => $entity->getReference(),
-                    'Name' => $entity->getName(),
-                    'Category' => $entity->getCategory(),
-                    'ConditionProduct' => $entity->getConditionProduct(),
-                    'Duration' => $entity->getDuration(),
-                    'Pcb' => $entity->getPcb(),
-                    'SaleUnit' => $entity->getSaleUnit(),
-                    'Tg' => $entity->getTg(),
-                    'Ts' => $entity->getTs(),
-                    'Tb' => $entity->getTb(),
-                    'TaOne' => $entity->getTaOne(),
-                    'TaTwo' => $entity->getTaTwo(),
-                    'Ppdia' => $entity->getPpdia(),
-                ));
+            if (empty($entities)) {
+                $tabProduct = false;
+            } else {
+                foreach ($entities as $entity ) {
+                    array_push($tabProduct, array(
+                        'Id' => $entity->getId(),
+                        'Type' => $entity->getType(),
+                        'Reference' => $entity->getReference(),
+                        'Name' => $entity->getName(),
+                        'Category' => $entity->getCategory(),
+                        'ConditionProduct' => $entity->getConditionProduct(),
+                        'Duration' => $entity->getDuration(),
+                        'Pcb' => $entity->getPcb(),
+                        'SaleUnit' => $entity->getSaleUnit(),
+                        'Tg' => $entity->getTg(),
+                        'Ts' => $entity->getTs(),
+                        'Tb' => $entity->getTb(),
+                        'TaOne' => $entity->getTaOne(),
+                        'TaTwo' => $entity->getTaTwo(),
+                        'Ppdia' => $entity->getPpdia(),
+                    ));
+                }
             }
         }
         return new JsonResponse($tabProduct);
