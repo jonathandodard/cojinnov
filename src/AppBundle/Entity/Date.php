@@ -10,15 +10,21 @@
 namespace AppBundle\Entity;
 
 
-trait date
+trait Date
 {
+
     /**
-     * @ORM\Column(type="datetime", name="createAt")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
      */
     protected $createdAt;
 
+
     /**
-     * @ORM\Column(type="datetime",  name="updateAt", nullable=true)
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
      */
     protected $updatedAt;
 

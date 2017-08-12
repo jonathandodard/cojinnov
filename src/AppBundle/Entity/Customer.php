@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Date;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Customer
 {
+//    use Date;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

@@ -10,7 +10,7 @@ nav {
     background-color: #f2f2f2;!important;
 }
 header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .height-130 {
@@ -42,7 +42,24 @@ header {
 .nav-wrapper a:first-child {
     margin-left: 15px;
 }
+/*width*/
+.width-79 {
+    width: 79%;
+}
 
+.width-80 {
+    width: 80%;
+}
+
+.f-s-30{
+    font-size: 30px;
+}
+
+/*margin*/
+.mgr-0 {
+    margin: 0;
+}
+/*margin-top*/
 .mgr-T-10 {
     margin-top: 10px;
 }
@@ -50,13 +67,39 @@ header {
 .mgr-R-10 {
     margin-right: 10px;
 }
+/*margin bottom*/
+.mgr-B-0 {
+    margin-bottom: 0px;
+}
 
 .mgr-B-10 {
     margin-bottom: 10px;
 }
 
+.mgr-B-15 {
+    margin-bottom: 15px;
+}
+
+/*margin-left*/
 .mgr-L-10 {
     margin-bottom: 10px;
+}
+
+/*padding*/
+.pad-0{
+
+}
+.pad-T-0 {
+    padding-top: 0px;
+}
+
+/*padding-top*/
+
+.side-nav-hoverride {
+    background-color: #f2f2f2;
+}
+.color-text-master {
+    color: #7991c1;
 }
 
 /**************login********************/
@@ -166,20 +209,17 @@ header {
 
 
 /*************home********************/
-.home-content {
-    width: 80%;
-}
 
 .button-home-link {
     color: #FFFFFF;
 }
 
 .button-home {
-    background-color: #2bbbad;
+    background-color: #3a629e;
 }
 
 .button-home:hover {
-    background-color: #3a629e;
+    background-color: #2bbbad;
 }
 
 .button-home i{
@@ -224,3 +264,7 @@ header {
     margin-bottom: 0px;
 }
 
+/* objectifs */
+.goal-ok{
+    background-color: rgba(0, 159, 0, 0.55);
+}
