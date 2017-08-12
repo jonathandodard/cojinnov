@@ -5,7 +5,8 @@
             <div class="col s12">
                 <a href="{{ path('home') }}" class="breadcrumb">Home</a>
                 <a href="{{ path('product_index') }}" class="breadcrumb">Liste commandes</a>
-                <a href="{{ path('product_create') }}" class="breadcrumb">creation commande</a>
+                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="breadcrumb">Client: {{ customer.name }}</a>
+                <a href="#" class="breadcrumb">Commande</a>
             </div>
         </div>
     </nav>
@@ -57,7 +58,6 @@
             </tr>
         </thead>
         <tbody class="co-js-search">
-        {#{{ dump(productByOrders) }}#}
             {% for productByOrder in productByOrders %}
                 {% set priceHT =  productByOrder.quantity*productByOrder.price %}
                 {% set addTva =  (priceHT*productByOrder.orderId.tva)/100 %}
@@ -68,7 +68,7 @@
                     <td class="center">{{ productByOrder.product.name }}</td>
                     <td class="center">{{ productByOrder.price }}</td>
                     <td class="center">{{ productByOrder.quantity }}</td>
-                    <td class="center price-product-ht">{{ priceHT }} </td>
+                    <td class="center price-product-ht">{{ priceHT }}</td>
                     <td class="center price-product-ttc">{{ priceTTC }}</td>
                     <td class="center">
                 </tr>
