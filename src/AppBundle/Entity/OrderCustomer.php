@@ -14,7 +14,7 @@ use AppBundle\Entity\date;
  */
 class OrderCustomer
 {
-//    use date;
+    use date;
 
     /**
      * @var int

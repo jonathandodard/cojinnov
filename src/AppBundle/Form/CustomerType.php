@@ -30,7 +30,8 @@ class CustomerType extends AbstractType
             ->add('zipCode', NumberType::class)
             ->add('city', TextType::class)
             ->add('phoneNumber', NumberType::class)
-            ->add('save', SubmitType::class, array('label' => 'Create Post'))
+            ->add('price', NumberType::class)
+            ->add('submit', SubmitType::class, array('label' => 'Create Post'))
         ;
 
     }

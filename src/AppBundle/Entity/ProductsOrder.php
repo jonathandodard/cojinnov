@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Date;
 
 /**
  * ProductsOrder
@@ -16,6 +17,7 @@ class ProductsOrder
     const VALIDATE = '1';
     const SAVE = '2';
 
+    use Date;
 
     /**
      * @var int

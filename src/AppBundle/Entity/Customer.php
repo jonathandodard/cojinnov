@@ -11,7 +11,7 @@ use AppBundle\Entity\Date;
  */
 class Customer
 {
-//    use Date;
+    use Date;
 
     /**
      * @ORM\Id
