@@ -95,6 +95,18 @@
             <h4>la reference n'existe pas</h4>
         </div>
     </div>
+    <div id="updatePrice" class="modal">
+        <div class="modal-content">
+            <h4>Redefinir prix</h4>
+            <input type="number" class="co-js-update-price-modal">
+        </div>
+    </div>
+    <div id="updateQuantity" class="modal">
+        <div class="modal-content">
+        <h4>Redefinir le quantité</h4>
+            <input type="number" class="co-js-price-modal">
+        </div>
+    </div>
         {#<td class="center price-product-ht">{{ priceHT }}<i class="material-icons co-js-update-prixHT" data-id="{{ productByOrder.id }}">create</i></td>#}
         {#<td class="center price-product-ttc">{{ priceTTC }}<i class="material-icons co-js-update-prixTTC" data-id="{{ productByOrder.id }}">create</i></td>#}
 {% endblock %}

@@ -51,6 +51,10 @@ header {
     width: 80%;
 }
 
+.f-s-25{
+    font-size: 25px;
+}
+
 .f-s-30{
     font-size: 30px;
 }
@@ -62,6 +66,10 @@ header {
 /*margin-top*/
 .mgr-T-10 {
     margin-top: 10px;
+}
+
+.mgr-T-15 {
+    margin-top: 15px;
 }
 
 .mgr-R-10 {
@@ -254,7 +262,7 @@ header {
     margin: 0;
 }
 
-.form-orderCustomer-row {
+.form-orderCustomer-row input {
     margin-bottom: 0px;
     margin-top: 0px;
 }
@@ -267,4 +275,8 @@ header {
 /* objectifs */
 .goal-ok{
     background-color: rgba(0, 159, 0, 0.55);
+}
+
+.form-orderCustomer-img{
+    background-color: #f2f2f2;
 }

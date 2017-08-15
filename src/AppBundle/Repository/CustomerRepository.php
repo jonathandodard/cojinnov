@@ -13,8 +13,18 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
 
     public function searchByAll($data)
     {
-        $query = $this->createQueryBuilder('s')
-            ->where("s.numberAccount LIKE '$data%'")
+        $query = $this->createQueryBuilder('c')
+            ->where("c.numberAccount LIKE '$data%'")
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+    public function sortsBy($alias)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->orderBy('c.'.$alias, 'ASC')
             ->getQuery()
             ->getResult();
 

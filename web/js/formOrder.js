@@ -117,33 +117,38 @@ $(document).ready(function(){
                 'quantity': quantity,
                 'price': priceByProduct,
                 'status': '2',
+            },
+            success: function (data) {
+                $('.co-js-update-price-product').attr('data-id', data.id);
+                $('.co-js-update-quantity-product').attr('data-id', data.id);
             }
         })
     }
 
     function productsList(data) {
         for (var counter = 0; counter < data.length; counter++) {
-            console.log(idProduct = data[counter].Id);
             idProduct = data[counter].Id;
             $('.co-js-search').append(
                 '<tr class="co-js-search-result">' +
-                '<td class="center co-js-ref" data-reference="'+data[counter].Reference+'">' + data[counter].Reference + '</a></td>' +
-                '<td class="center">' + data[counter].Name + '</td>' +
-                '<td class="center">' + priceByProduct + '</td>' +
-                '<td class="center">' + quantity + '</td>' +
-                '<td class="center price-product-ht" data-value="'+priceHT(quantity,priceByProduct)+'">' + priceHT(quantity,priceByProduct) + '</td>' +
-                '<td class="center price-product-ttc test" data-value="'+priceTTC(quantity,priceByProduct)+'">' + priceTTC(quantity,priceByProduct) + '</td>' +
-                '<td class="center">' +
+                    '<td class="center co-js-ref" data-reference="'+data[counter].Reference+'">' + data[counter].Reference + '</a></td>' +
+                    '<td class="center">' + data[counter].Name + '</td>' +
+                    '<td class="center co-js-update-price-product" data-id="">' + priceByProduct + '</td>' +
+                    '<td class="center co-js-update-quantity-product" data-id="">' + quantity + '</td>' +
+                    '<td class="center price-product-ht" data-value="'+priceHT(quantity,priceByProduct)+'">' + priceHT(quantity,priceByProduct) + '</td>' +
+                    '<td class="center price-product-ttc test" data-value="'+priceTTC(quantity,priceByProduct)+'">' + priceTTC(quantity,priceByProduct) + '</td>' +
+                    '<td class="center">' +
                 '</tr>'
             )
         }
-        insertProduct()
+        insertProduct();
         totalPriceTTC();
         totalPriceHT();
         $( ".search-order" ).val("");
         $( ".co-js-price-modal" ).val("");
         $( ".co-js-quantity-modal" ).val("");
         $( ".search-order" ).focus();
+        updateprice();
+
 
     }
     
@@ -158,7 +163,6 @@ $(document).ready(function(){
     }
     
     function totalPriceTTC() {
-        // console.log( $('.price-product-TTC'))
         var inputTTTC = parseInt($('#appbundle_customer_totalTTC').val());
         $('.price-product-ttc').each(function () {
             var totalPriceTTC = inputTTTC;
@@ -173,7 +177,46 @@ $(document).ready(function(){
 
     }
 
-    function updateProduct() {
+    function updateprice() {
+        $('.co-js-update-price-product').on('click', function(){
+            $('#updatePrice').modal('open');
+            $('.co-js-update-price-modal').keypress(function (e) {
+                if (e.which == 13) {
+                    e.stopImmediatePropagation();
+                    $.ajax({
+                        url: '/order/product/update/price',
+                        data: {
+                            'id': $('.co-js-update-price-product').attr('data-id'),
+                            'price': $('.co-js-update-price-modal').val(),
+                        },
+                        success: function (data) {
+                            $('#updatePrice').modal('close');
+                            $('.co-js-update-price-product').text($('.co-js-update-price-modal').val())
 
+                        }
+
+                    })
+                }
+            });
+        });
+    }
+
+    function updateProduct() {
+        $('.co-js-update-price-product').on('click', function(){
+            $('#updatePrice').modal('open');
+            $('.co-js-update-price-modal').keypress(function (e) {
+                $('.co-js-update-price-product').attr('data-id');
+                if (e.which == 13) {
+                    e.stopImmediatePropagation();
+                    $.ajax({
+                        url: '/order/product/update/price',
+                        data: {
+                            'id': idProduct,
+                            'price': priceByProduct,
+                        }
+                    })
+                }
+            });
+        });
     }
 });

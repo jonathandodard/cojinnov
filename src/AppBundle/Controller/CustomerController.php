@@ -46,6 +46,8 @@ class CustomerController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $customer->setUser($this->getUser());
+            $customer->setCreatedAt();
+            $customer->setUpdatedAt('now');
             $user = $this->getUser()->addCustomer($customer);
             $em->persist($customer);
             $em->persist($user);
@@ -84,6 +86,35 @@ class CustomerController extends Controller
         return $this->redirectToRoute('customer_index');
     }
 
+    public function sortAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $alias = $request->get('data');
+            $tabCustomer =[];
+
+            if($request->isXmlHttpRequest()) {
+                $entities = $this->repositoryCustomer()->sortsBy($alias);
+                foreach ($entities as $entity ) {
+                    array_push($tabCustomer, array(
+                        'Id' => $entity->getId(),
+                        'NumberAccount' => $entity->getNumberAccount(),
+                        'Entitled' => $entity->getEntitled(),
+                        'Ranking' => $entity->getRanking(),
+                        'NameRepresentative' => $entity->getNameRepresentative(),
+                        'Name' => $entity->getName(),
+                        'Email' => $entity->getEmail(),
+                        'Address' => $entity->getAddress(),
+                        'AdditionalAddress' => $entity->getAdditionalAddress(),
+                        'ZipCode' => $entity->getZipCode(),
+                        'City' => $entity->getCity(),
+                        'PhoneNumber' => $entity->getPhoneNumber(),
+                    ));
+                }
+            }
+            return new JsonResponse($tabCustomer);
+        }
+    }
+
     public function searchAction(Request $request)
     {
         $tabCustomer =[];
@@ -114,5 +145,3 @@ class CustomerController extends Controller
         return $this->getDoctrine()->getRepository('AppBundle:Customer');
     }
 }
-
-//a:0:{}

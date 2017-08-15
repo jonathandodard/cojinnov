@@ -31,6 +31,10 @@ customer_index_by_costumer:
     requirements:
         page: '\d+'
 
+customer_sort:
+    path: /customer/sort
+    defaults: { _controller: AppBundle:Customer:sort }
+
 customer_search:
     path: /customer/search
     defaults: { _controller: AppBundle:Customer:search }
@@ -98,7 +102,14 @@ orderCustomer_index_by_orderCustomer:
          OrderCustomer: '\d+'
          Customer: '\d+'
 
-
 order_insert_product:
    path: /order/product/insert
-   defaults: { _controller: AppBundle:OrderCustomer:insertProduct}
+   defaults: { _controller: AppBundle:OrderCustomer:insertProduct }
+
+order_update_price:
+   path: /order/product/update/price
+   defaults: { _controller: AppBundle:OrderCustomer:updatePrice }
+
+order_update_quantity:
+   path: /order/product/update/quantity
+   defaults: { _controller: AppBundle:OrderCustomer:updatePrice }

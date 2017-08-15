@@ -55,6 +55,8 @@ class OrderCustomerController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $orderCustomer->setCreatedAt();
+            $orderCustomer->setUpdatedAt('now');
             $orderCustomer->setCustomer($customer);
             $orderCustomer->setUser($this->getUser());
             $em->persist($orderCustomer);
@@ -101,6 +103,17 @@ class OrderCustomerController extends Controller
         ]);
     }
 
+    public function updatePriceAction(Request $request)
+    {
+        $productsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findOneById($request->get('id'));
+        $productsOrder->setPrice($request->get('price'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($productsOrder);
+        $em->flush();
+
+        return new JsonResponse();
+    }
+
     public function insertProductAction(Request $request)
     {
         $doctrine = $this->getDoctrine();
@@ -112,12 +125,16 @@ class OrderCustomerController extends Controller
             ->setQuantity($request->get('quantity'))
             ->setPrice($request->get('price'))
             ->setStatus($request->get('status'))
+            ->setCreatedAt()
+            ->setUpdatedAt('now')
         ;
         $em = $doctrine->getManager();
         $em->persist($productsOrder);
         $em->flush();
 
-        return new JsonResponse();
+        $idProductOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findOneById($productsOrder->getId());
+
+        return new JsonResponse(['id'=>$idProductOrder->getId()]);
 
     }
 

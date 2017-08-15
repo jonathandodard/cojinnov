@@ -9,31 +9,83 @@
         </div>
     </div>
 </nav>
+    {{ form_start(form) }}
+
     {{ form_errors(form) }}
 
-    <div class="row">
-        <div class="col s6 center-align">
+    <div class="row mgr-T-15 ">
+        <div class="col s6 center-align form-orderCustomer-img">
             <img width="44%" src="{{ asset('img/office.png') }}">
         </div>
-        <div class="col s6">
-            {{ form_row(form.numberAccount, { 'label': 'N° Compte' }) }}
-            {{ form_row(form.entitled, { 'label': 'Intitulé' }) }}
-            {{ form_row(form.ranking, { 'label': 'Classement' }) }}
-            {{ form_row(form.nameRepresentative, { 'label': 'Nom du représentant' }) }}
-            {{ form_row(form.price, { 'label': "Catégorie Tarifaire" }) }}
+        <div class="col s6 form-orderCustomer-input">
+            {{ form_row(form.numberAccount, {
+                'label': 'N° Compte',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.entitled, {
+                'label': 'Intitulé',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.ranking, {
+                'label': 'Classement',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.nameRepresentative, {
+                'label': 'Nom du représentant',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.price, {
+                'label': "Catégorie Tarifaire",
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
         </div>
         <div class="col s12">
             <div class="col s6">
-                {{ form_row(form.name, { 'label': 'Nom' }) }}
-                {{ form_row(form.address, { 'label': 'Adresse' }) }}
-                {{ form_row(form.city, { 'label': "Ville" }) }}
-                {{ form_row(form.phoneNumber, { 'label': "Numéro de téléphone" }) }}
+                {{ form_row(form.name, {
+                    'label': 'Nom',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.address, {
+                    'label': 'Adresse',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.city, {
+                    'label': "Ville",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.phoneNumber, {
+                    'label': "Numéro de téléphone",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
             </div>
             <div class="col s6">
-                {{ form_row(form.email, { 'label': 'Email' }) }}
-                {{ form_row(form.additionalAddress, { 'label': "Complement d'adresse" }) }}
-                {{ form_row(form.zipCode , { 'label': "Code postale" }) }}
-                {{ form_row(form.submit, { 'label': 'Submit me' }) }}
+                {{ form_row(form.email, { 'label': 'Email',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.additionalAddress, {
+                    'label': "Complement d'adresse",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.zipCode , {
+                    'label': "Code postale",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                <div class="center-align">
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
             </div>
         </div>
     </div>
