@@ -61,6 +61,20 @@ class ProductsOrder
     private $price;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="price_ht" type="integer")
+     */
+    private $priceHt;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price_ttc" type="integer")
+     */
+    private $priceTTC;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="status", type="integer")
@@ -223,5 +237,36 @@ class ProductsOrder
         return $this->status;
     }
 
+    /**
+     * @return int
+     */
+    public function getPriceHt()
+    {
+        return $this->priceHt;
+    }
+
+    /**
+     * @param int $priceHt
+     */
+    public function setPriceHt($priceHt)
+    {
+        $this->priceHt = $priceHt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriceTTC()
+    {
+        return $this->priceTTC;
+    }
+
+    /**
+     * @param int $priceTTC
+     */
+    public function setPriceTTC($priceTTC)
+    {
+        $this->priceTTC = $priceTTC;
+    }
 }
 

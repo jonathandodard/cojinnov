@@ -117,6 +117,8 @@ $(document).ready(function(){
                 'quantity': quantity,
                 'price': priceByProduct,
                 'status': '2',
+                'priceHT': priceHT(quantity,priceByProduct),
+                'priceTTC': priceTTC(quantity,priceByProduct),
             },
             success: function (data) {
                 $('.co-js-update-price-product').attr('data-id', data.id);
@@ -192,6 +194,8 @@ $(document).ready(function(){
                         success: function (data) {
                             $('#updatePrice').modal('close');
                             $('.co-js-update-price-product').text($('.co-js-update-price-modal').val())
+                            totalPriceHT();
+                            totalPriceTTC();
 
                         }
 
