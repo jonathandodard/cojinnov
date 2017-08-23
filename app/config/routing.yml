@@ -112,4 +112,8 @@ order_update_price:
 
 order_update_quantity:
    path: /order/product/update/quantity
-   defaults: { _controller: AppBundle:OrderCustomer:updatePrice }
+   defaults: { _controller: AppBundle:OrderCustomer:updateQuantity }
+
+order_product_delete:
+  path: /order/product/delete
+  defaults: { _controller: AppBundle:OrderCustomer:deleteProduct }

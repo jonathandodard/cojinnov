@@ -20,7 +20,7 @@ class ProductsOrder
     use Date;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,54 +32,61 @@ class ProductsOrder
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="ProductOrder")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    private $product;
+    protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="ProductOrder")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $customer;
+    protected $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderCustomer", inversedBy="ProductOrder")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
-    private $orderId;
+    protected $orderId;
 
     /**
      * @var string
      *
      * @ORM\Column(name="quantity", type="integer")
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @var string
      *
      * @ORM\Column(name="price", type="integer")
      */
-    private $price;
+    protected $price;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="price_ht" type="integer")
+     * @ORM\Column(name="tva", type="integer")
      */
-    private $priceHt;
+    protected $tva;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="price_ttc" type="integer")
+     * @ORM\Column(name="price_ht", type="integer")
      */
-    private $priceTTC;
+    protected $priceHt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price_ttc", type="integer")
+     */
+    protected $priceTTC;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status;
+    protected $status;
 
 
     /**
@@ -212,9 +219,24 @@ class ProductsOrder
         return $this->price;
     }
 
+    /**
+     * @return integer
+     */
+    public function getTva()
+    {
+        return $this->tva;
+    }
 
     /**
-     * Set price
+     * @param integer $tva
+     */
+    public function setTva($tva)
+    {
+        $this->tva = $tva;
+    }
+
+    /**
+     * Set status
      *
      * @param integer $status
      *

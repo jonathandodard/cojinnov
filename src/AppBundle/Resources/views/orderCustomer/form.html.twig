@@ -55,6 +55,7 @@
                 <th class="center">Quantité</th>
                 <th class="center">Prix totale HT</th>
                 <th class="center">Prix totale TCC</th>
+                <th class="center">Action</th>
             </tr>
         </thead>
     <tbody class="co-js-search">
@@ -65,6 +66,7 @@
             <td class="center"><input type="text" ></td>
             <td class="center"><input type="text" ></td>
             <td class="center"><input type="text" ></td>
+            <td class="center"></td>
         </tr>
     </tbody>
     <input class="customer-id" type="hidden" value="{{ customer.id }}">
@@ -73,16 +75,22 @@
     {{ form_widget(form) }}
     {{ form_end(form) }}
     <!-- Modal Structure -->
-    <div id="modal1" class="modal">
+    <div id="modalPrice" class="modal">
         <div class="modal-content">
         <h4>Definition du prix</h4>
-            <input type="number" class="co-js-price-modal">
+            <input type="number" class="co-js-price-modal" value="20">
         </div>
     </div>
-    <div id="modal2" class="modal">
+    <div id="modalQuantity" class="modal">
         <div class="modal-content">
             <h4>Definir quantité</h4>
-            <input type="number" class="co-js-quantity-modal">
+            <input type="number" class="co-js-quantity-modal" value="20">
+        </div>
+    </div>
+    <div id="modalTva" class="modal">
+        <div class="modal-content">
+            <h4>Definir TVA</h4>
+            <input type="number" class="co-js-tva-modal" value="20">
         </div>
     </div>
     <div id="modalDoublon" class="modal">
@@ -104,11 +112,9 @@
     <div id="updateQuantity" class="modal">
         <div class="modal-content">
         <h4>Redefinir le quantité</h4>
-            <input type="number" class="co-js-price-modal">
+            <input type="number" class="co-js-update-quantity-modal">
         </div>
     </div>
-        {#<td class="center price-product-ht">{{ priceHT }}<i class="material-icons co-js-update-prixHT" data-id="{{ productByOrder.id }}">create</i></td>#}
-        {#<td class="center price-product-ttc">{{ priceTTC }}<i class="material-icons co-js-update-prixTTC" data-id="{{ productByOrder.id }}">create</i></td>#}
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

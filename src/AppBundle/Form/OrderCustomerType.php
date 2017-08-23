@@ -32,7 +32,6 @@ class OrderCustomerType extends AbstractType
             ->add('totalTTC' , NumberType::class, ['data'=>'0'])
             ->add('save', SubmitType::class, array('label' => 'finir commande'))
         ;
-
     }
 
     /**

@@ -107,35 +107,111 @@ class OrderCustomerController extends Controller
     {
         $productsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findOneById($request->get('id'));
         $productsOrder->setPrice($request->get('price'));
+        $productsOrder->setPriceHt($this->htPrice( $productsOrder->getQuantity(), $request->get('price')));
+        $productsOrder->setPriceTTC($this->ttcPrice($productsOrder->getQuantity(), $request->get('price'), $productsOrder->getTva()));
         $em = $this->getDoctrine()->getManager();
+
         $em->persist($productsOrder);
         $em->flush();
 
-        return new JsonResponse();
+        return new JsonResponse(
+            [
+                'id' => $productsOrder->getId(),
+                'price'=> $productsOrder->getPrice(),
+                'priceHt' => $this->htPrice( $productsOrder->getQuantity(), $request->get('price')),
+                'priceTtc' => $this->ttcPrice($productsOrder->getQuantity(), $request->get('price'), $productsOrder->getTva())
+            ]
+        );
+    }
+
+    public function updateQuantityAction(Request $request)
+    {
+        $productsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findOneById($request->get('id'));
+        $productsOrder->setQuantity($request->get('quantity'));
+        $productsOrder->setPriceHt($this->htPrice( $request->get('quantity'), $productsOrder->getPrice()));
+        $productsOrder->setPriceTTC($this->ttcPrice($request->get('quantity'), $productsOrder->getPrice(), $productsOrder->getTva()));
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($productsOrder);
+        $em->flush();
+
+        return new JsonResponse(
+            [
+                'id' => $productsOrder->getId(),
+                'quantity'=> $productsOrder->getQuantity(),
+                'priceHt' => $this->htPrice( $productsOrder->getQuantity(), $request->get('price')),
+                'priceTtc' => $this->ttcPrice($productsOrder->getQuantity(), $request->get('price'), $productsOrder->getTva())
+            ]
+        );
     }
 
     public function insertProductAction(Request $request)
     {
         $doctrine = $this->getDoctrine();
         $productsOrder = new ProductsOrder();
-
+        $product = $doctrine->getRepository('AppBundle:Product')->findOneById($request->get('product'));
+        
         $productsOrder
-            ->setProduct($doctrine->getRepository('AppBundle:Product')->findOneById($request->get('product')))
+            ->setProduct($product)
             ->setCustomer($doctrine->getRepository('AppBundle:Customer')->findOneById($request->get('customer')))
             ->setQuantity($request->get('quantity'))
             ->setPrice($request->get('price'))
             ->setStatus($request->get('status'))
             ->setCreatedAt()
-            ->setUpdatedAt('now')
-        ;
+            ->setUpdatedAt('now');
+        $productsOrder->setPriceHt($this->htPrice($request->get('quantity'),$request->get('price')));
+        $productsOrder->setPriceTTC($this->ttcPrice($request->get('quantity'), $request->get('price'), $request->get('tva')));
+        $productsOrder->setTva($request->get('tva'));
+
         $em = $doctrine->getManager();
         $em->persist($productsOrder);
         $em->flush();
 
         $idProductOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findOneById($productsOrder->getId());
 
-        return new JsonResponse(['id'=>$idProductOrder->getId()]);
+        return new JsonResponse(
+            [
+                'valuesProduct'=> [
+                    'id'=> $product->getId(),
+                    'reference'=> $product->getReference(),
+                    'name'=> $product->getName(),
+                ],
+                'productsOrder' => [
+                    'id'=>$idProductOrder->getId(),
+                    'quantity'=>$idProductOrder->getQuantity(),
+                    'price'=>$idProductOrder->getPrice(),
+                    'htPrice'=>$idProductOrder->getPriceHt(),
+                    'ttcPrice'=>$idProductOrder->getPriceTTC(),
+                ]
+            ]);
 
+    }
+
+    public function deleteProductAction(Request $request)
+    {
+        $doctrine = $this->getDoctrine();
+        $productsOrder = $doctrine->getRepository('AppBundle:ProductsOrder')->findOneById($request->get('id'));
+
+        $em = $doctrine->getManager();
+        $em->remove($productsOrder);
+        $em->flush();
+
+        return new JsonResponse(
+            [
+                'id' => $request->get('id')
+            ]
+        );
+    }
+
+    public function htPrice($quantity, $price)
+    {
+        return $quantity*$price;
+    }
+
+    public function ttcPrice($quantity, $price, $tva)
+    {
+        $addTva = (($quantity*$price)*$tva)/100;
+        return ($quantity*$price)+$addTva;
     }
 
     public function deleteAction(Request $request, OrderCustomer $orderCustomer)
