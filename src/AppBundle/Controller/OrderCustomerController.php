@@ -22,28 +22,29 @@ class OrderCustomerController extends Controller
     public function indexAction()
     {
         $orderCustomers = $this->repositoryOrderCustomer()->findAll();
+        foreach ($orderCustomers as $orderCustomer){
+            $orderCustomer->setCustomer($this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($orderCustomer->getCustomer()->getId()));
+        }
+
         return $this->render('AppBundle:orderCustomer:index.html.twig', [
             'orderCustomers' => $orderCustomers
         ]);
     }
 
-    public function indexByOrderCustomerAction(Request $request)
+    public function indexByOrderCustomerAction(OrderCustomer $orderCustomer)
     {
-        $product = [];
-        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($request->get('Customer'));
+        $orderCustomers = $this->repositoryOrderCustomer()->findOneById($orderCustomer);
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($orderCustomer->getCustomer()->getId());
+        $ProductsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findByOrderId($orderCustomer->getId());
 
-        $productByOrders = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findBy([
-            'orderId' => $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findById($request->get('OrderCustomer')),
-            'customer' => $customer
-
-        ]);
-        foreach ($productByOrders as $productByOrder) {
-            array_push($product, $this->getDoctrine()->getRepository('AppBundle:Product')->findOneById($productByOrder->getProduct()->getId()));
+        foreach ($ProductsOrder as $ProductOrder){
+            $ProductOrder->setProduct($this->getDoctrine()->getRepository('AppBundle:Product')->findOneById($ProductOrder->getProduct()->getId()));
         }
 
         return $this->render('AppBundle:orderCustomer:indexByOrderCustomer.html.twig', [
-            'productByOrders' => $productByOrders,
-            'customer' => $customer
+            'orderCustomer' => $orderCustomer,
+            'customer'      => $customer,
+            'ProductsOrder' => $ProductsOrder
         ]);
     }
 
