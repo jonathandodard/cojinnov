@@ -53,7 +53,7 @@ class CustomerController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('customer_create');
+            return $this->redirectToRoute('customer_index');
         }
 
         return $this->render('AppBundle:customer:form.html.twig', [
@@ -70,6 +70,8 @@ class CustomerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($customer);
             $em->flush();
+
+            return $this->redirectToRoute('customer_index');
         }
 
         return $this->render('AppBundle:customer:form.html.twig', [

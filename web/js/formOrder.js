@@ -1,5 +1,3 @@
-var idProduct = '';
-var priceByProduct = 0;
 var quantity = 0;
 var test = [];
 var datas = '';
@@ -25,14 +23,14 @@ $(document).ready(function(){
             url: $('.search-order').attr('data-url'),
             data: {'data': element.val()},
             success: function (data) {
-                product.id = data[0].Id;
                 datas = data;
 
                 if (!data) {
                     $('#modalReferenceNotExist').modal('open');
                     $('.search-order').val('')
                 } else {
-                    modal(isDouble(data));
+                    product.id = data[0].Id;
+                    isDouble(data);
                 }
             }
         })
@@ -46,11 +44,12 @@ $(document).ready(function(){
         isDoublon = false;
         if ($('.co-js-ref').length) {
             $('.co-js-ref').each(function () {
-                if( $(this).attr('data-reference') == ref[0].Reference ) {
+                if( parseInt($(this).attr('data-reference')) == ref[0].Reference ) {
                     isDoublon = true;
                 }
             })
         }
+        modal(isDoublon);
     }
 
     /**
@@ -111,9 +110,9 @@ $(document).ready(function(){
         );
         totalPriceTTC();
         totalPriceHT();
-        // $( ".search-order" ).val("");
-        // $( ".co-js-price-modal" ).val("");
-        // $( ".co-js-quantity-modal" ).val("");
+        $( ".search-order" ).val("");
+        $( ".co-js-price-modal" ).val("");
+        $( ".co-js-quantity-modal" ).val("");
         $( ".search-order" ).focus();
 
 
@@ -132,21 +131,20 @@ $(document).ready(function(){
     }
     
     function totalPriceHT() {
-        var inputTHT = parseInt($('#appbundle_customer_totalHT').val());
+        var htPrice  = 0;
         $('.price-product-ht').each(function () {
-            var totalPriceHT = inputTHT;
-            totalPriceHT = totalPriceHT +  parseInt($(this).attr('data-value'));
-
-            $('#appbundle_customer_totalHT').val(totalPriceHT)
-        })
+            htPrice = parseInt($(this).attr('data-value')) + parseInt(htPrice);
+            $('#appbundle_customer_totalHT').val(htPrice)
+            $('#appbundle_customer_totalHT').attr('value' , htPrice)
+        });
     }
     
     function totalPriceTTC() {
-        var inputTTTC = parseInt($('#appbundle_customer_totalTTC').val());
+        var ttcPrice  = 0;
         $('.price-product-ttc').each(function () {
-            var totalPriceTTC = inputTTTC;
-            totalPriceTTC = totalPriceTTC +  parseInt($(this).attr('data-value'));
-            $('#appbundle_customer_totalTTC').val(totalPriceTTC)
+            ttcPrice = parseInt($(this).attr('data-value')) + parseInt(ttcPrice);
+            $('#appbundle_customer_totalTTC').val(ttcPrice);
+            $('#appbundle_customer_totalTTC').attr('value' , ttcPrice)
         })
     }
 
@@ -168,6 +166,8 @@ $(document).ready(function(){
                 $('#'+data.id+'-price-product').text(data.price);
                 $('#'+data.id+'-ht-product').text(data.priceHt);
                 $('#'+data.id+'-ttc-product').text(data.priceTtc);
+                $('#'+data.id+'-ht-product').attr('data-value', data.priceHt);
+                $('#'+data.id+'-ttc-product').attr('data-value', data.priceTtc);
                 totalPriceHT();
                 totalPriceTTC();
             }
@@ -187,6 +187,8 @@ $(document).ready(function(){
                 $('#'+data.id+'-quantity-product').text(data.quantity);
                 $('#'+data.id+'-ht-product').text(data.priceHt);
                 $('#'+data.id+'-ttc-product').text(data.priceTtc);
+                $('#'+data.id+'-ht-product').attr('data-value', data.priceHt);
+                $('#'+data.id+'-ttc-product').attr('data-value', data.priceTtc);
                 totalPriceHT();
                 totalPriceTTC();
             }
@@ -213,10 +215,12 @@ $(document).ready(function(){
     $('.co-js-price-modal').keypress(function (e) {
         if (e.which == 13) {
             e.stopImmediatePropagation();
+            if($('.co-js-price-modal').val() != ''){
+                $('#modalPrice').modal('close');
+                product.price = $('.co-js-price-modal').val();
+                addQuantity();
+            }
 
-            product.price = $('.co-js-price-modal').val();
-
-            addQuantity();
         }
     });
 
@@ -227,12 +231,13 @@ $(document).ready(function(){
     $('.co-js-quantity-modal').keypress(function (e) {
         if (e.which == 13) {
             e.stopImmediatePropagation();
+            if ($('.co-js-quantity-modal').val() != '') {
+                product.quantity = $('.co-js-quantity-modal').val();
 
-            product.quantity = $('.co-js-quantity-modal').val();
+                $('#modalQuantity').modal('close');
 
-            $('#modalQuantity').modal('close');
-
-            addTva();
+                addTva();
+            }
         }
     });
 
@@ -243,9 +248,11 @@ $(document).ready(function(){
     $('.co-js-tva-modal').keypress(function (e) {
         if (e.which == 13) {
             e.stopImmediatePropagation();
-            product.tva = $('.co-js-tva-modal').val();
-            $('#modalTva').modal('close');
-            insertProduct();
+            if ($('.co-js-tva-modal').val() != '') {
+                product.tva = $('.co-js-tva-modal').val();
+                $('#modalTva').modal('close');
+                insertProduct();
+            }
         }
     });
 
@@ -255,6 +262,7 @@ $(document).ready(function(){
     $('.co-js-update-price-modal').keypress(function (e) {
         if (e.which == 13) {
             e.stopImmediatePropagation();
+            $('#updatePrice').modal('close');
             updatePrice($('#updatePrice input').attr('id'), $('.co-js-update-price-modal').val());
         }
     });
@@ -265,7 +273,15 @@ $(document).ready(function(){
     $('.co-js-update-quantity-modal').keypress(function (e) {
         if (e.which == 13) {
             e.stopImmediatePropagation();
+            $('#updateQuantity').modal('close');
             updateQuantity($('#updateQuantity input').attr('id'), $('.co-js-update-quantity-modal').val());
+        }
+    });
+
+    $("#appbundle_customer_save").keypress(function(e) {
+        if (e.which == 13) {
+            alert('test');
+            return false;
         }
     });
 });

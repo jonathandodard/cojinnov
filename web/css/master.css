@@ -88,6 +88,10 @@ header {
     margin-bottom: 15px;
 }
 
+.mgr-B-100 {
+    margin-bottom: 100px;
+}
+
 /*margin-left*/
 .mgr-L-10 {
     margin-bottom: 10px;
@@ -262,6 +266,10 @@ header {
     margin: 0;
 }
 
+.form-orderCustomer-row {
+    margin-bottom: 0px;
+}
+
 .form-orderCustomer-row input {
     margin-bottom: 0px;
     margin-top: 0px;
@@ -272,11 +280,31 @@ header {
     margin-bottom: 0px;
 }
 
+.form-save-customer {
+    padding-top: 30px;
+}
+
 /* objectifs */
-.goal-ok{
+.goal-ok {
     background-color: rgba(0, 159, 0, 0.55);
 }
 
-.form-orderCustomer-img{
+.form-orderCustomer-img {
     background-color: #f2f2f2;
+}
+
+.imgCustomer {
+    width: 100%;
+}
+
+
+
+.form-orderCustomer-footer {
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    box-shadow:  0 1px 16px 0 rgba(0,0,0,0.14), 0 -1px 5px 0 rgba(0,0,0,0.12), 0 -3px 1px -2px rgba(0,0,0,0.2);
 }

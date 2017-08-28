@@ -139,8 +139,8 @@ class OrderCustomerController extends Controller
             [
                 'id' => $productsOrder->getId(),
                 'quantity'=> $productsOrder->getQuantity(),
-                'priceHt' => $this->htPrice( $productsOrder->getQuantity(), $request->get('price')),
-                'priceTtc' => $this->ttcPrice($productsOrder->getQuantity(), $request->get('price'), $productsOrder->getTva())
+                'priceHt' => $productsOrder->getPriceHt(),
+                'priceTtc' => $productsOrder->getPriceTTC()
             ]
         );
     }
