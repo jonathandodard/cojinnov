@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+            <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
+            <a href="{{ path('product_create') }}" class="breadcrumb">creation produit</a>
+        </div>
+    </div>
+</nav>
+    {{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    <div class="row mgr-T-15 ">
+        <div class="col s6 center-align form-orderCustomer-img">
+            <img width="44%" src="{{ asset('img/office.png') }}">
+        </div>
+        <div class="col s6 form-orderCustomer-input">
+            {{ form_row(form.type, {
+                'label': 'Type',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.reference, {
+                'label': 'Reference',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.name, {
+                'label': 'Nom',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.category, {
+                'label': 'Categorie',
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.conditionProduct, {
+                'label': "condition produit",
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.duration, {
+                'label': "Durée",
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.pcb, {
+                'label': "PCB",
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+            {{ form_row(form.saleUnit, {
+                'label': "Prix unitaire",
+                'attr': {'style': 'margin-bottom:15px'}
+                })
+            }}
+        </div>
+        <div class="col s12">
+            <div class="col s6">
+                {{ form_row(form.tg, {
+                    'label': 'TG',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.ts, {
+                    'label': 'TS',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.tb, {
+                    'label': "TB",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+            </div>
+            <div class="col s6">
+                {{ form_row(form.taTwo,
+                {
+                    'label': 'TA TWO',
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.taOne, {
+                    'label': "TA ONE",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                {{ form_row(form.ppdia, {
+                    'label': "PPDIA",
+                    'attr': {'style': 'margin-bottom:15px'}
+                    })
+                }}
+                <div class="center-align">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

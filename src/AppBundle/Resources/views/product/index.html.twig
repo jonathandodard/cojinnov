@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
+            </div>
+        </div>
+    </nav>
+    <div class="center-align search-content">
+        <input placeholder="recherche" class="search" type="text" style="width: 50%" data-url="{{ path('product_search') }}" data-type="product"><i class="material-icons search-icon">search</i>
+    </div>
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th class="center">type</th>
+            <th class="center">reference</th>
+            <th class="center">nom commerciale</th>
+            <th class="center">categorie</th>
+            <th class="center">condition</th>
+            <th class="center">durée</th>
+            <th class="center">pcb</th>
+            <th class="center">prix unité</th>
+            <th class="center">tg</th>
+            <th class="center">ts</th>
+            <th class="center">tb</th>
+            <th class="center">taOne</th>
+            <th class="center">taTwo</th>
+            <th class="center">ppdia</th>
+        </tr>
+        </thead>
+        <tbody class="co-js-search">
+        {% for product in products %}
+            <tr>
+                <td class="center">{{ product.type }}</td>
+                <td class="center"><a href="{{ path('product_index_by_product', {'id': product.id}) }}">{{ product.reference }}</a></td>
+                <td class="center">{{ product.name }}</td>
+                <td class="center">{{ product.category }}</td>
+                <td class="center">{{ product.conditionProduct }}</td>
+                <td class="center">{{ product.duration }}</td>
+                <td class="center">{{ product.pcb }}</td>
+                <td class="center">{{ product.saleUnit }}</td>
+                <td class="center">{{ product.tg }}</td>
+                <td class="center">{{ product.ts }}</td>
+                <td class="center">{{ product.tb }}</td>
+                <td class="center">{{ product.taOne }}</td>
+                <td class="center">{{ product.taTwo }}</td>
+                <td class="center">{{ product.ppdia }}</td>
+                <td class="center">
+                    <a href="{{ path('product_update', {'id': product.id })  }}">update</a>
+                    <a href="{{ path('product_delete', {'id': product.id })  }}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul class="pagination center-align">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+{% endblock %}

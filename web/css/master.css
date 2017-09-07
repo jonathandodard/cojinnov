@@ -1,0 +1,319 @@
+/**************master********************/
+body {
+    margin: 0;
+}
+div {
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: #f2f2f2;!important;
+}
+header {
+    margin-bottom: 15px;
+}
+
+.height-130 {
+    height: 130px;
+}
+
+.height-150 {
+    height: 150px;
+}
+
+.float-l {
+    float: left;
+}
+.float-r {
+    float: right;
+}
+.search-content {
+    margin: 15px 0px 15px 0px;
+}
+
+.search-icon {
+    position: relative;
+    top: 10px;
+    right: 25px;
+}
+.search {
+    /*width: 50%;*/
+}
+.nav-wrapper a:first-child {
+    margin-left: 15px;
+}
+/*width*/
+.width-79 {
+    width: 79%;
+}
+
+.width-80 {
+    width: 80%;
+}
+
+.f-s-25{
+    font-size: 25px;
+}
+
+.f-s-30{
+    font-size: 30px;
+}
+
+/*margin*/
+.mgr-0 {
+    margin: 0;
+}
+/*margin-top*/
+.mgr-T-10 {
+    margin-top: 10px;
+}
+
+.mgr-T-15 {
+    margin-top: 15px;
+}
+
+.mgr-R-10 {
+    margin-right: 10px;
+}
+/*margin bottom*/
+.mgr-B-0 {
+    margin-bottom: 0px;
+}
+
+.mgr-B-10 {
+    margin-bottom: 10px;
+}
+
+.mgr-B-15 {
+    margin-bottom: 15px;
+}
+
+.mgr-B-100 {
+    margin-bottom: 100px;
+}
+
+/*margin-left*/
+.mgr-L-10 {
+    margin-left: 10px;
+}
+
+/*padding*/
+.pad-0{
+
+}
+.pad-T-0 {
+    padding-top: 0px;
+}
+
+/*padding-top*/
+
+.side-nav-hoverride {
+    background-color: #f2f2f2;
+}
+.color-text-master {
+    color: #7991c1;
+}
+
+/**************login********************/
+.block-login-form {
+    border: 1px solid #c8c8c8;
+    border-radius: 3px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 130px;
+}
+.block-login-img {
+    width: 100%;
+}
+
+.block-login-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.block-login-form button {
+    background-color: #67bec8;
+}
+
+.block-login-form button:hover{
+    background-color: #3a629e;
+}
+
+.block-login-form row {
+    width: 100%;
+}
+
+
+/**************header*******************/
+.all-header {
+    background-color: #b9b8b8;
+    width: 100%;
+    height: 64px;
+}
+
+.all-header nav div a{
+    color: #7991c1;
+}
+
+.all-header-img {
+    height: 60px;
+    display:inline-block;
+}
+
+.all-header-name-page {
+    width: 56%;
+    height: 60px;
+    display:inline-block;
+}
+
+.all-header-user {
+    width:14%;
+    min-width: 143px;
+    max-width: 268px;
+    height: 60px;
+    display:inline-block;
+}
+
+.all-header-user a {
+    min-width: 143px;
+    max-width: 268px;
+}
+
+.all-header-user-button {
+    height: 58px;!important;
+    padding-left: 2px;!important;
+    background-color: #7991c1;
+}
+
+.all-header-user-button {
+    width: 100%;
+}
+
+
+.all-header-user-button i.left {
+    margin-right: 0;!important;
+}
+
+.all-header-parameter {
+    width: 56px;
+    height: 60px;
+    display: inline-block
+}
+.all-header-button-parameter {
+    height: 58px;!important;
+    background-color: #7991c1;
+    border-radius: 0px;!important;
+}
+.btn-floating.btn-large {
+    height: 58px;
+}
+
+
+/**************header*******************/
+.nav-wrapper .col a {
+    color: #7991c1;
+}
+.breadcrumb:before {
+    color: #7991c1;
+}
+
+
+
+/*************home********************/
+
+.button-home-link {
+    color: #FFFFFF;
+}
+
+.button-home {
+    background-color: #3a629e;
+}
+
+.button-home:hover {
+    background-color: #2bbbad;
+}
+
+.button-home i{
+    color: #FFFFFF;
+}
+
+.button-home img{
+    width: 60%;
+    padding: 10px;
+}
+
+.button-home p{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.button-home-statistical {
+    background-color: #f2f2f2;
+}
+
+.button-home-statistical:hover {
+    background-color: #d9d9d9;
+}
+
+.button-home-statistical-link {
+    color: #000000;
+    font-weight: 800;
+}
+/********************show by client************/
+.show-by-client-row {
+
+    margin: 0;
+}
+
+.form-orderCustomer-row {
+    margin-bottom: 0px;
+}
+
+.form-orderCustomer-row input {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.form-orderCustomer-col p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.form-save-customer {
+    padding-top: 30px;
+}
+
+/* objectifs */
+.goal-ok {
+    background-color: rgba(0, 159, 0, 0.55);
+}
+
+.form-orderCustomer-img {
+    background-color: #f2f2f2;
+}
+
+.imgCustomer {
+    width: 100%;
+}
+
+
+
+.form-orderCustomer-footer {
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    box-shadow:  0 1px 16px 0 rgba(0,0,0,0.14), 0 -1px 5px 0 rgba(0,0,0,0.12), 0 -3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.index-orderCustomer-footer {
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin-bottom: 0px;
+    box-shadow:  0 1px 16px 0 rgba(0,0,0,0.14), 0 -1px 5px 0 rgba(0,0,0,0.12), 0 -3px 1px -2px rgba(0,0,0,0.2);
+}

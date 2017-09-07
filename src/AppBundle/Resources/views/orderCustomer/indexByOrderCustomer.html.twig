@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('orderCustomer_index') }}" class="breadcrumb">Liste commandes</a>
+                <a href="{{ path('orderCustomer_index_by_orderCustomer', {'id': orderCustomer.id }) }}" class="breadcrumb">Commande : {{ orderCustomer.id }}</a>
+                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="mgr-L-10">(client: {{ customer.name }})</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6">
+            <img src="">
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <div><p>Bon de commande N°</p><p>2017</p></div>
+            <label>Société :</label>
+                <p>{{ customer.ranking }}</p>
+            <label>Facturation :</label>
+                <p>{{ customer.id }}</p>
+            <label>livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Tél :</label>
+                <p>{{ customer.phoneNumber }}</p>
+            <label>Fax :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6 form-orderCustomer-col">
+            <label>Représentant :</label>
+                <p>{{ customer.id }}</p>
+            <label>Mode de Règlement :</label>
+                <p>{{ customer.id }}</p>
+            <label>date livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Commentaire :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <label>Siret :</label>
+                <p>{{ customer.id }}</p>
+            <label>N° Intracom :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <table class="responsive-table striped mgr-B-100">
+        <thead>
+            <tr>
+                <th class="center">Reference</th>
+                <th class="center">Nom commercial</th>
+                <th class="center">Prix unitaire</th>
+                <th class="center">Quantité</th>
+                <th class="center">Prix totale HT</th>
+                <th class="center">Prix totale TCC</th>
+            </tr>
+        </thead>
+        <tbody class="co-js-search">
+            {% for ProductOrder in ProductsOrder %}
+                <tr class="co-js-search-result">
+                    <td class="center co-js-ref">{{ ProductOrder.Product.reference }}</td>
+                    <td class="center">{{ ProductOrder.Product.name }}</td>
+                    <td class="center">{{ ProductOrder.price }}</td>
+                    <td class="center">{{ ProductOrder.quantity }}</td>
+                    <td class="center price-product-ht">{{ ProductOrder.priceHT }}</td>
+                    <td class="center price-product-ttc">{{ ProductOrder.priceTTC }}</td>
+                    <td class="center">
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="row index-orderCustomer-footer">
+        <div class="col s4">
+            <label>Tva</label>
+            <p>{{ orderCustomer.tva }}</p>
+        </div>
+        <div class="col s4">
+            <label>Prix Hors Taxe</label>
+            <p>{{ orderCustomer.totalHT }}</p>
+        </div>
+        <div class="col s4">
+            <label>Prix Tout Taxe Compris</label>
+            <p>{{ orderCustomer.totalTTC }}</p>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('orderCustomer_index') }}" class="breadcrumb">Liste Commande</a>
+            </div>
+        </div>
+    </nav>
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th class="center">numéro de commande</th>
+            <th class="center">client</th>
+            <th class="center">date</th>
+            <th class="center">prix HT</th>
+            <th class="center">prix TTC</th>
+        </tr>
+        </thead>
+        <tbody class="co-js-search">
+        {% for orderCustomer in orderCustomers %}
+            <tr>
+                <td class="center"><a href="{{ path('orderCustomer_index_by_orderCustomer', {'id' : orderCustomer.id}) }}">{{ orderCustomer.id }}</a></td>
+                <td class="center">{{ orderCustomer.customer.numberAccount }}</td>
+                <td class="center">{{ orderCustomer.createdAt|date("d/m/Y", "Europe/Paris") }}</td>
+                <td class="center">{{ orderCustomer.totalHT }}€</td>
+                <td class="center">{{ orderCustomer.totalTTC }}€</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

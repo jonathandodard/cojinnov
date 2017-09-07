@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
+                <a href="{{ path('product_index_by_product', {'id': product.id}) }}" class="breadcrumb">produit : {{ product.reference }}</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row mgr-T-15 ">
+        <div class="col s6 center-align form-orderCustomer-img">
+            <img width="44%" src="{{ asset('img/office.png') }}">
+        </div>
+        <div class="col s6">
+            <div class="col s6">
+                <label>type</label>
+                <p>{{ product.type }}</p>
+            </div>
+            <div class="col s6">
+                <label>reference</label>
+                <p>{{ product.reference }}</p>
+            </div>
+            <div class="col s6">
+                <label>nom</label>
+                <p>{{ product.name }}</p>
+            </div>
+            <div class="col s6">
+                <label>catégorie</label>
+                <p>{{ product.category }}</p>
+            </div>
+            <div class="col s6">
+                <label>condition produit</label>
+                <p>{{ product.conditionProduct }}</p>
+            </div>
+            <div class="col s6">
+                <label>durée</label>
+                <p>{{ product.duration }}</p>
+            </div>
+            <div class="col s6">
+                <label>pcb</label>
+                <p>{{ product.pcb }}</p>
+            </div>
+            <div class="col s6">
+                <label>prix unitaire</label>
+                <p>{{ product.saleUnit }}</p>
+            </div>
+        </div>
+        <div class="col s12">
+            <label>prix par classe</label>
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th class="center">tg</th>
+                    <th class="center">ts</th>
+                    <th class="center">tb</th>
+                    <th class="center">taOne</th>
+                    <th class="center">taTwo</th>
+                    <th class="center">ppdia</th>
+                </tr>
+                </thead>
+                <tbody class="co-js-search">
+                    <tr>
+                        <td class="center">{{ product.tg }}</td>
+                        <td class="center">{{ product.ts }}</td>
+                        <td class="center">{{ product.tb }}</td>
+                        <td class="center">{{ product.taOne }}</td>
+                        <td class="center">{{ product.taTwo }}</td>
+                        <td class="center">{{ product.ppdia }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

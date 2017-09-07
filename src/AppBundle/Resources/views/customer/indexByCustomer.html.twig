@@ -1,0 +1,120 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste clients</a>
+                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id}) }}" class="breadcrumb">client : {{ customer.name }}</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row z-depth-2 mgr-T-15">
+        <div class="col s4 center-align">
+            <img class="imgCustomer" src="{{ asset('img/man.png') }}">
+        </div>
+        <div class="col s8">
+            <div class="row show-by-client-row">
+                <div class="col s4">
+                    <label>N° Compte Client</label>
+                    <p>{{ customer.numberAccount }}</p>
+                </div>
+                <div class="col s4">
+                    <label>Intitulé Client</label>
+                    <p>{{ customer.entitled }}</p>
+                </div>
+                <div class="col s4">
+                    <label>Intitulé Client</label>
+                    <p>{{ customer.ranking }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s12">
+                    <label>Tarif</label>
+                    <p>tarif</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s12">
+                    <label>Contact</label>
+                    <p>{{ customer.name }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Adresse</label>
+                    <p>{{ customer.address }}</p>
+                </div>
+                <div class="col s6">
+                    <label>Adresse complement</label>
+                    <p>{{ customer.additionalAddress }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Code Postal</label>
+                    <p>{{ customer.city }}</p>
+                </div>
+                <div class="col s6">
+                    <label>Ville</label>
+                    <p>{{ customer.zipCode }}</p>
+                </div>
+            </div>
+            <div class="row show-by-client-row">
+                <div class="col s6">
+                    <label>Téléphone</label>
+                    <p>{{ customer.phoneNumber }}</p>
+                </div>
+                <div class="col s6">
+                    <label>E-mail</label>
+                    <p>{{ customer.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="row">
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>creation commande</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-panel pad-T-0">
+                    <span class="blue-text text-darken-2 f-s-30"> Commandes</span>
+                    <div class="row">
+                        <div class="col s12">
+                            {% if orders %}
+                                <div class="row">
+                                    <table class="responsive-table striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">numéro de commande</th>
+                                            <th class="center">date</th>
+                                            <th class="center">prix HT</th>
+                                            <th class="center">prix TTC</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="co-js-search">
+                                        {% for order in orders %}
+                                            <tr>
+                                                <td class="center"><a href="{{ path('orderCustomer_index_by_orderCustomer', {'id' : order.id }) }}">{{ order.id }}</a></td>
+                                                <td class="center">20/05/2017</td>
+                                                <td class="center">{{ order.totalHT }}€</td>
+                                                <td class="center">{{ order.totalTTC }}€</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <div class="center-align">
+                                    <span class="blue-text text-darken-2 f-s-25">Vous n'avez de commande enregister avec ce client</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

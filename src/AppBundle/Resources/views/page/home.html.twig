@@ -1,0 +1,107 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="row mgr-B-15 pad-0">
+        <a class="button-home-link z-depth-2" href="{{ path('customer_index') }}">
+            <div class="col s4">
+                <div class="button-home center-align">
+                    <img src="{{ asset('img/customers.png') }}">
+                    <p class="center-align mgr-B-0">Clients</p>
+                </div>
+            </div>
+        </a>
+        <a class="button-home-link z-depth-2" href="{{ path('product_index') }}">
+            <div class="col s4">
+                <div class="button-home center-align">
+                    <img src="{{ asset('img/products.png') }}">
+                    <p class="center-align mgr-B-0">Produits</p>
+                </div>
+            </div>
+        </a>
+        <a class="button-home-link z-depth-2" href="{{ path('orderCustomer_index') }}">
+            <div class="col s4">
+                <div class="button-home center-align">
+                    <img src="{{ asset('img/orders.png') }}">
+                    <p class="center-align mgr-B-0">Commandes</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {# div Objectifs #}
+    <div class="row  mgr-0 pad-0">
+        <div class="col s6">
+            <div class="card-panel pad-T-0">
+                <span class="blue-text text-darken-2 f-s-30">Objectifs</span>
+                <ul>
+                    <li>
+                        <p>objectif 1</p>
+                        <div class="progress" style="background-color: #b5ccca;">
+                            <div class="determinate" style="width: 10%; background-color: #3a629e;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>objectif 1</p>
+                        <div class="progress" style="background-color: #b5ccca;">
+                            <div class="determinate" style="width: 50%; background-color: #3a629e;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>objectif 1</p>
+                        <div class="progress" style="background-color: #b5ccca;">
+                            <div class="determinate" style="width: 70%; background-color: #3a629e;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>objectif 1</p>
+                        <div class="progress" style="background-color: #b5ccca;">
+                            <div class="determinate" style="width: 90%; background-color: #3a629e;"></div>
+                        </div>
+                    </li>
+                    <li class="goal-ok">
+                        <p>objectif 1</p>
+                        <div class="progress" style="background-color: #b5ccca;">
+                            <div class="determinate" style="width: 100%; background-color: #3a629e;"></div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="#">Voir plus ...</a>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="card-panel pad-T-0">
+                <span class="blue-text text-darken-2 f-s-30">Stastiques Commandes</span>
+                <div class="row">
+                    <a class="button-home-statistical-link z-depth-2" href="{{ path('customer_index') }}">
+                        <div class="col s12">
+                            <div class="button-home-statistical center-align">
+                                <p class="center-align">Moyenne / Jour</p>
+                                <div>
+                                    155€/jour
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="button-home-statistical-link z-depth-2" href="{{ path('product_index') }}">
+                        <div class="col s12">
+                            <div class="button-home-statistical center-align">
+                                <p class="center-align">Moyenne / Mois</p>
+                                <div>
+                                    155€/jour
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="button-home-statistical-link z-depth-2" href="{{ path('orderCustomer_index') }}">
+                        <div class="col s12">
+                            <div class="button-home-statistical center-align">
+                                <p class="center-align">Moyenne / Année</p>
+                                <div>
+                                    155€/jour
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

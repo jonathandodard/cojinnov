@@ -1,0 +1,156 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste client</a>
+                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id } ) }}" class="breadcrumb">Client : {{ customer.name }}</a>
+                <a href="{{ path('product_create') }}" class="breadcrumb">creation commande</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6">
+            <img src="">
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <div><p>Bon de commande N°</p><p>2017</p></div>
+            <label>Société :</label>
+                <p>{{ customer.ranking }}</p>
+            <label>Facturation :</label>
+                <p>{{ customer.id }}</p>
+            <label>livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Tél :</label>
+                <p>{{ customer.phoneNumber }}</p>
+            <label>Fax :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <div class="row form-orderCustomer-row">
+        <div class="col s6 form-orderCustomer-col">
+            <label>Représentant :</label>
+                <p>{{ customer.id }}</p>
+            <label>Mode de Règlement :</label>
+                <p>{{ customer.id }}</p>
+            <label>date livraison :</label>
+                <p>{{ customer.id }}</p>
+            <label>Commentaire :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+        <div class="col s6 form-orderCustomer-col">
+            <label>Siret :</label>
+                <p>{{ customer.id }}</p>
+            <label>N° Intracom :</label>
+                <p>{{ customer.id }}</p>
+        </div>
+    </div>
+    <table class="responsive-table striped mgr-B-100">
+        <thead>
+            <tr>
+                <th class="center">Reference</th>
+                <th class="center">Nom commercial</th>
+                <th class="center">Prix unitaire</th>
+                <th class="center">Quantité</th>
+                <th class="center">Prix totale HT</th>
+                <th class="center">Prix totale TCC</th>
+                <th class="center">Action</th>
+            </tr>
+        </thead>
+        <tbody class="co-js-search">
+            <tr>
+                <td class="center"><input type="text" class="search-order" data-url="{{ path('product_search') }}" data-url-insert ={{ path('order_insert_product') }}></td>
+                <td class="center"><input type="text" ></td>
+                <td class="center"><input type="text" ></td>
+                <td class="center"><input type="text" ></td>
+                <td class="center"><input type="text" ></td>
+                <td class="center"><input type="text" ></td>
+                <td class="center"></td>
+            </tr>
+        </tbody>
+    </table>
+    <input class="customer-id" type="hidden" value="{{ customer.id }}">
+
+    <!-- Modal Structure -->
+    <div id="modalPrice" class="modal">
+        <div class="modal-content">
+        <h4>Definition du prix</h4>
+            <input type="number" class="co-js-price-modal">
+        </div>
+    </div>
+    <div id="modalQuantity" class="modal">
+        <div class="modal-content">
+            <h4>Definir quantité</h4>
+            <input type="number" class="co-js-quantity-modal">
+        </div>
+    </div>
+    <div id="modalTva" class="modal">
+        <div class="modal-content">
+            <h4>Definir TVA</h4>
+            <input type="number" class="co-js-tva-modal" value="20">
+        </div>
+    </div>
+    <div id="modalDoublon" class="modal">
+        <div class="modal-content center">
+            <h4>vous avez deja enregister ce produit</h4>
+        </div>
+    </div>
+    <div id="modalReferenceNotExist" class="modal">
+        <div class="modal-content center">
+            <h4>la reference n'existe pas</h4>
+        </div>
+    </div>
+    <div id="updatePrice" class="modal">
+        <div class="modal-content">
+            <h4>Redefinir prix</h4>
+            <input type="number" class="co-js-update-price-modal">
+        </div>
+    </div>
+    <div id="updateQuantity" class="modal">
+        <div class="modal-content">
+        <h4>Redefinir le quantité</h4>
+            <input type="number" class="co-js-update-quantity-modal">
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="row form-orderCustomer-footer">
+        <div class="col s3">
+            {{ form_row(form.tva, {
+                'label': 'TVA',
+                'attr': {'style': 'margin-bottom:5px;'}
+                })
+            }}
+        </div>
+        <div class="col s3">
+            {{ form_row(form.totalHT, {
+                'label': 'Total hors taxe',
+                'attr': {'style': 'margin-bottom:5px'}
+                })
+            }}
+        </div>
+        <div class="col s3">
+            {{ form_row(form.totalTTC, {
+                'label': 'Total Toutes taxe compris',
+                'attr': {'style': 'margin-bottom:5px'}
+                })
+            }}
+        </div>
+        <div class="col s3" style="padding-top: 33px; !important;">
+            {{ form_row(form.save, {
+                'attr': {'style': 'display:none'}
+            })
+            }}
+            <button id="appbundle_customer_save" class=" col s12 btn waves-effect waves-light" type="submit" name="appbundle_customer[save]">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{ asset('js/formOrder.js') }}"></script>
+    <script src="{{ asset('js/modal.js') }}"></script>
+{% endblock %}

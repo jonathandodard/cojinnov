@@ -1,0 +1,124 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+home:
+    path: /
+    defaults: { _controller: AppBundle:Home:index }
+
+customer_index:
+    path: /customers/index
+    defaults: { _controller: AppBundle:Customer:index }
+
+customer_create:
+    path: /customer/create
+    defaults: { _controller: AppBundle:Customer:create }
+
+customer_update:
+    path: /customer/update/{id}
+    defaults: { _controller: AppBundle:Customer:update }
+    requirements:
+        page: '\d+'
+
+customer_delete:
+    path: /customer/delete/{id}
+    defaults: { _controller: AppBundle:Customer:delete }
+    requirements:
+        page: '\d+'
+
+customer_index_by_costumer:
+    path: /customer/show/{id}
+    defaults: { _controller: AppBundle:Customer:indexByCustomer }
+    requirements:
+        page: '\d+'
+
+customer_sort:
+    path: /customer/sort
+    defaults: { _controller: AppBundle:Customer:sort }
+
+customer_search:
+    path: /customer/search
+    defaults: { _controller: AppBundle:Customer:search }
+
+################################product##############################
+
+product_index:
+    path: /products/index
+    defaults: { _controller: AppBundle:Product:index }
+
+product_create:
+    path: /product/create
+    defaults: { _controller: AppBundle:Product:create }
+
+product_update:
+   path: /product/update/{id}
+   defaults: { _controller: AppBundle:Product:update }
+   requirements:
+      id: '\d+'
+
+product_delete:
+   path: /product/delete/{id}
+   defaults: { _controller: AppBundle:Product:delete }
+   requirements:
+         id: '\d+'
+
+product_index_by_product:
+   path: /product/show/{id}
+   defaults: { _controller: AppBundle:Product:indexByCustomer }
+   requirements:
+         id: '\d+'
+
+product_search:
+    path: /product/search
+    defaults: { _controller: AppBundle:Product:search }
+
+################################order##############################
+
+orderCustomer_index:
+    path: /ordersCustomer/index
+    defaults: { _controller: AppBundle:OrderCustomer:index }
+
+orderCustomer_create:
+    path: /orderCustomer/create/{id}
+    defaults: { _controller: AppBundle:OrderCustomer:create }
+    requirements:
+          id: '\d+'
+
+orderCustomer_update:
+   path: /orderCustomer/update/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:update }
+   requirements:
+      id: '\d+'
+
+orderCustomer_delete:
+   path: /orderCustomer/delete/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:delete }
+   requirements:
+         id: '\d+'
+
+orderCustomer_index_by_orderCustomer:
+   path: /orderCustomer/show/product/{id}
+   defaults: { _controller: AppBundle:OrderCustomer:indexByOrderCustomer }
+   requirements:
+         id: '\d+'
+
+order_insert_product:
+   path: /order/product/insert
+   defaults: { _controller: AppBundle:OrderCustomer:insertProduct }
+
+order_update_price:
+   path: /order/product/update/price
+   defaults: { _controller: AppBundle:OrderCustomer:updatePrice }
+
+order_update_quantity:
+   path: /order/product/update/quantity
+   defaults: { _controller: AppBundle:OrderCustomer:updateQuantity }
+
+order_product_delete:
+  path: /order/product/delete
+  defaults: { _controller: AppBundle:OrderCustomer:deleteProduct }
+
+################################statistical##############################
+
+statistical_index:
+  path: /statistical/index
+  defaults: { _controller: AppBunlde:Statistical:index }
