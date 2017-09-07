@@ -116,3 +116,9 @@ order_update_quantity:
 order_product_delete:
   path: /order/product/delete
   defaults: { _controller: AppBundle:OrderCustomer:deleteProduct }
+
+################################statistical##############################
+
+statistical_index:
+  path: /statistical/index
+  defaults: { _controller: AppBunlde:Statistical:index }

@@ -24,12 +24,26 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/, role: ROLE_USER }
-        - { path: ^/customer/index, role: ROLE_USER }
-        - { path: ^/customer/create, role: ROLE_USER }
-        - { path: ^/customer/update, role: ROLE_USER }
-        - { path: ^/customer/delete, role: ROLE_USER }
+        - { path: ^/login$,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/,                        role: ROLE_ADMIN }
+        - { path: ^/,                              role: ROLE_USER }
+        - { path: ^/customer/index,                role: ROLE_USER }
+        - { path: ^/customer/create,               role: ROLE_USER }
+        - { path: ^/customer/update,               role: ROLE_USER }
+        - { path: ^/customer/delete,               role: ROLE_USER }
+        - { path: ^/statistical/index,             role: ROLE_USER }
+        - { path: ^/customers/index,               role: ROLE_USER }
+        - { path: ^/customer/create,               role: ROLE_USER }
+        - { path: ^/customer/sort,                 role: ROLE_USER }
+        - { path: ^/customer/search,               role: ROLE_USER }
+        - { path: ^/products/index,                role: ROLE_USER }
+        - { path: ^/product/create,                role: ROLE_USER }
+        - { path: ^/product/search,                role: ROLE_USER }
+        - { path: /ordersCustomer/index,           role: ROLE_USER }
+        - { path: /order/product/insert,           role: ROLE_USER }
+        - { path: /order/product/update/price,     role: ROLE_USER }
+        - { path: /order/product/update/quantity,  role: ROLE_USER }
+        - { path: /order/product/delete,           role: ROLE_USER }
+        - { path: /statistical/index,              role: ROLE_USER }
