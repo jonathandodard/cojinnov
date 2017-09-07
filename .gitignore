@@ -4,6 +4,7 @@ Supprimerait .idea/inspectionProfiles/
 Supprimerait .idea/symfony2.xml
 Supprimerait .web-server-pid
 Supprimerait var/cache/dev/doctrine/
+Supprimerait var/cache/*
 Supprimerait var/cache/dev/pools/+Byx0btJ2J/
 Supprimerait var/cache/dev/pools/dzM4SYCf8I/
 Supprimerait var/cache/dev/pools/lubBoIk7iW/
@@ -103,3 +104,11 @@ Supprimerait var/cache/dev/twig/d2/
 Supprimerait var/sessions/dev/sess_4j9qqmcj8ckje85krihojg1a35
 Supprimerait vendor/doctrine/orm/docs/en/_theme/
 Supprimerait web/bundles/
+Supprimerait var/sessions/dev/sess_2jet56a246hdi5u76gd5tb8ao0
+Supprimerait var/sessions/dev/sess_6edfb1da6mg81nin4c99t4ski1
+Supprimerait var/sessions/dev/sess_b876heugk5paqbog4nh1m6otj7
+Supprimerait var/sessions/dev/sess_gg2fjtqtmg9rabu5ccnjs89tg6
+Supprimerait var/sessions/dev/sess_n2q9ev7m7mqhr8ptit45ggtor7
+Supprimerait var/sessions/dev/sess_q6ih4bb625kar3uvf774via3k7
+Supprimerait var/sessions/dev/sess_shu0j22db2fl9o2vb063786io7
+Supprimerait var/sessions/dev/sess_sp065a3de47jvkkbtu5lcq4uf3
