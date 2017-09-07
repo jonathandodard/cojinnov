@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cojinnov.iml" filepath="$PROJECT_DIR$/.idea/cojinnov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test_conjinnov/cojinnov/.idea/cojinnov.iml" filepath="$PROJECT_DIR$/../test_conjinnov/cojinnov/.idea/cojinnov.iml" />
     </modules>
   </component>
 </project>
