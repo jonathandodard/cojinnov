@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
+                <a href="{{ path('statistical_list') }}" class="breadcrumb">Liste statistiques</a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

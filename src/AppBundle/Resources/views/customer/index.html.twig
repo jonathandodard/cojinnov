@@ -15,20 +15,20 @@
     {#<a class="waves-effect waves-light btn-large float-r" href="{{ path('customer_index') }}"><i class="material-icons left">cloud</i>supprimer selection</a>#}
     <table class="responsive-table striped">
         <thead>
-        <tr>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='numberAccount' >N° Compte</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='entitled' >Intitulé</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='ranking' >Classement</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='nameRepresentative' >Nom Représentant</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='name' >Contact</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='email' >E-mail</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='address' >Adresse</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='additionalAddress' >Complément Adresse</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='zipCode' >Code Postal</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='city' >Ville</th>
-            <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='phoneNumber' >Téléphone</th>
-            <th class="center"></th>
-        </tr>
+            <tr>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='numberAccount' >N° Compte</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='entitled' >Intitulé</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='ranking' >Classement</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='nameRepresentative' >Nom Représentant</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='name' >Contact</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='email' >E-mail</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='address' >Adresse</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='additionalAddress' >Complément Adresse</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='zipCode' >Code Postal</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='city' >Ville</th>
+                <th class="center co-js-sort" data-url="{{ path("customer_sort") }}" data-sort='phoneNumber' >Téléphone</th>
+                <th class="center"></th>
+            </tr>
         </thead>
         <tbody class="co-js-search">
         {% for customer in customers %}

@@ -25,7 +25,6 @@ class User extends BaseUser
         $this->customers = new ArrayCollection();
 
         parent::__construct();
-        // your own logic
     }
 
 
@@ -33,7 +32,12 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Customer", mappedBy="customer")
      */
-    private $customers;
+    public $customers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Statistical", mappedBy="statistical")
+     */
+    public $statistical;
 
 
     /**
@@ -56,12 +60,40 @@ class User extends BaseUser
     }
 
     /**
-     * @return Customer
+     * @return mixed
      */
-    public function getCustomer()
+    public function getCustomers()
     {
         return $this->customers;
     }
+
+    /**
+     * @param Statistical $statistical
+     * @return $this
+     */
+    public function addStatistical(Statistical $statistical)
+    {
+        $this->statistical[] = $statistical;
+
+        return $this;
+    }
+
+    /**
+     * @param Statistical $statistical
+     */
+    public function removeStatistical(Statistical $statistical)
+    {
+        $this->statistical->removeElement($statistical);
+    }
+
+    /**
+     * @return Statistical
+     */
+    public function getStatistical()
+    {
+        return $this->statistical;
+    }
+
 
 
 }

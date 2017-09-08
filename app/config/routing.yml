@@ -119,6 +119,10 @@ order_product_delete:
 
 ################################statistical##############################
 
-statistical_index:
-  path: /statistical/index
-  defaults: { _controller: AppBunlde:Statistical:index }
+statistical_list:
+  path: /statistical/list
+  defaults: { _controller: AppBundle:Statistical:list }
+
+statistical_insert:
+   path: /statistical/create
+   defaults: { _controller: AppBundle:Statistical:create }
