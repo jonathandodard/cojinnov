@@ -40,23 +40,21 @@ class StatisticalType extends AbstractType
             ])
             ->add('entity', ChoiceType::class, [
                 'choices' => [
-                    'customer' => 'customer',
-                    'goal' => 'goal',
-                    'orderCustomer' => 'orderCustomer'
+                    'Clients' => Statistical::ENTITY_CUSTOMER,
+                    'Commandes' => Statistical::ENTITY_ORDER,
+                    'Objectifs' => Statistical::ENTITY_GOAL
                 ]
             ])
             ->add('argument', ChoiceType::class, [
                 'choices' => [
-                    '1 Mois'  => Statistical::PERIOD_1,
-                    '3 Mois'  => Statistical::PERIOD_3,
-                    '6 Mois'  => Statistical::PERIOD_6,
-                    '12 Mois' => Statistical::PERIOD_12,
-                    '∞'       => Statistical::PERIOD_INFI,
+                    'nouveau client'  => Statistical::NEW_CUSTOMER,
+                    'chiffre par client'  => Statistical::FIGURE_CUSTOMER,
+                    'chiffre client par client '  => Statistical::FIGURE_CUSTOMER_FIGURE,
+                    'nombre commande par client ' => Statistical::NUMBER_ORDERS,
                 ],
                 'multiple' => true,
                 'expanded' => true,
             ])
-
 
             ->add('save', SubmitType::class, array('label' => 'Create Post'))
         ;

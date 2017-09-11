@@ -8,6 +8,8 @@
             </div>
         </div>
     </nav>
+    <a class="waves-effect waves-light btn-large float-l" href="{{ path('statistical_create') }}"><i class="material-icons left">show_chart</i>Creation graphique Stastique</a>
+
     <table class="responsive-table striped">
         <thead>
         <tr>
@@ -20,7 +22,7 @@
         <tbody>
         <tr>
             {% for statistic in statistics %}
-                <td class="center">{{ statistic.name }}</td>
+                <td class="center"><a href="{{ path('statistical_by_favorite', {'id': statistic.id }) }}">{{ statistic.name }}</a></td>
                 <td class="center">{{ statistic.period }}</td>
                 <td class="center">{{ statistic.entity }}</td>
                 <td class="center">{{ statistic.argument }}</td>

@@ -25,6 +25,15 @@ class Statistical
     const PERIOD_12 = 12;
     const PERIOD_INFI = 'INFINITY';
 
+    const ENTITY_CUSTOMER = 'CUSTOMER';
+    const ENTITY_ORDER = 'ORDER';
+    const ENTITY_GOAL = 'GOAL';
+
+    const NEW_CUSTOMER = 'NEW_CUSTOMER';
+    const FIGURE_CUSTOMER = 'FIGURE_CUSTOMER';
+    const FIGURE_CUSTOMER_FIGURE = 'FIGURE_CUSTOMER_FIGURE';
+    const NUMBER_ORDERS = 'NUMBER_ORDERS';
+
     use Date;
 
     /**

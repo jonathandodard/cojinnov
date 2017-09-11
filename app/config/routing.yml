@@ -123,6 +123,18 @@ statistical_list:
   path: /statistical/list
   defaults: { _controller: AppBundle:Statistical:list }
 
-statistical_insert:
+statistical_create:
    path: /statistical/create
    defaults: { _controller: AppBundle:Statistical:create }
+
+statistical_update:
+   path: /statistical/update/{id}
+   defaults: { _controller: AppBundle:Statistical:update }
+   requirements:
+        id: '\d+'
+
+statistical_by_favorite:
+   path: /statistical/show/{id}
+   defaults: { _controller: AppBundle:Statistical:indexByFavorite }
+   requirements:
+        id: '\d+'

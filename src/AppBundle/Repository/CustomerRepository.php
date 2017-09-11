@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * CustomerRepository
@@ -32,4 +33,123 @@ class CustomerRepository extends EntityRepository
 
         return $query;
     }
+
+    public function findByDateOneMonth()
+    {
+        $nowMonth = date("n");
+        $nowYear = date("Y");
+        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+
+        $dateAt = new \DateTime($nowYear."-".$nowMonth."-01"."00:00:00");
+        $dateTo   = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
+            ->setParameter('dateAt', $dateAt )
+            ->setParameter('dateTo', $dateTo)
+        ;
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+
+    }
+
+    public function findByDateThreeMonth()
+    {
+
+        $nowMonth = date("n");
+        $nowYear = date("Y");
+        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+
+        $dateAt   = new \DateTime($nowYear."-".($nowMonth-3)."-01"."00:00:00");
+        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
+            ->setParameter('dateAt', $dateAt )
+            ->setParameter('dateTo', $dateTo)
+            ->orderBy('c.createdAt',' ASC')
+
+        ;
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
+
+    public function findByDateSixMonth()
+    {
+        $nowMonth = date("n");
+        $nowYear = date("Y");
+        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+
+        $dateAt   = new \DateTime($nowYear."-".($nowMonth-6)."-01"."00:00:00");
+        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
+            ->setParameter('dateAt', $dateAt )
+            ->setParameter('dateTo', $dateTo)
+            ->orderBy('c.createdAt',' ASC')
+
+        ;
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
+
+    public function findByDateYear()
+    {
+        $nowMonth = date("n");
+        $nowYear = date("Y");
+        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+
+        $dateAt   = new \DateTime(($nowYear-1)."-".$nowMonth."-01"."00:00:00");
+        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
+            ->setParameter('dateAt', $dateAt )
+            ->setParameter('dateTo', $dateTo)
+            ->orderBy('c.createdAt',' ASC')
+
+        ;
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
+
+
+    public function findByDateByMonth($year, $month)
+    {
+
+        $query = $this->createQueryBuilder('c')
+            ->Where('c.createdAt = :year ')
+            ->andWhere('c.createdAt = :month ')
+            ->setParameter('year', $year)
+            ->setParameter('month', $month)
+        ;
+
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
+
+//    public function findByDateBetweenDate(\DateTime $date)
+//    {
+//        $nowMonth = date("n");
+//        $nowYear = date("Y");
+//        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+//
+//        $dateAt   = new \DateTime($nowYear."-".($nowMonth)."-".$latestDayByMonth."23:59:59");
+//        $dateTo = new \DateTime($nowYear."-".$nowMonth."-01"."00:00:00");
+//
+//        $query = $this->createQueryBuilder('c')
+//            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
+//            ->setParameter('dateAt', $dateAt )
+//            ->setParameter('dateTo', $dateTo)
+//        ;
+//        $result = $query->getQuery()->getResult();
+//
+//        return $result;
+//    }
 }

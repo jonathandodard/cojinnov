@@ -6,6 +6,7 @@ use AppBundle\Entity\Statistical;
 use AppBundle\Form\StatisticalType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class StatisticalController extends Controller
 {
@@ -51,23 +52,75 @@ class StatisticalController extends Controller
         ]);
     }
 
-//    public function updateAction(Request $request, Customer $customer)
-//    {
-//        $form = $this->createForm(CustomerType::class, $customer);
-//
-//        $form->handleRequest($request);
-//        if($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($customer);
-//            $em->flush();
-//
-//            return $this->redirectToRoute('customer_index');
-//        }
-//
-//        return $this->render('AppBundle:customer:form.html.twig', [
-//            'form' => $form->createView()
-//        ]);
-//    }
+    public function updateAction(Request $request, Statistical $customer)
+    {
+        $form = $this->createForm(StatisticalType::class, $customer);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush();
+
+            return $this->redirectToRoute('statistical_list');
+        }
+
+        return $this->render('AppBundle:statistical:form.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function indexByFavoriteAction(Request $request, Statistical $statistical){
+        switch ($statistical->getEntity()) {
+            case Statistical::ENTITY_CUSTOMER:
+                $entity = $this->getDoctrine()->getRepository('AppBundle:Customer');
+                break;
+            case Statistical::ENTITY_ORDER:
+                $entity = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer');
+                break;
+            case Statistical::ENTITY_GOAL:
+                $entity = $this->getDoctrine()->getRepository('AppBundle:Goal');
+                break;
+        };
+        switch ($statistical->getPeriod()) {
+            case Statistical::PERIOD_1 :
+                $entityByPeriod = $entity->findByDateOneMonth();
+                break;
+            case Statistical::PERIOD_3 :
+                $entityByPeriod = $entity->findByDateThreeMonth();
+                break;
+            case Statistical::PERIOD_6 :
+                $entityByPeriod = $entity->findByDateSixMonth();
+                break;
+            case Statistical::PERIOD_12 :
+                $entityByPeriod = $entity->findByDateYear();
+                break;
+            case Statistical::PERIOD_INFI :
+                $entityByPeriod = $entity->findAll();
+                break;
+        };
+
+        $arrayX = array();
+        $testt = [];
+        foreach ($entityByPeriod as $var) {
+            array_push($arrayX, $var->getCreatedAt()->format('m-Y'));
+        }
+        $arrayX = array_unique($arrayX);
+
+
+        foreach ($entityByPeriod as $var){
+            array_push($testt, $this->getDoctrine()->getRepository('AppBundle:Customer')->findByDateByMonth($var->getCreatedAt()->format('Y'),$var->getCreatedAt()->format('m')));
+        }
+
+
+dump($testt);die;
+
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer');
+        $customer->findByDateThreeMonth();
+        die;
+    }
+
+
 
     public function repositoryStatistical()
     {
