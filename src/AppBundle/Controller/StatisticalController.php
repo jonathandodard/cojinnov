@@ -12,8 +12,20 @@ class StatisticalController extends Controller
 {
     public function listAction()
     {
+        $tabDate = array();
+        $entities = $this->getDoctrine()->getRepository('AppBundle:Customer')->findAll();
+        for ($counter = 0; $counter < 12; $counter ++ ){
+            $tabEntity = array();
+            foreach ( $entities as $entity) {
+                if($entity->getCreatedAt()->format('Y-n') == (date("Y-".(12-$counter)))) {
+                    array_push($tabEntity, $entity);
+                };
+            }
+            array_push($tabDate,$tabEntity);
+        }
+        
         $statistics = $this->repositoryStatistical()->findAll();
-// dump(count($statistics));die();
+
         return $this->render('AppBundle:statistical:index.html.twig', [
             'statistics' => $statistics
         ]);

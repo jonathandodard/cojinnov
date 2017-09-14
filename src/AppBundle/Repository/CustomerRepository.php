@@ -34,35 +34,17 @@ class CustomerRepository extends EntityRepository
         return $query;
     }
 
-    public function findByDateOneMonth()
+    public function findByMonthYear($monthsAt = null, $yearsAt = null, $monthTo = null, $yearsTo = null)
     {
-        $nowMonth = date("n");
-        $nowYear = date("Y");
+        $monthsAt = ($monthsAt)? '0'.$monthsAt:date("n");
+        $yearsAt = ($yearsAt)? $yearsAt:date("Y");
+        $monthTo = ($monthTo)? '0'.$monthTo:date("n");
+        $yearsTo = ($yearsTo)? '0'.$yearsTo:date("Y");
+
         $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
 
-        $dateAt = new \DateTime($nowYear."-".$nowMonth."-01"."00:00:00");
-        $dateTo   = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
-
-        $query = $this->createQueryBuilder('c')
-            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
-            ->setParameter('dateAt', $dateAt )
-            ->setParameter('dateTo', $dateTo)
-        ;
-        $result = $query->getQuery()->getResult();
-
-        return $result;
-
-    }
-
-    public function findByDateThreeMonth()
-    {
-
-        $nowMonth = date("n");
-        $nowYear = date("Y");
-        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
-
-        $dateAt   = new \DateTime($nowYear."-".($nowMonth-3)."-01"."00:00:00");
-        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+        $dateAt   = new \DateTime($yearsAt."-".$monthsAt."-01"."00:00:00");
+        $dateTo = new \DateTime($yearsTo."-".$monthTo."-".$latestDayByMonth."23:59:59");
 
         $query = $this->createQueryBuilder('c')
             ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
@@ -71,19 +53,20 @@ class CustomerRepository extends EntityRepository
             ->orderBy('c.createdAt',' ASC')
 
         ;
+
         $result = $query->getQuery()->getResult();
 
         return $result;
     }
 
-    public function findByDateSixMonth()
+    public function findByLessMonth($months = null)
     {
-        $nowMonth = date("n");
-        $nowYear = date("Y");
-        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
+//        1
+//        12
 
-        $dateAt   = new \DateTime($nowYear."-".($nowMonth-6)."-01"."00:00:00");
-        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
+
+        $dateAt   = new \DateTime($yearsAt."-".$monthsAt."-01"."00:00:00");
+        $dateTo = new \DateTime("Y-n-".cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"))."23:59:59");
 
         $query = $this->createQueryBuilder('c')
             ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
@@ -92,64 +75,9 @@ class CustomerRepository extends EntityRepository
             ->orderBy('c.createdAt',' ASC')
 
         ;
-        $result = $query->getQuery()->getResult();
-
-        return $result;
-    }
-
-    public function findByDateYear()
-    {
-        $nowMonth = date("n");
-        $nowYear = date("Y");
-        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
-
-        $dateAt   = new \DateTime(($nowYear-1)."-".$nowMonth."-01"."00:00:00");
-        $dateTo = new \DateTime($nowYear."-".$nowMonth."-".$latestDayByMonth."23:59:59");
-
-        $query = $this->createQueryBuilder('c')
-            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
-            ->setParameter('dateAt', $dateAt )
-            ->setParameter('dateTo', $dateTo)
-            ->orderBy('c.createdAt',' ASC')
-
-        ;
-        $result = $query->getQuery()->getResult();
-
-        return $result;
-    }
-
-
-    public function findByDateByMonth($year, $month)
-    {
-
-        $query = $this->createQueryBuilder('c')
-            ->Where('c.createdAt = :year ')
-            ->andWhere('c.createdAt = :month ')
-            ->setParameter('year', $year)
-            ->setParameter('month', $month)
-        ;
 
         $result = $query->getQuery()->getResult();
 
         return $result;
     }
-
-//    public function findByDateBetweenDate(\DateTime $date)
-//    {
-//        $nowMonth = date("n");
-//        $nowYear = date("Y");
-//        $latestDayByMonth = cal_days_in_month(CAL_GREGORIAN, date("n"), date("y"));
-//
-//        $dateAt   = new \DateTime($nowYear."-".($nowMonth)."-".$latestDayByMonth."23:59:59");
-//        $dateTo = new \DateTime($nowYear."-".$nowMonth."-01"."00:00:00");
-//
-//        $query = $this->createQueryBuilder('c')
-//            ->andWhere('c.createdAt BETWEEN :dateAt AND :dateTo')
-//            ->setParameter('dateAt', $dateAt )
-//            ->setParameter('dateTo', $dateTo)
-//        ;
-//        $result = $query->getQuery()->getResult();
-//
-//        return $result;
-//    }
 }
