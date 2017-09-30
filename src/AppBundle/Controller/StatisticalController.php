@@ -69,8 +69,6 @@ class StatisticalController extends Controller
 
         $jsonQuater = json_encode($quarter);
 
-        $statistics = $this->repositoryStatistical()->findAll();
-
         return $this->render('AppBundle:statistical:index.html.twig', [
             'jsonQuater' => $jsonQuater
         ]);
