@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
             <link rel="stylesheet" href="{{ asset('css/master.css') }}"/>
         {% endblock %}
+        {% block more_stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -23,5 +24,6 @@
             <script src="{{ asset('js/search.js') }}"></script>
             <script src="{{ asset('js/sort.js') }}"></script>
         {% endblock %}
+    {% block more_js %}{% endblock %}
     </body>
 </html>

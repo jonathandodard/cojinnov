@@ -10,4 +10,72 @@ namespace AppBundle\Repository;
  */
 class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function quarterOne()
+    {
+        $dateNow =new \DateTime('NOW');
+        $dateAt =new \DateTime($dateNow->format('Y').'-01-01 00:00:00');
+        $dateTo =new \DateTime($dateNow->format('Y').'-03-31 23:59:59');
+
+        $qb = $this->createQueryBuilder("oc");
+        $qb
+            ->where('oc.createdAt BETWEEN :from AND :to')
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
+    public function quarterTwo()
+    {
+        $dateNow =new \DateTime('NOW');
+        $dateAt =new \DateTime($dateNow->format('Y').'-04-01 00:00:00');
+        $dateTo =new \DateTime($dateNow->format('Y').'-06-31 23:59:59');
+
+        $qb = $this->createQueryBuilder("oc");
+        $qb
+            ->where('oc.createdAt BETWEEN :from AND :to')
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
+    public function quarterThree()
+    {
+        $dateNow =new \DateTime('NOW');
+        $dateAt =new \DateTime($dateNow->format('Y').'-07-01 00:00:00');
+        $dateTo =new \DateTime($dateNow->format('Y').'-09-31 23:59:59');
+
+        $qb = $this->createQueryBuilder("oc");
+        $qb
+            ->where('oc.createdAt BETWEEN :from AND :to')
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
+    public function quarterFour()
+    {
+        $dateNow =new \DateTime('NOW');
+        $dateAt =new \DateTime($dateNow->format('Y').'-10-01 00:00:00');
+        $dateTo =new \DateTime($dateNow->format('Y').'-12-31 23:59:59');
+
+        $qb = $this->createQueryBuilder("oc");
+        $qb
+            ->where('oc.createdAt BETWEEN :from AND :to')
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
 }

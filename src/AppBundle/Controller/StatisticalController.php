@@ -10,24 +10,69 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class StatisticalController extends Controller
 {
-    public function listAction()
+    public function indexAction()
     {
-        $tabDate = array();
-        $entities = $this->getDoctrine()->getRepository('AppBundle:Customer')->findAll();
-        for ($counter = 0; $counter < 12; $counter ++ ){
-            $tabEntity = array();
-            foreach ( $entities as $entity) {
-                if($entity->getCreatedAt()->format('Y-n') == (date("Y-".(12-$counter)))) {
-                    array_push($tabEntity, $entity);
-                };
-            }
-            array_push($tabDate,$tabEntity);
+        $quarterOne = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterOne();
+        $tabPriceHt = ['data1'];
+        $tabPriceTTC = ['data2'];
+        $quarterOneHT = 0;
+        $quarterOneTTC = 0;
+
+        foreach ($quarterOne as $priceHtquarterOne) {
+            $quarterOneHT = $quarterOneHT + $priceHtquarterOne->getTotalHT();
+            $quarterOneTTC = $quarterOneTTC + $priceHtquarterOne->getTotalTTC();
         }
-        
+
+        array_push($tabPriceHt, $quarterOneHT);
+        array_push($tabPriceTTC, $quarterOneTTC);
+
+        $quarterTwo = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterTwo();
+
+        $quarterTwoHT = 0;
+        $quarterTwoTTC = 0;
+        foreach ($quarterTwo as $orderCustomer) {
+            $quarterTwoHT = $quarterTwoHT + $orderCustomer->getTotalHT();
+            $quarterTwoTTC = $quarterTwoTTC + $orderCustomer->getTotalTTC();
+        }
+
+        array_push($tabPriceHt, $quarterTwoHT);
+        array_push($tabPriceTTC, $quarterTwoTTC);
+
+        $quarterThree = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterThree();
+
+        $quarterThreeHT = 0;
+        $quarterThreeTTC = 0;
+        foreach ($quarterThree as $orderCustomer) {
+            $quarterThreeHT = $quarterThreeHT + $orderCustomer->getTotalHT();
+            $quarterThreeTTC = $quarterThreeTTC + $orderCustomer->getTotalTTC();
+        }
+
+        array_push($tabPriceHt, $quarterThreeHT);
+        array_push($tabPriceTTC, $quarterThreeTTC);
+
+        $quarterTour = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterThree();
+
+        $quarterFourHT = 0;
+        $quarterFourTTC = 0;
+        foreach ($quarterTour as $orderCustomer) {
+            $quarterFourHT = $quarterFourHT + $orderCustomer->getTotalHT();
+            $quarterFourTTC = $quarterFourTTC + $orderCustomer->getTotalTTC();
+        }
+
+        array_push($tabPriceHt, $quarterFourHT);
+        array_push($tabPriceTTC, $quarterFourTTC);
+
+        $quarter = [
+            '1' => $tabPriceHt,
+            '2' => $tabPriceTTC,
+        ];
+
+        $jsonQuater = json_encode($quarter);
+
         $statistics = $this->repositoryStatistical()->findAll();
 
         return $this->render('AppBundle:statistical:index.html.twig', [
-            'statistics' => $statistics
+            'jsonQuater' => $jsonQuater
         ]);
     }
 
@@ -42,94 +87,16 @@ class StatisticalController extends Controller
 
     public function createAction(Request $request)
     {
-        $statistical = new Statistical();
-        $form = $this->createForm(StatisticalType::class, $statistical);
 
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $statistical->setUser($this->getUser());
-            $statistical->setCreatedAt();
-            $statistical->setUpdatedAt('now');
-            $user = $this->getUser()->addStatistical($statistical);
-            $em->persist($statistical);
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('statistical_list');
-        }
-
-        return $this->render('AppBundle:statistical:form.html.twig', [
-            'form' => $form->createView()
-        ]);
     }
 
     public function updateAction(Request $request, Statistical $customer)
     {
-        $form = $this->createForm(StatisticalType::class, $customer);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($customer);
-            $em->flush();
-
-            return $this->redirectToRoute('statistical_list');
-        }
-
-        return $this->render('AppBundle:statistical:form.html.twig', [
-            'form' => $form->createView()
-        ]);
     }
 
     public function indexByFavoriteAction(Request $request, Statistical $statistical){
-        switch ($statistical->getEntity()) {
-            case Statistical::ENTITY_CUSTOMER:
-                $entity = $this->getDoctrine()->getRepository('AppBundle:Customer');
-                break;
-            case Statistical::ENTITY_ORDER:
-                $entity = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer');
-                break;
-            case Statistical::ENTITY_GOAL:
-                $entity = $this->getDoctrine()->getRepository('AppBundle:Goal');
-                break;
-        };
-        switch ($statistical->getPeriod()) {
-            case Statistical::PERIOD_1 :
-                $entityByPeriod = $entity->findByDateOneMonth();
-                break;
-            case Statistical::PERIOD_3 :
-                $entityByPeriod = $entity->findByDateThreeMonth();
-                break;
-            case Statistical::PERIOD_6 :
-                $entityByPeriod = $entity->findByDateSixMonth();
-                break;
-            case Statistical::PERIOD_12 :
-                $entityByPeriod = $entity->findByDateYear();
-                break;
-            case Statistical::PERIOD_INFI :
-                $entityByPeriod = $entity->findAll();
-                break;
-        };
 
-        $arrayX = array();
-        $testt = [];
-        foreach ($entityByPeriod as $var) {
-            array_push($arrayX, $var->getCreatedAt()->format('m-Y'));
-        }
-        $arrayX = array_unique($arrayX);
-
-
-        foreach ($entityByPeriod as $var){
-            array_push($testt, $this->getDoctrine()->getRepository('AppBundle:Customer')->findByDateByMonth($var->getCreatedAt()->format('Y'),$var->getCreatedAt()->format('m')));
-        }
-
-
-dump($testt);die;
-
-        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer');
-        $customer->findByDateThreeMonth();
-        die;
     }
 
 
