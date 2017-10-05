@@ -12,6 +12,65 @@ class StatisticalController extends Controller
 {
     public function indexAction()
     {
+        $topTenProduct = $this->getProductsTenMax();
+        $quarter = $this->fourQuater();
+        
+        $jsonQuater = json_encode($quarter);
+        $jsonTopTenProduct = json_encode($topTenProduct);
+
+        return $this->render('AppBundle:statistical:index.html.twig', [
+            'jsonQuater' => $jsonQuater,
+            'jsonTopTenProduct' => $jsonTopTenProduct,
+        ]);
+    }
+
+    public function getProductsTenMax()
+    {
+        $productsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findAll();
+
+        $tabProductOrder = [];
+
+        foreach ($productsOrder as $productOrder) {
+            array_push($tabProductOrder, $productOrder->getProduct()->getId());
+        }
+
+        $quantity = 0;
+        $ref = '';
+        $arrayRefCounter = [];
+        foreach (array_unique($tabProductOrder) as $idProduct) {
+
+            $idProducts = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findProductId($idProduct);
+
+            foreach ($idProducts as $productOrder) {
+                $quantity = $productOrder->getQuantity() + $quantity;
+                $ref = $productOrder->getProduct()->getReference();
+            }
+
+            $arrayRefCounter[$ref] = $quantity;
+            $quantity = 0;
+
+        }
+        arsort($arrayRefCounter);
+        $arrayRef = [];
+        $arrayCounter = ['data1'];
+        foreach ($arrayRefCounter as $key => $item) {
+            array_push($arrayRef, $key);
+            array_push($arrayCounter, $item);
+        }
+        array_splice($arrayRef,11);
+        array_splice($arrayCounter, 11);
+
+
+        $arrayRefarrayCounter = [
+            '1' => $arrayRef,
+            '2' => $arrayCounter,
+        ];
+
+        return $arrayRefarrayCounter;
+    }
+
+    public function fourQuater()
+    {
         $quarterOne = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterOne();
         $tabPriceHt = ['data1'];
         $tabPriceTTC = ['data2'];
@@ -67,11 +126,7 @@ class StatisticalController extends Controller
             '2' => $tabPriceTTC,
         ];
 
-        $jsonQuater = json_encode($quarter);
-
-        return $this->render('AppBundle:statistical:index.html.twig', [
-            'jsonQuater' => $jsonQuater
-        ]);
+        return $quarter;
     }
 
     public function indexByFavoritesAction()
@@ -82,22 +137,6 @@ class StatisticalController extends Controller
             'statistics' => $statistics
         ]);
     }
-
-    public function createAction(Request $request)
-    {
-
-    }
-
-    public function updateAction(Request $request, Statistical $customer)
-    {
-
-    }
-
-    public function indexByFavoriteAction(Request $request, Statistical $statistical){
-
-    }
-
-
 
     public function repositoryStatistical()
     {

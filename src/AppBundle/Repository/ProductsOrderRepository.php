@@ -19,4 +19,14 @@ class ProductsOrderRepository extends \Doctrine\ORM\EntityRepository
 
         return $query;
     }
+
+    public function findProductId($idProduct) {
+        $query = $this->createQueryBuilder('o')
+            ->where("o.product = :idProduct")
+            ->setParameter('idProduct', $idProduct )
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }
