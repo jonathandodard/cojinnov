@@ -21,7 +21,6 @@ class OrderCustomerController extends Controller
 {
     public function indexAction()
     {
-        $user =
         $orderCustomers = $this->repositoryOrderCustomer()->findByUser($this->getUser());
 
         foreach ($orderCustomers as $orderCustomer){
@@ -62,6 +61,8 @@ class OrderCustomerController extends Controller
             $orderCustomer->setUpdatedAt('now');
             $orderCustomer->setCustomer($customer);
             $orderCustomer->setUser($this->getUser());
+            $orderCustomer->setName($this->setUniqueNameOrder($customer));
+
             $em->persist($orderCustomer);
             $em->flush();
 
@@ -155,10 +156,11 @@ class OrderCustomerController extends Controller
         $doctrine = $this->getDoctrine();
         $productsOrder = new ProductsOrder();
         $product = $doctrine->getRepository('AppBundle:Product')->findOneById($request->get('product'));
+        $customer = $doctrine->getRepository('AppBundle:Customer')->findOneById($request->get('customer'));
         
         $productsOrder
             ->setProduct($product)
-            ->setCustomer($doctrine->getRepository('AppBundle:Customer')->findOneById($request->get('customer')))
+            ->setCustomer($customer)
             ->setQuantity($request->get('quantity'))
             ->setPrice($request->get('price'))
             ->setStatus($request->get('status'))
@@ -227,6 +229,19 @@ class OrderCustomerController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('customer_index');
+    }
+
+    public function setUniqueNameOrder (Customer $customer, $counter = 1)
+    {
+        $name = date("Ymd").$customer->getId().$this->getUser()->getId();
+
+        $orderCustomerByName = $this->repositoryOrderCustomer()->findOneByName($name.'-'.$counter);
+        if ($orderCustomerByName) {
+            $counter ++;
+            return $this->setUniqueNameOrder($customer, $counter);
+        }
+
+        return $name.'-'.$counter;
     }
 
     public function repositoryOrderCustomer()

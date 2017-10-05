@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * OrderCustomer
@@ -36,6 +37,11 @@ class OrderCustomer
      * @ORM\JoinColumn(name="Customer_id", referencedColumnName="id")
      */
     protected $customer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, unique=true)
+     */
+    protected $name;
 
     /**
      * @ORM\Column(type="integer", length=255, nullable=false)
@@ -101,6 +107,22 @@ class OrderCustomer
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     *
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**

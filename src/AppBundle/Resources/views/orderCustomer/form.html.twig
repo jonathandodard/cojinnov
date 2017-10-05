@@ -10,7 +10,7 @@
             </div>
         </div>
     </nav>
-    <div class="row form-orderCustomer-row">
+    <div class="row form-orderCustomer-row pad-B-30">
         <div class="col s6">
             <img src="">
         </div>
@@ -46,6 +46,15 @@
                 <p>{{ customer.id }}</p>
         </div>
     </div>
+    <div class="row divider mgr-T-15"></div>
+    <div class="row">
+        <div class="col s12">
+            <div class="col s4"></div>
+            <input type="text" class="search-order col s4 center" placeholder="reference" data-url="{{ path('product_search') }}" data-url-insert ={{ path('order_insert_product') }}>
+            <i class="material-icons search-icon">search</i>
+            <div class="col s4"></div>
+        </div>
+    </div>
     <table class="responsive-table striped mgr-B-100">
         <thead>
             <tr>
@@ -60,13 +69,13 @@
         </thead>
         <tbody class="co-js-search">
             <tr>
-                <td class="center"><input type="text" class="search-order" data-url="{{ path('product_search') }}" data-url-insert ={{ path('order_insert_product') }}></td>
-                <td class="center"><input type="text" ></td>
-                <td class="center"><input type="text" ></td>
-                <td class="center"><input type="text" ></td>
-                <td class="center"><input type="text" ></td>
-                <td class="center"><input type="text" ></td>
-                <td class="center"></td>
+                {#<td class="center"><input type="text" class="search-order" data-url="{{ path('product_search') }}" data-url-insert ={{ path('order_insert_product') }}></td>#}
+                {#<td class="center"><input type="text" ></td>#}
+                {#<td class="center"><input type="text" ></td>#}
+                {#<td class="center"><input type="text" ></td>#}
+                {#<td class="center"><input type="text" ></td>#}
+                {#<td class="center"><input type="text" ></td>#}
+                {#<td class="center"></td>#}
             </tr>
         </tbody>
     </table>
