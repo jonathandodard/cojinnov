@@ -128,10 +128,9 @@ class CustomerController extends Controller
 
     public function searchAction(Request $request)
     {
-        $user = $this->getUser();
         $tabCustomer =[];
         if($request->isXmlHttpRequest()) {
-            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'), $user);
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'), $this->getUser());
             foreach ($entities as $entity ) {
                 array_push($tabCustomer, array(
                     'Id' => $entity->getId(),

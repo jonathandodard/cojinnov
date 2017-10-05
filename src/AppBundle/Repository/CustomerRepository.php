@@ -14,10 +14,12 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class CustomerRepository extends EntityRepository
 {
 
-    public function searchByAll($data)
+    public function searchByAll($data, $user)
     {
         $query = $this->createQueryBuilder('c')
             ->where("c.numberAccount LIKE '$data%'")
+            ->andWhere("c.user = :user")
+            ->setParameter('user', $user )
             ->getQuery()
             ->getResult();
 

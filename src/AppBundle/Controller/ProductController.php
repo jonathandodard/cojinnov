@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         $tabProduct =[];
         if($request->isXmlHttpRequest()) {
-            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'), $this->getUser());
             if (empty($entities)) {
                 $tabProduct = false;
             } else {
