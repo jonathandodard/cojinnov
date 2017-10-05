@@ -121,6 +121,12 @@ class Product
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productsOrder")
+     */
+    protected $user;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -465,5 +471,23 @@ class Product
     {
         return $this->ppdia;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

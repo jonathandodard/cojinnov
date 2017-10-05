@@ -19,7 +19,9 @@ class CustomerController extends Controller
 {
     public function indexAction()
     {
-        $customers = $this->repositoryCustomer()->findAll();
+        $user = $this->getUser();
+
+        $customers = $this->repositoryCustomer()->findByUser($user);
 
         return $this->render('AppBundle:customer:index.html.twig', [
             'customers' => $customers
@@ -28,7 +30,14 @@ class CustomerController extends Controller
 
     public function indexByCustomerAction(Customer $customer)
     {
-        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findByCustomer($customer);
+        $user = $this->getUser();
+
+        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findBy(
+            [
+                'customer' =>$customer,
+                'user' => $user
+            ]
+        );
 
         return $this->render('AppBundle:customer:indexByCustomer.html.twig', [
             'customer' => $customer,
@@ -119,9 +128,10 @@ class CustomerController extends Controller
 
     public function searchAction(Request $request)
     {
+        $user = $this->getUser();
         $tabCustomer =[];
         if($request->isXmlHttpRequest()) {
-            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'), $user);
             foreach ($entities as $entity ) {
                 array_push($tabCustomer, array(
                     'Id' => $entity->getId(),

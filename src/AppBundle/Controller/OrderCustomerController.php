@@ -21,7 +21,9 @@ class OrderCustomerController extends Controller
 {
     public function indexAction()
     {
-        $orderCustomers = $this->repositoryOrderCustomer()->findAll();
+        $user =
+        $orderCustomers = $this->repositoryOrderCustomer()->findByUser($this->getUser());
+
         foreach ($orderCustomers as $orderCustomer){
             $orderCustomer->setCustomer($this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($orderCustomer->getCustomer()->getId()));
         }
@@ -148,6 +150,8 @@ class OrderCustomerController extends Controller
 
     public function insertProductAction(Request $request)
     {
+        $user = $this->getUser();
+
         $doctrine = $this->getDoctrine();
         $productsOrder = new ProductsOrder();
         $product = $doctrine->getRepository('AppBundle:Product')->findOneById($request->get('product'));
@@ -163,6 +167,7 @@ class OrderCustomerController extends Controller
         $productsOrder->setPriceHt($this->htPrice($request->get('quantity'),$request->get('price')));
         $productsOrder->setPriceTTC($this->ttcPrice($request->get('quantity'), $request->get('price'), $request->get('tva')));
         $productsOrder->setTva($request->get('tva'));
+        $productsOrder->setUser($user);
 
         $em = $doctrine->getManager();
         $em->persist($productsOrder);

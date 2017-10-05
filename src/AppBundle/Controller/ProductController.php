@@ -19,7 +19,8 @@ class ProductController extends Controller
 {
     public function indexAction()
     {
-        $product = $this->repositoryCustomer()->findAll();
+        $product = $this->repositoryCustomer()->findByUser($this->getUser());
+
         return $this->render('AppBundle:product:index.html.twig', [
             'products' => $product
         ]);
