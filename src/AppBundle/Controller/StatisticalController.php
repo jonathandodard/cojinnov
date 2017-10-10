@@ -50,6 +50,7 @@ class StatisticalController extends Controller
             $quantity = 0;
 
         }
+
         arsort($arrayRefCounter);
         $arrayRef = [];
         $arrayCounter = ['data1'];
@@ -109,11 +110,11 @@ class StatisticalController extends Controller
         array_push($tabPriceHt, $quarterThreeHT);
         array_push($tabPriceTTC, $quarterThreeTTC);
 
-        $quarterTour = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterThree();
+        $quarterFour = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->quarterFour();
 
         $quarterFourHT = 0;
         $quarterFourTTC = 0;
-        foreach ($quarterTour as $orderCustomer) {
+        foreach ($quarterFour as $orderCustomer) {
             $quarterFourHT = $quarterFourHT + $orderCustomer->getTotalHT();
             $quarterFourTTC = $quarterFourTTC + $orderCustomer->getTotalTTC();
         }

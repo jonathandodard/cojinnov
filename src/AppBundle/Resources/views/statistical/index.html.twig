@@ -11,9 +11,15 @@
             </div>
         </div>
     </nav>
-    <div style="width: 100%">
-        <div id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div>
-        <div id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div>
+    <div class="row mgr-T-15">
+        <div class="col s12 co-js-size">
+            <div  id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div>
+        </div>
+    </div>
+    <div class="row mgr-T-15 co-js-size">
+        <div class="col s12">
+            <div  id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div>
+        </div>
     </div>
 {% endblock %}
 
