@@ -50,6 +50,7 @@ class StatisticalController extends Controller
             $quantity = 0;
 
         }
+
         arsort($arrayRefCounter);
         $arrayRef = [];
         $arrayCounter = ['data1'];

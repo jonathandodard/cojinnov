@@ -4,6 +4,9 @@ var jsonStaticTopTen = $('#chart2').attr('data-static');
 var tabStaticTopTen = JSON.parse(jsonStaticTopTen );
 
 var chart1 = c3.generate({
+    size: {
+        width: $('.co-js-size').width()-50
+    },
     bindto: '#chart',
     data: {
         columns: [
@@ -29,11 +32,17 @@ var chart1 = c3.generate({
 
 
 var chart2 = c3.generate({
+    size: {
+        width: $('.co-js-size').width()-50
+    },
     bindto: '#chart2',
     data: {
         columns: [
             tabStaticTopTen[2]
-        ]
+        ],
+        names: {
+            data1: 'quantité'
+        },
     },
     axis: {
         x: {
