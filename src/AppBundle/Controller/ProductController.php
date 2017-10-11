@@ -19,7 +19,8 @@ class ProductController extends Controller
 {
     public function indexAction()
     {
-        $product = $this->repositoryCustomer()->findAll();
+        $product = $this->repositoryCustomer()->findByUser($this->getUser());
+
         return $this->render('AppBundle:product:index.html.twig', [
             'products' => $product
         ]);
@@ -81,7 +82,7 @@ class ProductController extends Controller
     {
         $tabProduct =[];
         if($request->isXmlHttpRequest()) {
-            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'));
+            $entities = $this->repositoryCustomer()->searchByAll($request->get('data'), $this->getUser());
             if (empty($entities)) {
                 $tabProduct = false;
             } else {

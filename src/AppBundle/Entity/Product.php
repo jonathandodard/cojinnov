@@ -59,14 +59,14 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="duration", type="integer")
+     * @ORM\Column(name="duration", type="string")
      */
     private $duration;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="pcb", type="integer")
+     * @ORM\Column(name="pcb", type="integer", length=255)
      */
     private $pcb;
 
@@ -80,44 +80,50 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="tg", type="integer")
+     * @ORM\Column(name="tg", type="float")
      */
     private $tg;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="ts", type="integer")
+     * @ORM\Column(name="ts", type="float")
      */
     private $ts;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="tb", type="integer")
+     * @ORM\Column(name="tb", type="float")
      */
     private $tb;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="taOne", type="integer")
+     * @ORM\Column(name="taOne", type="float")
      */
     private $taOne;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="taTwo", type="integer")
+     * @ORM\Column(name="taTwo", type="float")
      */
     private $taTwo;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="ppdia", type="integer")
+     * @ORM\Column(name="ppdia", type="float")
      */
     private $ppdia;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productsOrder")
+     */
+    protected $user;
 
 
     /**
@@ -465,5 +471,23 @@ class Product
     {
         return $this->ppdia;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

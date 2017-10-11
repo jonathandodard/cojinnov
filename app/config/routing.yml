@@ -5,6 +5,9 @@ home:
     path: /
     defaults: { _controller: AppBundle:Home:index }
 
+
+################################customer##############################
+
 customer_index:
     path: /customers/index
     defaults: { _controller: AppBundle:Customer:index }
@@ -70,6 +73,11 @@ product_index_by_product:
 product_search:
     path: /product/search
     defaults: { _controller: AppBundle:Product:search }
+
+
+product_import:
+  path: /products/import
+  defaults: { _controller: AppBundle:Files:importProducts }
 
 ################################order##############################
 
@@ -138,3 +146,20 @@ statistical_by_favorite:
    defaults: { _controller: AppBundle:Statistical:indexByFavorite }
    requirements:
         id: '\d+'
+
+################################statistical##############################
+import_cutomer:
+   path: /import/customer
+   defaults: { _controller: AppBundle:Files:importCustomer }
+
+export_cutomer:
+   path: /export/customer
+   defaults: { _controller: AppBundle:Files:exportCustomer }
+
+import_order:
+   path: /import/customer
+   defaults: { _controller: AppBundle:Files:importCustomer }
+
+export_order:
+   path: /export/customer
+   defaults: { _controller: AppBundle:Files:exportCustomer }

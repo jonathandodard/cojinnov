@@ -29,6 +29,11 @@ class ProductsOrder
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productsOrder")
+     */
+    protected $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="ProductOrder")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
@@ -290,5 +295,22 @@ class ProductsOrder
     {
         $this->priceTTC = $priceTTC;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

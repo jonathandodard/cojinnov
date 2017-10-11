@@ -72,6 +72,10 @@ header {
     margin-top: 15px;
 }
 
+.mgr-T-150 {
+    margin-top: 150px;
+}
+
 .mgr-R-10 {
     margin-right: 10px;
 }
@@ -101,11 +105,15 @@ header {
 .pad-0{
 
 }
+/*padding-top*/
+
 .pad-T-0 {
     padding-top: 0px;
 }
-
-/*padding-top*/
+/*padding-bottom*/
+.pad-B-30 {
+    padding-bottom:30px;
+}
 
 .side-nav-hoverride {
     background-color: #f2f2f2;
@@ -225,6 +233,9 @@ header {
 .button-home-link {
     color: #FFFFFF;
 }
+.background-color-white {
+    background-color: #ffffff;
+}
 
 .button-home {
     background-color: #3a629e;
@@ -239,7 +250,7 @@ header {
 }
 
 .button-home img{
-    width: 60%;
+    width: 25%;
     padding: 10px;
 }
 
@@ -259,6 +270,12 @@ header {
 .button-home-statistical-link {
     color: #000000;
     font-weight: 800;
+}
+
+.chiffre-salary {
+    margin: 0 .75rem;
+    margin-bottom: 12px;
+    background-color: #f2f2f2;
 }
 /********************show by client************/
 .show-by-client-row {

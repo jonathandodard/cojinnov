@@ -35,6 +35,16 @@ class User extends BaseUser
     public $customers;
 
     /**
+     * @ORM\OneToMany(targetEntity="ProductsOrder", mappedBy="productsOrder")
+     */
+    public $productsOrder;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="products")
+     */
+    public $products;
+
+    /**
      * @ORM\OneToMany(targetEntity="Statistical", mappedBy="statistical")
      */
     public $statistical;
@@ -92,6 +102,60 @@ class User extends BaseUser
     public function getStatistical()
     {
         return $this->statistical;
+    }
+
+    /**
+     * @param ProductsOrder $productsOrder
+     * @return $this
+     */
+    public function addProductsOrder(ProductsOrder $productsOrder)
+    {
+        $this->productsOrder[] = $productsOrder;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductsOrder $productsOrder
+     */
+    public function removeProductsOrder(ProductsOrder $productsOrder)
+    {
+        $this->productsOrder->removeElement($productsOrder);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductsOrder()
+    {
+        return $this->productsOrder;
+    }
+
+    /**
+     * @param Product $products
+     * @return $this
+     */
+    public function addProducts(Product $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * @param Product $products
+     */
+    public function removeProducts(Product $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 
 
