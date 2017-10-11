@@ -11,6 +11,25 @@ namespace AppBundle\Repository;
 class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function yearly($user)
+    {
+        $dateNow =new \DateTime('NOW');
+        $dateAt =new \DateTime($dateNow->format('Y').'-01-01 00:00:00');
+        $dateTo =new \DateTime($dateNow->format('Y').'-12-31 23:59:59');
+
+        $qb = $this->createQueryBuilder("oc");
+        $qb
+            ->where('oc.createdAt BETWEEN :from AND :to')
+            ->andWhere('oc.user = :user')
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
     public function quarterOne()
     {
         $dateNow =new \DateTime('NOW');
