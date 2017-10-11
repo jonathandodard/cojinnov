@@ -71,7 +71,7 @@
                 <a href="#">Voir plus ...</a>
             </div>
         </div>
-        <div class="col s6">
+        <div class="col s6 co-js-size">
             <div class="carousel carousel-slider">
                 <a class="carousel-item" href="#one!"><div id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div></a>
                 <a class="carousel-item" href="#one!"><div id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div></a>
@@ -80,6 +80,8 @@
     </div>
 {% endblock %}
 {% block more_js %}
+    <script src="{{ asset('js/homePage.js') }}"></script>
+    <script src="{{ asset('js/d3/d3.v3.min.js') }}"></script>
     <script src="{{ asset('js/d3/d3.v3.min.js') }}"></script>
     <script src="{{ asset('js/c3/c3.min.js') }}"></script>
     <script src="{{ asset('js/graphStatic.js') }}"></script>
