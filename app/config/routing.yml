@@ -74,6 +74,11 @@ product_search:
     path: /product/search
     defaults: { _controller: AppBundle:Product:search }
 
+
+product_import:
+  path: /products/import
+  defaults: { _controller: AppBundle:Files:importProducts }
+
 ################################order##############################
 
 orderCustomer_index:
