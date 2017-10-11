@@ -20,6 +20,7 @@ class Files
     const EXPORT = 'EXPORT';
     const CUSTOMER = 'CUSTOMER';
     const ORDER = 'ORDER';
+    const PRODUCT = 'PRODUCT';
 
     use Date;
     /**

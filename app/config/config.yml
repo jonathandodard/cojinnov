@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: fr
     import_customer_directory: '%kernel.project_dir%/web/import/customers'
+    import_products_directory: '%kernel.project_dir%/web/import/products'
 
 framework:
     #esi: ~
