@@ -1,4 +1,7 @@
 {% extends '::base.html.twig' %}
+{% block more_stylesheets %}
+    <link rel="stylesheet" href="{{ asset('js/c3/c3.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
 
         <div class="chiffre-salary"><h5 class="center background-color-white color-text-master">Chiffre : {{ yearly }} €</h5></div>
@@ -70,7 +73,7 @@
         </div>
         <div class="col s6 co-js-size">
             <div class="carousel carousel-slider">
-                <a class="carousel-item" href="{{ path('statistical_list') }}"><div id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div></a>
+                <a class="carousel-item" href="{{ path('statistical_list') }}"><div id="chart" data-static="{{ jsonQuater }}" style="width: 50%" data-bar-explain-static="false"></div></a>
                 <a class="carousel-item" href="{{ path('statistical_list') }}"><div id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div></a>
             </div>
         </div>

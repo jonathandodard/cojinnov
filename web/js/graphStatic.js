@@ -43,6 +43,13 @@ var chart2 = c3.generate({
         names: {
             data1: 'quantité'
         },
+
+    },
+    subchart: {
+        show: $('#chart2').attr('data-bar-explain-static')
+    },
+    zoom: {
+        enabled: true
     },
     axis: {
         x: {

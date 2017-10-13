@@ -66,8 +66,8 @@ class Statistical
             array_push($arrayRef, $key);
             array_push($arrayCounter, $item);
         }
-        array_splice($arrayRef,11);
-        array_splice($arrayCounter, 11);
+//        array_splice($arrayRef,11);
+//        array_splice($arrayCounter, 11);
 
 
         $arrayRefarrayCounter = [
