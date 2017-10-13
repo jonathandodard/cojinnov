@@ -274,8 +274,8 @@ header {
 
 .chiffre-salary {
     margin: 0 .75rem;
-    margin-bottom: 12px;
-    background-color: #f2f2f2;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 /********************show by client************/
 .show-by-client-row {
