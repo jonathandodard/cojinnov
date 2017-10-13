@@ -6,7 +6,7 @@
                 <a href="{{ path('home') }}" class="breadcrumb">Home</a>
                 <a href="{{ path('orderCustomer_index') }}" class="breadcrumb">Liste commandes</a>
                 <a href="{{ path('orderCustomer_index_by_orderCustomer', {'id': orderCustomer.id }) }}" class="breadcrumb">Commande : {{ orderCustomer.id }}</a>
-                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="mgr-L-10">(client: {{ customer.name }})</a>
+                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="mgr-L-10">(client: {{ customer.numberAccount }})</a>
             </div>
         </div>
     </nav>
