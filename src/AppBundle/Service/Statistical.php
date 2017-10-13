@@ -118,11 +118,11 @@ class Statistical
         array_push($tabPriceHt, $quarterThreeHT);
         array_push($tabPriceTTC, $quarterThreeTTC);
 
-        $quarterTour = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterThree();
+        $quarterFour = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterFour();
 
         $quarterFourHT = 0;
         $quarterFourTTC = 0;
-        foreach ($quarterTour as $orderCustomer) {
+        foreach ($quarterFour as $orderCustomer) {
             $quarterFourHT = $quarterFourHT + $orderCustomer->getTotalHT();
             $quarterFourTTC = $quarterFourTTC + $orderCustomer->getTotalTTC();
         }

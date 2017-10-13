@@ -1,10 +1,7 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 
-    <div class="row chiffre-salary">
-        <div class="col s6"><h5 class="center background-color-white color-text-master">chiffre : {{ yearly }} €</h5></div>
-        <div class="col s6"><h5 class="center background-color-white color-text-master">Salaire : 515151 €</h5></div>
-    </div>
+        <div class="chiffre-salary"><h5 class="center background-color-white color-text-master">Chiffre : {{ yearly }} €</h5></div>
     <div class="row mgr-B-15 pad-0">
         <a class="button-home-link z-depth-2" href="{{ path('customer_index') }}">
             <div class="col s4">
@@ -73,8 +70,8 @@
         </div>
         <div class="col s6 co-js-size">
             <div class="carousel carousel-slider">
-                <a class="carousel-item" href="#one!"><div id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div></a>
-                <a class="carousel-item" href="#one!"><div id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div></a>
+                <a class="carousel-item" href="{{ path('statistical_list') }}"><div id="chart" data-static="{{ jsonQuater }}" style="width: 50%"></div></a>
+                <a class="carousel-item" href="{{ path('statistical_list') }}"><div id="chart2" data-static="{{ jsonTopTenProduct }}" style="width: 50%"></div></a>
             </div>
         </div>
     </div>
