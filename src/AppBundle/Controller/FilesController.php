@@ -47,7 +47,7 @@ class FilesController extends Controller
 
             $row = 0;
             $error = [];
-            $excelDoc = fopen('/home/jonathan/Documents/Projets/cojinnov/web/import/customers/' . $files->getName() . '.' . $extension, 'r');
+            $excelDoc = fopen($this->getParameter('import_customer_directory').'/'. $files->getName() . '.' . $extension, 'r');
             while (($data = fgetcsv($excelDoc, 1000, ",")) !== FALSE) {
                 if ($data[0] && $data[10] && $row > 0 ) {
                     $em = $this->getDoctrine()->getManager();
@@ -137,7 +137,7 @@ class FilesController extends Controller
 
             $row = 0;
             $error = [];
-            $excelDoc = fopen('/home/jonathan/Documents/Projets/cojinnov/web/import/products/' . $files->getName() . '.' . $extension, 'r');
+            $excelDoc = fopen($this->getParameter('import_products_directory').'/' . $files->getName() . '.' . $extension, 'r');
             while (($data = fgetcsv($excelDoc, 1000, ",")) !== FALSE) {
                 if ($data[0] && $row > 0 ) {
                     $em = $this->getDoctrine()->getManager();
