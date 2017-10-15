@@ -11,5 +11,8 @@ namespace AppBundle\Service;
 
 class PdfCreator
 {
+ public function pdftest()
+ {
 
+ }
 }

@@ -14,6 +14,7 @@ use AppBundle\Form\CustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CustomerController extends Controller
 {
@@ -149,6 +150,30 @@ class CustomerController extends Controller
             }
         }
         return new JsonResponse($tabCustomer);
+    }
+
+    public function pdfAction(Customer $customer)
+    {
+        $user = $this->getUser();
+
+        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findBy(
+            [
+                'customer' =>$customer,
+                'user' => $user
+            ]
+        );
+        $html = $this->renderView('AppBundle:page:test.html.twig');
+
+        $filename = sprintf($customer->getNumberAccount().'.pdf', date('Y-m-d'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
     }
 
     public function repositoryCustomer()

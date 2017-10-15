@@ -42,6 +42,10 @@ customer_search:
     path: /customer/search
     defaults: { _controller: AppBundle:Customer:search }
 
+pdf:
+    path: /test/pdf
+    defaults: { _controller: AppBundle:Customer:pdf }
+
 ################################product##############################
 
 product_index:
