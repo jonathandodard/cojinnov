@@ -20,7 +20,7 @@ var chart1 = c3.generate({
         types: {
             data1: 'area-step',
             data2: 'area-step'
-        }
+        },
     },
     axis: {
         x: {

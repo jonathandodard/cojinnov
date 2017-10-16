@@ -16,8 +16,8 @@ class HomeController extends Controller
 {
     public function indexAction(Statistical $statistical)
     {
-        $topTenProduct = $statistical->getProductsTenMax();
-        $quarter = $statistical->fourQuater();
+        $topTenProduct = $statistical->getProductsTenMax($this->getUser());
+        $quarter = $statistical->fourQuater($this->getUser());
 
         $jsonQuater = json_encode($quarter);
         $jsonTopTenProduct = json_encode($topTenProduct);

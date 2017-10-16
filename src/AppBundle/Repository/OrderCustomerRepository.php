@@ -30,7 +30,7 @@ class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
-    public function quarterOne()
+    public function quarterOne($user)
     {
         $dateNow =new \DateTime('NOW');
         $dateAt =new \DateTime($dateNow->format('Y').'-01-01 00:00:00');
@@ -39,15 +39,19 @@ class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder("oc");
         $qb
             ->where('oc.createdAt BETWEEN :from AND :to')
+            ->andWhere('oc.user = :user')
             ->setParameter('from', $dateAt )
             ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
+
+
         ;
         $result = $qb->getQuery()->getResult();
 
         return $result;
     }
 
-    public function quarterTwo()
+    public function quarterTwo($user)
     {
         $dateNow =new \DateTime('NOW');
         $dateAt =new \DateTime($dateNow->format('Y').'-04-01 00:00:00');
@@ -56,15 +60,17 @@ class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder("oc");
         $qb
             ->where('oc.createdAt BETWEEN :from AND :to')
+            ->andWhere('oc.user = :user')
             ->setParameter('from', $dateAt )
             ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
         ;
         $result = $qb->getQuery()->getResult();
 
         return $result;
     }
 
-    public function quarterThree()
+    public function quarterThree($user)
     {
         $dateNow =new \DateTime('NOW');
         $dateAt =new \DateTime($dateNow->format('Y').'-07-01 00:00:00');
@@ -73,15 +79,17 @@ class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder("oc");
         $qb
             ->where('oc.createdAt BETWEEN :from AND :to')
+            ->andWhere('oc.user = :user')
             ->setParameter('from', $dateAt )
             ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
         ;
         $result = $qb->getQuery()->getResult();
 
         return $result;
     }
 
-    public function quarterFour()
+    public function quarterFour($user)
     {
         $dateNow =new \DateTime('NOW');
         $dateAt =new \DateTime($dateNow->format('Y').'-10-01 00:00:00');
@@ -90,8 +98,10 @@ class OrderCustomerRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder("oc");
         $qb
             ->where('oc.createdAt BETWEEN :from AND :to')
+            ->andWhere('oc.user = :user')
             ->setParameter('from', $dateAt )
             ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
         ;
         $result = $qb->getQuery()->getResult();
 

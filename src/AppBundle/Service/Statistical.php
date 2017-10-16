@@ -34,9 +34,9 @@ class Statistical
         return $yearly;
     }
 
-    public function getProductsTenMax()
+    public function getProductsTenMax($user)
     {
-        $productsOrder = $this->doctrine->getRepository('AppBundle:ProductsOrder')->findAll();
+        $productsOrder = $this->doctrine->getRepository('AppBundle:ProductsOrder')->findByUser($user);
         $tabProductOrder = [];
 
         foreach ($productsOrder as $productOrder) {
@@ -78,9 +78,9 @@ class Statistical
         return $arrayRefarrayCounter;
     }
 
-    public function fourQuater()
+    public function fourQuater($user)
     {
-        $quarterOne = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterOne();
+        $quarterOne = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterOne($user);
         $tabPriceHt = ['data1'];
         $tabPriceTTC = ['data2'];
         $quarterOneHT = 0;
@@ -94,7 +94,7 @@ class Statistical
         array_push($tabPriceHt, $quarterOneHT);
         array_push($tabPriceTTC, $quarterOneTTC);
 
-        $quarterTwo = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterTwo();
+        $quarterTwo = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterTwo($user);
 
         $quarterTwoHT = 0;
         $quarterTwoTTC = 0;
@@ -106,7 +106,7 @@ class Statistical
         array_push($tabPriceHt, $quarterTwoHT);
         array_push($tabPriceTTC, $quarterTwoTTC);
 
-        $quarterThree = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterThree();
+        $quarterThree = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterThree($user);
 
         $quarterThreeHT = 0;
         $quarterThreeTTC = 0;
@@ -118,7 +118,7 @@ class Statistical
         array_push($tabPriceHt, $quarterThreeHT);
         array_push($tabPriceTTC, $quarterThreeTTC);
 
-        $quarterFour = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterFour();
+        $quarterFour = $this->doctrine->getRepository('AppBundle:OrderCustomer')->quarterFour($user);
 
         $quarterFourHT = 0;
         $quarterFourTTC = 0;
