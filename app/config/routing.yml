@@ -5,6 +5,10 @@ home:
     path: /
     defaults: { _controller: AppBundle:Home:index }
 
+parameter_user:
+    path: /user
+    defaults: { _controller: AppBundle:User:index }
+
 
 ################################customer##############################
 
