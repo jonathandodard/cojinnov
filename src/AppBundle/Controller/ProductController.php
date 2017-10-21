@@ -22,14 +22,16 @@ class ProductController extends Controller
         $product = $this->repositoryCustomer()->findByUser($this->getUser());
 
         return $this->render('AppBundle:product:index.html.twig', [
-            'products' => $product
+            'products' => $product,
+            'user' => $this->getUser()
         ]);
     }
 
     public function indexByCustomerAction(Product $product)
     {
         return $this->render('AppBundle:product:indexByProduct.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -49,7 +51,8 @@ class ProductController extends Controller
         }
 
         return $this->render('AppBundle:product:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 
@@ -65,7 +68,8 @@ class ProductController extends Controller
         }
 
         return $this->render('AppBundle:customer:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 

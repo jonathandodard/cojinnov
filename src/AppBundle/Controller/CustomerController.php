@@ -25,7 +25,8 @@ class CustomerController extends Controller
         $customers = $this->repositoryCustomer()->findByUser($user);
 
         return $this->render('AppBundle:customer:index.html.twig', [
-            'customers' => $customers
+            'customers' => $customers,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -42,7 +43,8 @@ class CustomerController extends Controller
 
         return $this->render('AppBundle:customer:indexByCustomer.html.twig', [
             'customer' => $customer,
-            'orders' => $orders
+            'orders' => $orders,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -67,7 +69,8 @@ class CustomerController extends Controller
         }
 
         return $this->render('AppBundle:customer:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 
@@ -85,7 +88,8 @@ class CustomerController extends Controller
         }
 
         return $this->render('AppBundle:customer:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 

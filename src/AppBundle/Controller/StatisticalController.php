@@ -18,6 +18,7 @@ class StatisticalController extends Controller
         return $this->render('AppBundle:statistical:index.html.twig', [
             'jsonQuater' => $jsonQuater,
             'jsonTopTenProduct' => $jsonTopTenProduct,
+            'user' => $this->getUser()
         ]);
     }
 }

@@ -26,7 +26,8 @@ class HomeController extends Controller
             'page'=>'home',
             'yearly'=> $statistical->getYearlyByUser($this->getUser()),
             'jsonQuater' => $jsonQuater,
-            'jsonTopTenProduct' => $jsonTopTenProduct
+            'jsonTopTenProduct' => $jsonTopTenProduct,
+            'user' => $this->getUser()
         ]);
 
     }

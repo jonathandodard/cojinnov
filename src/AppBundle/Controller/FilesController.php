@@ -92,6 +92,7 @@ class FilesController extends Controller
 
         return $this->render('AppBundle:files:form.html.twig', array(
             'form' => $form->createView(),
+            'user' => $this->getUser()
         ));
     }
 
@@ -186,6 +187,7 @@ class FilesController extends Controller
 
         return $this->render('AppBundle:files:form.html.twig', array(
             'form' => $form->createView(),
+            'user' => $this->getUser()
         ));
     }
 

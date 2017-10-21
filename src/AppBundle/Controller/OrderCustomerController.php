@@ -28,7 +28,8 @@ class OrderCustomerController extends Controller
         }
 
         return $this->render('AppBundle:orderCustomer:index.html.twig', [
-            'orderCustomers' => $orderCustomers
+            'orderCustomers' => $orderCustomers,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -45,7 +46,8 @@ class OrderCustomerController extends Controller
         return $this->render('AppBundle:orderCustomer:indexByOrderCustomer.html.twig', [
             'orderCustomer' => $orderCustomer,
             'customer'      => $customer,
-            'ProductsOrder' => $ProductsOrder
+            'ProductsOrder' => $ProductsOrder,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -87,7 +89,8 @@ class OrderCustomerController extends Controller
         return $this->render('AppBundle:orderCustomer:form.html.twig', [
             'form' => $form->createView(),
             'customer' => $customer,
-            'order' => $orderCustomer
+            'order' => $orderCustomer,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -103,7 +106,8 @@ class OrderCustomerController extends Controller
         }
 
         return $this->render('AppBundle:orderCustomer:form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 

@@ -13,6 +13,25 @@ header {
     margin-bottom: 15px;
 }
 
+.cursor {
+    cursor: pointer;
+}
+.hover-view i{
+    display: none;
+}
+
+.dp-ib{
+    display: inline-block;
+}
+
+.dp-b{
+    display: block;
+}
+
+.dp-n{
+    display: none;
+}
+
 .height-130 {
     height: 130px;
 }
@@ -43,12 +62,24 @@ header {
     margin-left: 15px;
 }
 /*width*/
+.width-50 {
+    width: 50% !important;
+}
+
 .width-79 {
     width: 79%;
 }
 
 .width-80 {
     width: 80%;
+}
+
+.f-s-16{
+    font-size: 16px;
+}
+
+.f-s-20{
+    font-size: 20px;
 }
 
 .f-s-25{
@@ -91,6 +122,9 @@ header {
 .mgr-B-15 {
     margin-bottom: 15px;
 }
+.mgr-B-30 {
+    margin-bottom: 30px;
+}
 
 .mgr-B-100 {
     margin-bottom: 100px;
@@ -105,13 +139,21 @@ header {
     margin-left: 15px;
 }
 
+.mgr-L-30 {
+    margin-left: 15px;
+}
+
 .mgr-R-15 {
     margin-right: 15px;
 }
 
 /*padding*/
 .pad-0{
+ padding: 0px !important;
+}
 
+.pad-15{
+ padding: 15px;
 }
 /*padding-top*/
 

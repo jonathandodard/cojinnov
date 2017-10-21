@@ -5,14 +5,13 @@
             <a href="{{ path('home') }}" class="brand-logo"><img class="all-header-img float-l" src="{{ asset('img/logo_cojinnov.png') }}"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if app.user.username is defined  %}
-                    <li><a><i class="material-icons left all-header-user-icon">perm_identity</i>{{ app.user.username }}</a></li>
+                    <li><a class="modal-user"><i class="material-icons left all-header-user-icon">perm_identity</i>{{ app.user.username }}</a></li>
                 {% endif %}
                 <li><a href="#" data-activates="slide-out" class="button-collapse" style="display: block !important;"><i class="material-icons">menu</i></a></li>
             </ul>
             <ul id="slide-out" class="side-nav" style="background-color: #f2f2f2; color: #7991c1">
                 <li><img width="100%" src="{{ asset('img/logo_cojinnov.png') }}"></li>
                 <li><div class="divider"></div></li>
-                <li><a href="{{ path('parameter_user') }}"><i class="material-icons all-header-user-icon" style="color: #7991c1">perm_identity</i>Compte</a></li>
                 <li><a href="{{ path('statistical_list') }}"><i class="material-icons" style="color: #7991c1">trending_up</i>Stastitique</a></li>
                 <li><a href="#!"><i class="material-icons" style="color: #7991c1">done_all</i>Objectifs</a></li>
                 <li><a href="#!"><i class="material-icons" style="color: #7991c1">settings</i>Parametres</a></li>
@@ -22,3 +21,32 @@
         </div>
     </nav>
 </header>
+
+<div id="modal_user" class="modal" style="padding: 0 !important;">
+    <div class="modal-content">
+        <div class="card-panel pad-15 mgr-R-15 mgr-L-15">
+            <span class="blue-text text-darken-2 f-s-30 ">Parametres compte</span>
+        </div>
+        <div class="container">
+            <div class="row mgr-B-30">
+                <div class=" hover-view center">
+                    <label class="f-s-16">Nom d'utilisateur</label><br>
+                    <span class="f-s-20 dp-b">{% if user is defined %}{{ user.username }}{% endif %}<i class="material-icons mgr-L-30 cursor co-js-bouton-edit-name">edit</i></span>
+                    <input class="width-50 co-js-input-edit-name dp-n" type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
+                </div>
+            </div>
+            <div class="row mgr-B-30">
+                <div class="hover-view center">
+                    <label class="f-s-16">Email</label><br>
+                    <span class="f-s-20 dp-b">{% if user is defined %}{{ user.email }}{% endif %} <i class="material-icons mgr-L-30 cursor co-js-bouton-edit-email">edit</i></span>
+                    <input class="width-50 co-js-input-edit-email dp-n" type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
+                </div>
+            </div>
+            <div class="row mgr-B-30">
+                <div class="center f-s-16">
+                    <a class="f-s-20" href="{{ path('fos_user_change_password') }}">changer mots de passe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

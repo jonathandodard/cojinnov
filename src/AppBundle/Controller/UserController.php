@@ -24,5 +24,16 @@ class UserController extends Controller
     public function setName()
     {
 
+
+    }
+
+    public function setMail()
+    {
+
+    }
+
+    public function setPassword()
+    {
+
     }
 }

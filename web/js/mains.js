@@ -2,6 +2,36 @@ $('.button-collapse').sideNav({
     menuWidth: 300, // Default is 300
     edge: 'right',
 });
+$(document).ready(function(){
+    $('.modal').modal();
+});
+
+$('.modal-user').on('click', function(){
+    $('#modal_user').modal('open');
+});
+
+$('.hover-view').mouseover(function() {
+    $( this ).find('i').css( "display", 'inline-block');
+    $('.co-js-bouton-edit-name').on('click', function () {
+        $('.co-js-input-edit-name').k();
+        $('.co-js-input-edit-name').keypress(function (e) {
+            if(e.which == 13) {
+                console.log('test');
+            }
+        });
+    });
+    $('.co-js-bouton-edit-email').on('click', function () {
+        $('.co-js-input-edit-email').toggle();
+        $('.co-js-input-edit-email').keypress(function (e) {
+            if(e.which == 13) {
+                console.log('test2');
+            }
+        });
+    });
+});
+$('.hover-view').mouseleave(function() {
+    $( this ).find('i').css( "display", 'none');
+});
 
 // $('.dateAt').on('click',function () {
 //     $(this).pickadate({

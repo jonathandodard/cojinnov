@@ -11,28 +11,31 @@
         </div>
     </nav>
     {#{{ dump(user) }}#}
-    <div class="card-panel pad-T-0 mgr-R-15 mgr-L-15">
-        <span class="blue-text text-darken-2 f-s-30 ">Parametres utilisateur</span>
+    <div class="card-panel pad-15 mgr-R-15 mgr-L-15">
+        <span class="blue-text text-darken-2 f-s-30 ">Parametres compte</span>
     </div>
     <div class="container">
         <div class="row">
-            <div class="center-align">
+            <div class=" hover-view">
+                <label>Nom d'utilisateur</label><br>
                 <span>{{ user.username }}</span>
-                <span><i class="material-icons">edit</i></span>
+                <span><i class="material-icons ">edit</i></span>
             </div>
         </div>
         <div class="row">
-            <div class="center-align">
+            <div class="hover-view">
+                <label>Email</label><br>
                 <span>{{ user.email }}</span>
-                <span><i class="material-icons">edit</i></span>
+                <span><i class="material-icons ">edit</i></span>
             </div>
         </div>
             <div class="row">
-                <div class="center-align">
-                    <a href="#">changer mp</a>
+                <div class="">
+                    <a href="{{ path('fos_user_change_password') }}">changer mots de passe</a>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block more_js %}
+    <script src="{{ asset('js/user.js') }}"></script>
 {% endblock %}
