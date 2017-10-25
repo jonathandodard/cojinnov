@@ -10,26 +10,40 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('AppBundle:user:index.html.twig', [
-            'user' => $this->getUser()
-        ]);
 
+    public function setNameAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $user->setUsername($request->get('data'));
+            $user->setUsernameCanonical($request->get('data'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return new JsonResponse();
     }
 
-    public function setName()
+    public function setMailAction(Request $request)
     {
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $user->setEmail($request->get('data'));
+            $user->setEmailCanonical($request->get('data'));
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
 
-    }
-
-    public function setMail()
-    {
-
+        return new JsonResponse();
     }
 
     public function setPassword()

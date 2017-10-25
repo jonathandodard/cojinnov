@@ -10,28 +10,61 @@ $('.modal-user').on('click', function(){
     $('#modal_user').modal('open');
 });
 
-$('.hover-view').mouseover(function() {
-    $( this ).find('i').css( "display", 'inline-block');
-    $('.co-js-bouton-edit-name').on('click', function () {
-        $('.co-js-input-edit-name').k();
-        $('.co-js-input-edit-name').keypress(function (e) {
-            if(e.which == 13) {
-                console.log('test');
-            }
-        });
-    });
-    $('.co-js-bouton-edit-email').on('click', function () {
-        $('.co-js-input-edit-email').toggle();
-        $('.co-js-input-edit-email').keypress(function (e) {
-            if(e.which == 13) {
-                console.log('test2');
-            }
-        });
-    });
+
+
+$('.co-js-bouton-edit-name').mouseenter(function () {
+    $('.co-js-icon-edit-name').css('display','inline-block');
 });
-$('.hover-view').mouseleave(function() {
-    $( this ).find('i').css( "display", 'none');
+$('.co-js-bouton-edit-name').mouseleave(function () {
+    $('.co-js-icon-edit-name').css('display','none');
 });
+$('.co-js-bouton-edit-email').mouseenter(function () {
+    $('.co-js-icon-edit-email').css('display','inline-block');
+});
+$('.co-js-bouton-edit-email').mouseleave(function () {
+    $('.co-js-icon-edit-email').css('display','none');
+});
+
+$('.co-js-icon-edit-name').on('click', function () {
+    $('.co-js-input-edit-name').css('display','inline-block');
+});
+$('.co-js-icon-edit-email').on('click', function () {
+    $('.co-js-input-edit-email').css('display','inline-block');
+});
+$('.co-js-input-edit-name').keypress(function (e) {
+    console.log('test');
+    if(e.which == 13) {
+        var name = $(this).val();
+        if (name.length > 0) {
+            $.ajax({
+                url: $(this).attr('data-url'),
+                data: {'data': name},
+                success: function () {
+                    $('.co-js-input-edit-name').css('display','none');
+                    $('.co-js-bouton-edit-name').text(name);
+                    $('.co-js-link-user').text(name);
+                }
+            });
+        }
+    }
+});
+$('.co-js-input-edit-email').keypress(function (e) {
+    if(e.which == 13) {
+        var email = $(this).val();
+        if (email.length > 0) {
+            $.ajax({
+                url: $(this).attr('data-url'),
+                data: {'data': email },
+                success: function () {
+                    $('.co-js-input-edit-email').css('display','none');
+                    $('.co-js-bouton-edit-email').text(email);
+
+                }
+            });
+        }
+    }
+});
+
 
 // $('.dateAt').on('click',function () {
 //     $(this).pickadate({

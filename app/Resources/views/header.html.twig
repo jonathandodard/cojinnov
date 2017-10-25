@@ -5,7 +5,7 @@
             <a href="{{ path('home') }}" class="brand-logo"><img class="all-header-img float-l" src="{{ asset('img/logo_cojinnov.png') }}"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if app.user.username is defined  %}
-                    <li><a class="modal-user"><i class="material-icons left all-header-user-icon">perm_identity</i>{{ app.user.username }}</a></li>
+                    <li><a class="modal-user"><i class="material-icons left all-header-user-icon">perm_identity</i><span class="co-js-link-user">{{ app.user.username }}</span></a></li>
                 {% endif %}
                 <li><a href="#" data-activates="slide-out" class="button-collapse" style="display: block !important;"><i class="material-icons">menu</i></a></li>
             </ul>
@@ -31,15 +31,15 @@
             <div class="row mgr-B-30">
                 <div class=" hover-view center">
                     <label class="f-s-16">Nom d'utilisateur</label><br>
-                    <span class="f-s-20 dp-b">{% if user is defined %}{{ user.username }}{% endif %}<i class="material-icons mgr-L-30 cursor co-js-bouton-edit-name">edit</i></span>
-                    <input class="width-50 co-js-input-edit-name dp-n" type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
+                    <span class="f-s-20 dp-b co-js-bouton-edit-name">{% if user is defined %}{{ user.username }}{% endif %}<i class="material-icons mgr-L-30 cursor co-js-icon-edit-name">edit</i></span>
+                    <input class="width-50 dp-n co-js-input-edit-name" data-url = {{ path('set_name_user') }} type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
                 </div>
             </div>
             <div class="row mgr-B-30">
                 <div class="hover-view center">
                     <label class="f-s-16">Email</label><br>
-                    <span class="f-s-20 dp-b">{% if user is defined %}{{ user.email }}{% endif %} <i class="material-icons mgr-L-30 cursor co-js-bouton-edit-email">edit</i></span>
-                    <input class="width-50 co-js-input-edit-email dp-n" type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
+                    <span class="f-s-20 co-js-bouton-edit-email dp-b">{% if user is defined %}{{ user.email }}{% endif %} <i class="material-icons mgr-L-30 cursor co-js-icon-edit-email">edit</i></span>
+                    <input class="width-50 dp-n co-js-input-edit-email" data-url = {{ path('set_email_user') }} type="text" data-id="{% if user is defined %}{{ user.id }}{% endif %}">
                 </div>
             </div>
             <div class="row mgr-B-30">

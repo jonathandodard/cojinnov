@@ -5,9 +5,13 @@ home:
     path: /
     defaults: { _controller: AppBundle:Home:index }
 
-parameter_user:
-    path: /user
-    defaults: { _controller: AppBundle:User:index }
+set_name_user:
+    path: /user/name
+    defaults: { _controller: AppBundle:User:setName }
+
+set_email_user:
+    path: /user/email
+    defaults: { _controller: AppBundle:User:setMail }
 
 
 ################################customer##############################
