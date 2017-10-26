@@ -50,9 +50,11 @@ customer_search:
     path: /customer/search
     defaults: { _controller: AppBundle:Customer:search }
 
-pdf:
-    path: /test/pdf
+pdf_by_customer:
+    path: /test/pdf/{customer}
     defaults: { _controller: AppBundle:Customer:pdf }
+    requirements:
+        customer: '\d+'
 
 ################################product##############################
 

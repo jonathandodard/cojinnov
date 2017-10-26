@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ base_dir ~ asset('css/materialize.min.css') }}" media="screen,projection"/>
+    <link rel="stylesheet" href="{{ base_dir ~ asset('css/master.css') }}"/>
+</head>
+<body>
+    <h1 class="center f-s-30 blue-text mgr-0">Client {{ customer.numberAccount }}</h1>
+    <div class="row mgr-0 ">
+        <div class="row mgr-0 ">
+            <div class="card-panel pad-0 mgr-0 ">
+                <div class="row">
+                <div class="row show-by-client-row">
+                    <div class="col s4">
+                        {% if customer.numberAccount is not empty %}
+                            <label>N° Compte Client</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.numberAccount }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s4">
+                        {% if customer.entitled is not empty %}
+                            <label>Intitulé Client</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.entitled }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s4">
+                        {% if customer.ranking is not empty %}
+                            <label>Intitulé Client</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.ranking }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row show-by-client-row">
+                    <div class="col s12">
+                        <label>Tarif</label>
+                        <p class="mgr-T-0 mgr-B-0">tarif</p>
+                    </div>
+                </div>
+                <div class="row show-by-client-row">
+                    <div class="col s12">
+                        {% if customer.name is not empty %}
+                            <label>Contact</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.name }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row show-by-client-row">
+                    <div class="col s6">
+                        {% if customer.address is not empty %}
+                            <label>Adresse</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.address }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s6">
+                        {% if customer.additionalAddress is not empty %}
+                            <label>Adresse complement</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.additionalAddress }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row show-by-client-row">
+                    <div class="col s6">
+                        {% if customer.city is not empty %}
+                            <label>Code Postal</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.city }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s6">
+                        {% if customer.zipCode is not empty %}
+                            <label>Ville</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.zipCode }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row show-by-client-row">
+                    <div class="col s6">
+                        {% if customer.phoneNumber is not empty %}
+                            <label>Téléphone</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.phoneNumber }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s6">
+                        {% if customer.email is not empty %}
+                            <label>E-mail</label>
+                            <p class="mgr-T-0 mgr-B-0">{{ customer.email }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="card-panel pad-0 mgr-0">
+                <span class="blue-text text-darken-2 f-s-20"> Commandes</span>
+                <div class="row">
+                    <div class="col s12">
+                        {% if orders %}
+                            <div class="row mgr-0">
+                                <table class="table striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">numéro de commande</th>
+                                        <th class="center">date</th>
+                                        <th class="center">prix HT</th>
+                                        <th class="center">prix TTC</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="co-js-search">
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td class="center"><a href="{{ path('orderCustomer_index_by_orderCustomer', {'id' : order.id }) }}">{{ order.name }}</a></td>
+                                            <td class="center">20/05/2017</td>
+                                            <td class="center">{{ order.totalHT }}€</td>
+                                            <td class="center">{{ order.totalTTC }}€</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="center-align">
+                                <span class="blue-text text-darken-2 f-s-25">Vous n'avez de commande enregister avec ce client</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{#<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
+    {#<script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js')) }}"></script>#}
+    {#<script src="{{ absolute_url(asset('js/mains.js') ) }}"></script>#}
+    {#<script src="{{ absolute_url(asset('js/showList.js') ) }}"></script>#}

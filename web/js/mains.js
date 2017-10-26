@@ -32,7 +32,6 @@ $('.co-js-icon-edit-email').on('click', function () {
     $('.co-js-input-edit-email').css('display','inline-block');
 });
 $('.co-js-input-edit-name').keypress(function (e) {
-    console.log('test');
     if(e.which == 13) {
         var name = $(this).val();
         if (name.length > 0) {
@@ -64,26 +63,3 @@ $('.co-js-input-edit-email').keypress(function (e) {
         }
     }
 });
-
-
-// $('.dateAt').on('click',function () {
-//     $(this).pickadate({
-//         selectMonths: true, // Creates a dropdown to control month
-//         selectYears: 15, // Creates a dropdown of 15 years to control year,
-//         today: 'Today',
-//         clear: 'Clear',
-//         close: 'Ok',
-//         closeOnSelect: false // Close upon selecting a date,
-//     });
-// });
-// $('.dateTo').on('click',function () {
-//     $(this).pickadate({
-//         selectMonths: true, // Creates a dropdown to control month
-//         selectYears: 15, // Creates a dropdown of 15 years to control year,
-//         format: 'd mmmm, yyyy',
-//         today: 'Today',
-//         clear: 'Clear',
-//         close: 'Ok',
-//         closeOnSelect: false // Close upon selecting a date,
-//     });
-// });

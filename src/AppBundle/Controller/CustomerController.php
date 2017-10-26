@@ -156,8 +156,9 @@ class CustomerController extends Controller
         return new JsonResponse($tabCustomer);
     }
 
-    public function pdfAction(Customer $customer)
+    public function pdfAction(Customer $customer, Request $request)
     {
+
         $user = $this->getUser();
 
         $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findBy(
@@ -166,7 +167,15 @@ class CustomerController extends Controller
                 'user' => $user
             ]
         );
-        $html = $this->renderView('AppBundle:page:test.html.twig');
+
+        $html = $this->renderView('AppBundle:customer:pdfByCutomer.html.twig',
+            [
+                'customer' => $customer,
+                'orders' => $orders,
+                'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+            ]
+        );
+//        'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
 
         $filename = sprintf($customer->getNumberAccount().'.pdf', date('Y-m-d'));
 

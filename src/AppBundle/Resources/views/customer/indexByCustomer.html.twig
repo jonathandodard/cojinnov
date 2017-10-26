@@ -18,57 +18,57 @@
             <div class="row show-by-client-row">
                 <div class="col s4">
                     <label>N° Compte Client</label>
-                    <p>{{ customer.numberAccount }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.numberAccount }}</p>
                 </div>
                 <div class="col s4">
                     <label>Intitulé Client</label>
-                    <p>{{ customer.entitled }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.entitled }}</p>
                 </div>
                 <div class="col s4">
                     <label>Intitulé Client</label>
-                    <p>{{ customer.ranking }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.ranking }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s12">
                     <label>Tarif</label>
-                    <p>tarif</p>
+                    <p class="mgr-T-0 mgr-B-5">tarif</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s12">
                     <label>Contact</label>
-                    <p>{{ customer.name }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.name }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s6">
                     <label>Adresse</label>
-                    <p>{{ customer.address }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.address }}</p>
                 </div>
                 <div class="col s6">
                     <label>Adresse complement</label>
-                    <p>{{ customer.additionalAddress }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.additionalAddress }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s6">
                     <label>Code Postal</label>
-                    <p>{{ customer.city }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.city }}</p>
                 </div>
                 <div class="col s6">
                     <label>Ville</label>
-                    <p>{{ customer.zipCode }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.zipCode }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s6">
                     <label>Téléphone</label>
-                    <p>{{ customer.phoneNumber }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.phoneNumber }}</p>
                 </div>
                 <div class="col s6">
                     <label>E-mail</label>
-                    <p>{{ customer.email }}</p>
+                    <p class="mgr-T-0 mgr-B-5">{{ customer.email }}</p>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col s12">
                     <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>creation commande</a>
-                    {#<a class="waves-effect waves-light btn-large float-l" href="{{ path('pdf', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>creation commande</a>#}
+                    <a class="waves-effect waves-light btn-large float-r" href="{{ path('pdf_by_customer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>exporter pdf</a>
                 </div>
             </div>
             <div class="row">
@@ -88,7 +88,7 @@
                         <div class="col s12">
                             {% if orders %}
                                 <div class="row">
-                                    <table class="responsive-table striped">
+                                    <table class="table striped">
                                         <thead>
                                         <tr>
                                             <th class="center">numéro de commande</th>
