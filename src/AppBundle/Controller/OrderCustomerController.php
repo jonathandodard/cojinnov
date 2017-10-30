@@ -16,6 +16,7 @@ use AppBundle\Form\OrderCustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderCustomerController extends Controller
 {
@@ -246,6 +247,38 @@ class OrderCustomerController extends Controller
         }
 
         return $name.'-'.$counter;
+    }
+
+    public function pdfAction(OrderCustomer $orderCustomer, Request $request)
+    {
+
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($orderCustomer->getCustomer()->getId());
+        $ProductsOrder = $this->getDoctrine()->getRepository('AppBundle:ProductsOrder')->findByOrderId($orderCustomer->getId());
+
+        foreach ($ProductsOrder as $ProductOrder){
+            $ProductOrder->setProduct($this->getDoctrine()->getRepository('AppBundle:Product')->findOneById($ProductOrder->getProduct()->getId()));
+        }
+
+        $html = $this->renderView('AppBundle:orderCustomer:pdfOrderCustomer.html.twig',
+            [
+                'orderCustomer' => $orderCustomer,
+                'customer'      => $customer,
+                'ProductsOrder' => $ProductsOrder,
+                'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+            ]
+        );
+//        'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+
+        $filename = sprintf($customer->getNumberAccount().'.pdf', date('Y-m-d'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
     }
 
     public function repositoryOrderCustomer()

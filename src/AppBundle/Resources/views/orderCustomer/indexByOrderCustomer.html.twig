@@ -12,8 +12,8 @@
         </div>
     </nav>
     <div class="row form-orderCustomer-row">
-        <div class="col s6">
-            <img src="">
+        <div class="col s6 center">
+            <img class="width-50 center" src="{{ asset('/img/ardi.png') }}" >
         </div>
         <div class="col s6 form-orderCustomer-col">
             <div><p>Bon de commande N°</p><p>2017</p></div>
@@ -47,7 +47,7 @@
                 <p>{{ customer.id }}</p>
         </div>
     </div>
-    <table class="responsive-table striped mgr-B-100">
+    <table class="table striped mgr-B-100">
         <thead>
             <tr>
                 <th class="center">Reference</th>
@@ -73,17 +73,20 @@
         </tbody>
     </table>
     <div class="row index-orderCustomer-footer">
-        <div class="col s4">
+        <div class="col s3">
             <label>Tva</label>
             <p>{{ orderCustomer.tva }}</p>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Prix Hors Taxe</label>
             <p>{{ orderCustomer.totalHT }}</p>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Prix Tout Taxe Compris</label>
             <p>{{ orderCustomer.totalTTC }}</p>
+        </div>
+        <div class="col s3">
+            <a class="waves-effect waves-light btn-large float-l" href="{{ path('pdf_by_order', {'orderCustomer' : orderCustomer.id }) }}"><i class="material-icons left">file_download</i>exporter pdf</a>
         </div>
     </div>
 

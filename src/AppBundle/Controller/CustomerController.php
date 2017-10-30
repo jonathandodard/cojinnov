@@ -175,7 +175,6 @@ class CustomerController extends Controller
                 'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
             ]
         );
-//        'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
 
         $filename = sprintf($customer->getNumberAccount().'.pdf', date('Y-m-d'));
 

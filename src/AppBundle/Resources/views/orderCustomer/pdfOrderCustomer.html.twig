@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{ base_dir ~ asset('css/materialize.min.css') }}" media="screen,projection"/>
+        <link rel="stylesheet" href="{{ base_dir ~ asset('css/master.css') }}"/>
+    </head>
+    <body>
+        <div class="row form-orderCustomer-row">
+            <div class="col s6">
+                <img class="width-100" src="{{ base_dir ~ asset('/img/ardi.png') }}" >
+            </div>
+            <div class="col s6 form-orderCustomer-col">
+                <div><p>Bon de commande N°</p><p>2017</p></div>
+                <label>Société :</label>
+                <p>{{ customer.ranking }}</p>
+                <label>Facturation :</label>
+                <p>{{ customer.id }}</p>
+                <label>livraison :</label>
+                <p>{{ customer.id }}</p>
+                <label>Tél :</label>
+                <p>{{ customer.phoneNumber }}</p>
+                <label>Fax :</label>
+                <p>{{ customer.id }}</p>
+            </div>
+        </div>
+        <div class="row form-orderCustomer-row">
+            <div class="col s6 form-orderCustomer-col">
+                <label>Représentant :</label>
+                <p>{{ customer.id }}</p>
+                <label>Mode de Règlement :</label>
+                <p>{{ customer.id }}</p>
+                <label>date livraison :</label>
+                <p>{{ customer.id }}</p>
+                <label>Commentaire :</label>
+                <p>{{ customer.id }}</p>
+            </div>
+            <div class="col s6 form-orderCustomer-col">
+                <label>Siret :</label>
+                <p>{{ customer.id }}</p>
+                <label>N° Intracom :</label>
+                <p>{{ customer.id }}</p>
+            </div>
+        </div>
+        <table class="table striped mgr-B-100">
+            <thead>
+            <tr>
+                <th class="center">Reference</th>
+                <th class="center">Nom commercial</th>
+                <th class="center">Prix unitaire</th>
+                <th class="center">Quantité</th>
+                <th class="center">Prix totale HT</th>
+                <th class="center">Prix totale TCC</th>
+            </tr>
+            </thead>
+            <tbody class="co-js-search">
+            {% for ProductOrder in ProductsOrder %}
+                <tr class="co-js-search-result">
+                    <td class="center co-js-ref">{{ ProductOrder.Product.reference }}</td>
+                    <td class="center">{{ ProductOrder.Product.name }}</td>
+                    <td class="center">{{ ProductOrder.price }}</td>
+                    <td class="center">{{ ProductOrder.quantity }}</td>
+                    <td class="center price-product-ht">{{ ProductOrder.priceHT }}</td>
+                    <td class="center price-product-ttc">{{ ProductOrder.priceTTC }}</td>
+                    <td class="center">
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

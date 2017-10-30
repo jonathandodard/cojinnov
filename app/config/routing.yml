@@ -51,7 +51,7 @@ customer_search:
     defaults: { _controller: AppBundle:Customer:search }
 
 pdf_by_customer:
-    path: /test/pdf/{customer}
+    path: /customer/pdf/{customer}
     defaults: { _controller: AppBundle:Customer:pdf }
     requirements:
         customer: '\d+'
@@ -139,27 +139,17 @@ order_product_delete:
   path: /order/product/delete
   defaults: { _controller: AppBundle:OrderCustomer:deleteProduct }
 
+pdf_by_order:
+  path: /order/pdf/{orderCustomer}
+  defaults: { _controller: AppBundle:OrderCustomer:pdf }
+  requirements:
+    orderCustomer: '\d+'
+
 ################################statistical##############################
 
 statistical_list:
   path: /statistical/index
   defaults: { _controller: AppBundle:Statistical:index }
-
-statistical_create:
-   path: /statistical/create
-   defaults: { _controller: AppBundle:Statistical:create }
-
-statistical_update:
-   path: /statistical/update/{id}
-   defaults: { _controller: AppBundle:Statistical:update }
-   requirements:
-        id: '\d+'
-
-statistical_by_favorite:
-   path: /statistical/show/{id}
-   defaults: { _controller: AppBundle:Statistical:indexByFavorite }
-   requirements:
-        id: '\d+'
 
 ################################statistical##############################
 import_cutomer:
