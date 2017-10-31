@@ -78,6 +78,14 @@ header {
     width: 100%;
 }
 
+.f-s-10{
+    font-size: 10px;
+}
+
+.f-s-12{
+    font-size: 12px;
+}
+
 .f-s-16{
     font-size: 16px;
 }
@@ -108,6 +116,10 @@ header {
 
 .mgr-T-15 {
     margin-top: 15px;
+}
+
+.mgr-T-50 {
+    margin-top: 50px;
 }
 
 .mgr-T-150 {
@@ -390,6 +402,14 @@ header {
     background-color: #f2f2f2;
     position: fixed;
     bottom: 0px;
+    width: 100%;
+    margin-bottom: 0px;
+    box-shadow:  0 1px 16px 0 rgba(0,0,0,0.14), 0 -1px 5px 0 rgba(0,0,0,0.12), 0 -3px 1px -2px rgba(0,0,0,0.2);
+}
+.index-orderCustomer-footer-pdf {
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 50px;
     width: 100%;
     margin-bottom: 0px;
     box-shadow:  0 1px 16px 0 rgba(0,0,0,0.14), 0 -1px 5px 0 rgba(0,0,0,0.12), 0 -3px 1px -2px rgba(0,0,0,0.2);

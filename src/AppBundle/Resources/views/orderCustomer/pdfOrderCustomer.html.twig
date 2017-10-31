@@ -46,7 +46,7 @@
         </div>
         <table class="table striped mgr-B-100">
             <thead>
-            <tr>
+            <tr class="f-s-12">
                 <th class="center">Reference</th>
                 <th class="center">Nom commercial</th>
                 <th class="center">Prix unitaire</th>
@@ -55,19 +55,71 @@
                 <th class="center">Prix totale TCC</th>
             </tr>
             </thead>
-            <tbody class="co-js-search">
-            {% for ProductOrder in ProductsOrder %}
-                <tr class="co-js-search-result">
-                    <td class="center co-js-ref">{{ ProductOrder.Product.reference }}</td>
-                    <td class="center">{{ ProductOrder.Product.name }}</td>
-                    <td class="center">{{ ProductOrder.price }}</td>
-                    <td class="center">{{ ProductOrder.quantity }}</td>
-                    <td class="center price-product-ht">{{ ProductOrder.priceHT }}</td>
-                    <td class="center price-product-ttc">{{ ProductOrder.priceTTC }}</td>
-                    <td class="center">
-                </tr>
-            {% endfor %}
+            <tbody class="co-js-search mgr-T-50">
+            {% set endFirst = (ProductsOrder|length <= 8)?ProductsOrder|length-1:7%}
+                {% for ProductOrder in 0..endFirst %}
+                    <tr class="co-js-search-result f-s-10">
+                        <td class="center co-js-ref">{{ ProductsOrder[loop.index0].product.reference }}</td>
+                        <td class="center">{{ ProductsOrder[loop.index0].Product.name }}</td>
+                        <td class="center">{{ ProductsOrder[loop.index0].price }}</td>
+                        <td class="center">{{ ProductsOrder[loop.index0].quantity }}</td>
+                        <td class="center price-product-ht">{{ ProductsOrder[loop.index0].priceHT }}</td>
+                        <td class="center price-product-ttc">{{ ProductsOrder[loop.index0].priceTTC }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
+        {% if endFirst == 7 %}
+        {% set index = 7 %}
+        {% set nbPage = ((ProductsOrder|length - 8)/18)|round(0, 'ceil') %}
+        {% set start = index + 1  %}
+        {% set indexProduct = start  %}
+        {% set end = index + 18 %}
+        {% for mult in 0..nbPage-1 %}
+            <p style="page-break-after: always;">&nbsp;</p>
+            <table class="table striped mgr-B-100">
+                <thead>
+                <tr class="f-s-12">
+                    <th class="center">Reference</th>
+                    <th class="center">Nom commercial</th>
+                    <th class="center">Prix unitaire</th>
+                    <th class="center">Quantité</th>
+                    <th class="center">Prix totale HT</th>
+                    <th class="center">Prix totale TCC</th>
+                </tr>
+                </thead>
+                <tbody class="co-js-search mgr-T-50">
+                    {% for ProductOrder in start..end %}
+                            <tr class="co-js-search-result f-s-10">
+                                <td class="center co-js-ref">{{ ProductsOrder[indexProduct].product.reference }}</td>
+                                <td class="center">{{ ProductsOrder[indexProduct].Product.name }}</td>
+                                <td class="center">{{ ProductsOrder[indexProduct].price }}</td>
+                                <td class="center">{{ ProductsOrder[indexProduct].quantity }}</td>
+                                <td class="center price-product-ht">{{ ProductsOrder[indexProduct].priceHT }}</td>
+                                <td class="center price-product-ttc">{{ ProductsOrder[indexProduct].priceTTC }}</td>
+                            </tr>
+                        {% set indexProduct = indexProduct + 1 %}
+                    {% endfor %}
+                    {% set start = start + 18  %}
+                    {% set end = (end+18 > 42)?ProductsOrder|length - 1:end + 18  %}
+                </tbody>
+            </table>
+        {% endfor %}
+        {% endif %}
+
+        <div class="row index-orderCustomer-footer">
+            <div class="col s4">
+                <label>Tva</label>
+                <p>{{ orderCustomer.tva }}</p>
+            </div>
+            <div class="col s4">
+                <label>Prix Hors Taxe</label>
+                <p>{{ orderCustomer.totalHT }}</p>
+            </div>
+            <div class="col s4">
+                <label>Prix Tout Taxe Compris</label>
+                <p>{{ orderCustomer.totalTTC }}</p>
+            </div>
+        </div>
     </body>
 </html>
