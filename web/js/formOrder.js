@@ -60,6 +60,7 @@ $(document).ready(function(){
             $('#modalDoublon').modal('open');
         } else {
             $('#modalPrice').modal('open');
+            $('.co-js-price-modal').val(datas[0].TaOne);
             $( ".co-js-price-modal" ).focus();
         }
     }
