@@ -12,8 +12,8 @@ class ProductsOrderRepository extends \Doctrine\ORM\EntityRepository
 {
 
     public function findByOrderEmpty(){
-        $query = $this->createQueryBuilder('o')
-            ->where("o.orderId IS NULL")
+        $query = $this->createQueryBuilder('po')
+            ->where("po.orderId IS NULL")
             ->getQuery()
             ->getResult();
 
@@ -21,9 +21,33 @@ class ProductsOrderRepository extends \Doctrine\ORM\EntityRepository
     }
 
     public function findProductId($idProduct) {
-        $query = $this->createQueryBuilder('o')
-            ->where("o.product = :idProduct")
+        $query = $this->createQueryBuilder('po')
+            ->where("po.product = :idProduct")
             ->setParameter('idProduct', $idProduct )
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+    public function findCountProductId($idProduct, $semestre, $user) {
+        $dateNow =new \DateTime('NOW');
+        if ( $semestre ) {
+            $dateAt =new \DateTime($dateNow->format('Y').'-01-01 00:00:00');
+            $dateTo =new \DateTime($dateNow->format('Y').'-06-31 23:59:59');
+        } else {
+            $dateAt =new \DateTime($dateNow->format('Y').'-07-01 00:00:00');
+            $dateTo =new \DateTime($dateNow->format('Y').'-12-31 23:59:59');
+        }
+
+        $query = $this->createQueryBuilder('po')
+            ->where("po.product = :idProduct")
+            ->andWhere('po.createdAt BETWEEN :from AND :to')
+            ->andWhere('po.user = :user')
+            ->setParameter('idProduct', $idProduct )
+            ->setParameter('from', $dateAt )
+            ->setParameter('to', $dateTo)
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
 

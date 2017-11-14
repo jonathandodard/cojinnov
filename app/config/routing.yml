@@ -167,3 +167,9 @@ import_order:
 export_order:
    path: /export/customer
    defaults: { _controller: AppBundle:Files:exportCustomer }
+
+####################################goal##################################
+
+goal_update:
+   path: /goal/update
+   defaults: { _controller: AppBundle:Goal:update }

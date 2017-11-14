@@ -36,39 +36,52 @@
         <div class="col s6">
             <div class="card-panel pad-T-0">
                 <span class="blue-text text-darken-2 f-s-30">Objectifs</span>
+
+                {% set goalOnePercent = (goal.goalOne.finishedPercent.max is defined)?goal.goalOne.finishedPercent.max:NULL %}
+                {% set goalTwoPercent = (goal.goalTwo.finishedPercent.max is defined)?goal.goalTwo.finishedPercent.max:NULL %}
+                {% set goalThreePercent = (goal.goalThree.finishedPercent.max is defined)?goal.goalThree.finishedPercent.max:NULL %}
+
                 <ul>
-                    <li>
-                        <p>objectif 1</p>
-                        <div class="progress" style="background-color: #b5ccca;">
-                            <div class="determinate" style="width: 10%; background-color: #3a629e;"></div>
+                    <li class="post-r">
+                        <p class="f-s-18 f-w-500">Objectif sur la vente de produit par semestre</p>
+                        {% if (goalOnePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center"> {{ goal.goalOne.total }}/{{ goal.goalOne.goal }}</div>
+                        <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
+                            <div class="determinate" style="{% if (goalOnePercent)%}width: {{ goal.goalOne.finishedPercent.percent }}%;{% else %}width: {{ goal.goalOne.finishedPercent }}% {% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
-                    <li>
-                        <p>objectif 1</p>
-                        <div class="progress" style="background-color: #b5ccca;">
-                            <div class="determinate" style="width: 50%; background-color: #3a629e;"></div>
+                    <li class="post-r">
+                        <p class="f-s-18 f-w-500">Objectif chiffre menstruelle</p>
+                        {% if (goalThreePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center"> {{ goal.goalThree.total }}/{{ goal.goalThree.goal }}</div>
+                        <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
+                            <div class="determinate" style="{% if (goalThreePercent)%}width:{{ goal.goalThree.finishedPercent.percent }}%;{% else %}width:{{ goal.goalThree.finishedPercent }}%; {% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
-                    <li>
-                        <p>objectif 1</p>
-                        <div class="progress" style="background-color: #b5ccca;">
-                            <div class="determinate" style="width: 70%; background-color: #3a629e;"></div>
+
+                    <li class="post-r">
+                        <p class="f-s-18 f-w-500">Objectif sur le chiffre annuel</p>
+                        {% if (goalTwoPercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center"> {{ goal.goalTwo.total }}/{{ goal.goalTwo.goal }}</div>
+                        <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
+                            <div class="determinate" style="{% if (goalTwoPercent)%}width:{{ goal.goalTwo.finishedPercent.percent }}%;{% else %}width:{{ goal.goalTwo.finishedPercent }}%; {% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
-                    <li>
-                        <p>objectif 1</p>
-                        <div class="progress" style="background-color: #b5ccca;">
-                            <div class="determinate" style="width: 90%; background-color: #3a629e;"></div>
-                        </div>
-                    </li>
-                    <li class="goal-ok">
-                        <p>objectif 1</p>
-                        <div class="progress" style="background-color: #b5ccca;">
-                            <div class="determinate" style="width: 100%; background-color: #3a629e;"></div>
-                        </div>
-                    </li>
+
+                    {#<li>#}
+                        {#<p>objectif 1</p>#}
+                        {#<div class="progress" style="background-color: #b5ccca;">#}
+                            {#<div class="determinate" style="width: 90%; background-color: #3a629e;"></div>#}
+                        {#</div>#}
+                    {#</li>#}
+                    {#<li class="goal-ok">#}
+                        {#<p>objectif 1</p>#}
+                        {#<div class="progress" style="background-color: #b5ccca;">#}
+                            {#<div class="determinate" style="width: 100%; background-color: #3a629e;"></div>#}
+                        {#</div>#}
+                    {#</li>#}
                 </ul>
-                <a href="#">Voir plus ...</a>
+                {#<a href="#">Voir plus ...</a>#}
             </div>
         </div>
         <div class="col s6 co-js-size">

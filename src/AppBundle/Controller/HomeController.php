@@ -22,11 +22,18 @@ class HomeController extends Controller
         $jsonQuater = json_encode($quarter);
         $jsonTopTenProduct = json_encode($topTenProduct);
 
+        $goal = [
+            'goalOne' => $statistical->SaleProduct($this->getUser()),
+            'goalTwo' => $statistical->turnoverYear($this->getUser()),
+            'goalThree' => $statistical->turnoverMonth($this->getUser()),
+        ];
+
         return $this->render('AppBundle:page:home.html.twig', [
             'page'=>'home',
             'yearly'=> $statistical->getYearlyByUser($this->getUser()),
             'jsonQuater' => $jsonQuater,
             'jsonTopTenProduct' => $jsonTopTenProduct,
+            'goal' => $goal,
             'user' => $this->getUser()
         ]);
 

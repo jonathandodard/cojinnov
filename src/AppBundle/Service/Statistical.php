@@ -9,7 +9,9 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Validator\Constraints\Date;
 
 class Statistical
 {
@@ -32,6 +34,20 @@ class Statistical
         }
 
         return $yearly;
+    }
+
+    public function getMenstrualByUser(User $user)
+    {
+        $count = 0;
+        $TabNumberMenstrual = $this->doctrine->getRepository('AppBundle:OrderCustomer')->menstrual($user);
+
+        foreach ( $TabNumberMenstrual as $numberMenstrual )
+        {
+            $count = $count + $numberMenstrual->getTotalHT();
+        }
+
+        return $count;
+
     }
 
     public function getProductsTenMax($user)
@@ -136,6 +152,66 @@ class Statistical
         ];
 
         return $quarter;
+    }
+
+    // sale a product per semester
+    public function SaleProduct(User $user)
+    {
+        $count = 0;
+        $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
+        $time = Date('n');
+        $semestre = ($time <= 6)?true:false;
+
+        $product = $this->doctrine->getRepository('AppBundle:Product')->findOneByReference($goal->getGoalOneRef());
+        $tabProductOrder = $this->doctrine->getRepository('AppBundle:ProductsOrder')->findCountProductId($product->getId(),$semestre, $user);
+        foreach ($tabProductOrder as $value) {
+            $count = $count + $value->getQuantity();
+        }
+
+        $percent = round((100 * $count)/$goal->getGoalOne(), 0);
+        $percentMax = ($percent > 100 )? 100 : false;
+
+        $parameters = [
+            'reference' => $product->getReference(),
+            'total' => $count,
+            'goal' => $goal->getGoalOne(),
+            'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=>$percentMax]
+        ];
+
+        return $parameters;
+    }
+
+    // turnover per years
+    public function turnoverYear(User $user)
+    {
+        $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
+        $percent = round((100 *  $this->getYearlyByUser($user))/$goal->getGoalTwo(), 0);
+        $percentMax = ($percent > 100 )? 100 : false;
+
+
+        $parameters = [
+            'goal' => $goal->getGoalTwo(),
+            'total' => $this->getYearlyByUser($user),
+            'finishedPercent' => (!$percentMax)?$percent:['percent'=>$percent,'max'=>$percentMax]
+        ];
+
+        return $parameters;
+    }
+
+    // turnover per month
+    public function turnoverMonth(User $user)
+    {
+        $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
+        $percent = round((100 *  $this->getMenstrualByUser($user))/$goal->getGoalThree(), 0);
+        $percentMax = ($percent > 100 )? 100 : false;
+
+        $parameters = [
+            'goal' => $goal->getGoalThree(),
+            'total' =>         $numberMenstrual = $this->getMenstrualByUser($user),
+            'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=> $percentMax]
+        ];
+
+        return $parameters;
     }
 
 }

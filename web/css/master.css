@@ -13,6 +13,11 @@ header {
     margin-bottom: 15px;
 }
 
+.img-icon {
+    width: 24px;
+    margin-right: 32px;
+}
+
 .cursor {
     cursor: pointer;
 }
@@ -30,6 +35,14 @@ header {
 
 .dp-n{
     display: none;
+}
+
+.post-r {
+    position: relative;
+}
+
+.post-a {
+    position: absolute;
 }
 
 .height-130 {
@@ -90,6 +103,10 @@ header {
     font-size: 16px;
 }
 
+.f-s-18{
+    font-size: 18px;
+}
+
 .f-s-20{
     font-size: 20px;
 }
@@ -102,9 +119,21 @@ header {
     font-size: 30px;
 }
 
+.f-s-40{
+    font-size: 40px;
+}
+
+.f-w-500 {
+    font-weight: 500;
+}
+
+
 /*margin*/
 .mgr-0 {
     margin: 0;
+}
+.mgr-20 {
+    margin: 20px;
 }
 /*margin-top*/
 .mgr-T-0 {
@@ -349,6 +378,13 @@ header {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+.icon-goal {
+    color: green;
+    right: 0px;
+    top: 15px;
+}
+
 /********************show by client************/
 .show-by-client-row {
 
