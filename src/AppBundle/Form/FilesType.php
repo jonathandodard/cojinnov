@@ -21,8 +21,8 @@ class FilesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('files', FileType::class, array('label' => 'import client excels'))
-            ->add('save', SubmitType::class, array('label' => 'importer'))
+            ->add('files', FileType::class)
+            ->add('save', SubmitType::class)
         ;
     }
 

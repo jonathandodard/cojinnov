@@ -16,6 +16,8 @@ use AppBundle\Form\FilesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\File\File;
+use PHPExcel_Shared_ZipArchive;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class FilesController extends Controller
@@ -98,7 +100,67 @@ class FilesController extends Controller
 
     public function exportCustomerAction()
     {
-        die('test');
+
+        $workbook = new \PHPExcel;
+
+        $sheet = $workbook->getActiveSheet();
+
+        $customers = $this->getDoctrine()->getRepository('AppBundle:Customer')->findAll();
+
+        $styleA1 = $sheet->getStyle('1');
+        $styleFont = $styleA1->getFont();
+        $styleFont->setBold(true);
+
+//        header
+        $sheet->setCellValueByColumnAndRow(0,1, 'NumberAccount');
+        $sheet->setCellValueByColumnAndRow(1,1, 'Entitled');
+        $sheet->setCellValueByColumnAndRow(2,1, 'Ranking');
+        $sheet->setCellValueByColumnAndRow(3,1, 'NameRepresentative');
+        $sheet->setCellValueByColumnAndRow(4,1, 'Name');
+        $sheet->setCellValueByColumnAndRow(5,1, 'Email');
+        $sheet->setCellValueByColumnAndRow(6,1, 'Address');
+        $sheet->setCellValueByColumnAndRow(7,1, 'AdditionalAddress');
+        $sheet->setCellValueByColumnAndRow(8,1, 'ZipCode');
+        $sheet->setCellValueByColumnAndRow(9,1, 'City');
+        $sheet->setCellValueByColumnAndRow(10,1, 'PhoneNumber');
+        $sheet->setCellValueByColumnAndRow(11,1, 'Price');
+
+        $row = 0;
+        for ($counter = 0; $counter <  count($customers); $counter++) {
+            $row = ($counter == 0)?2: $row + 1;
+
+            $sheet->getColumnDimension('A')->setWidth("15");
+            $sheet->setCellValueByColumnAndRow(0, $row, $customers[$counter]->getNumberAccount());
+            $sheet->getColumnDimension('B')->setWidth("30");
+            $sheet->setCellValueByColumnAndRow(1, $row, $customers[$counter]->getEntitled());
+            $sheet->getColumnDimension('C')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(2, $row, $customers[$counter]->getRanking());
+            $sheet->getColumnDimension('D')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(3, $row, $customers[$counter]->getNameRepresentative());
+            $sheet->getColumnDimension('E')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(4, $row, $customers[$counter]->getName());
+            $sheet->getColumnDimension('F')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(5, $row, $customers[$counter]->getEmail());
+            $sheet->getColumnDimension('G')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(6, $row, $customers[$counter]->getAddress());
+            $sheet->getColumnDimension('H')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(7, $row, $customers[$counter]->getAdditionalAddress());
+            $sheet->getColumnDimension('I')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(8, $row, $customers[$counter]->getZipCode());
+            $sheet->getColumnDimension('J')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(9, $row, $customers[$counter]->getCity());
+            $sheet->getColumnDimension('K')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(10, $row, $customers[$counter]->getPhoneNumber());
+            $sheet->getColumnDimension('L')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(11, $row, $customers[$counter]->getPrice());
+        }
+
+        $writer = new \PHPExcel_Writer_Excel2007($workbook);
+
+        $records = '/home/jonathan/Documents/fichier.xlsx';
+        $writer->save($records);
+
+        return $this->redirect($this->generateUrl('import_cutomer'));
     }
 
     public function importOrderAction()

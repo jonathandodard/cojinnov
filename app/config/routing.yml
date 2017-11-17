@@ -165,9 +165,9 @@ statistical_list:
   path: /statistical/index
   defaults: { _controller: AppBundle:Statistical:index }
 
-################################statistical##############################
+###############################import/export#############################
 import_cutomer:
-   path: /import/customer
+   path: /{_locale}/import/customer
    defaults: { _controller: AppBundle:Files:importCustomer }
 
 export_cutomer:

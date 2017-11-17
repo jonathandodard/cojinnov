@@ -1,7 +1,44 @@
-<h1>Adding a new product</h1>
+{% extends '::base.html.twig' %}
+{% block title %}CJ Commande{% endblock %}
+{% block body %}
+    <div class="container">
+        <h1 class="center">{{ 'import_export_customer'|trans }}</h1>
+        {{ form_start(form) }}
+        <div class="center">
+            <div class="file-field input-field width-50 center dp-ib">
+                <div class="btn">
+                    <span>{{ 'files'|trans|capitalize }}</span>
+                    {{ form_row(form.files, {'label' : ' '})}}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
 
-{{ form_start(form) }}
 
-    {{ form_row(form.files) }}
-    {{ form_row(form.save) }}
-{{ form_end(form) }}
+
+                {{ form_row(form.save, {
+                    'attr': {'style': 'display:none'}
+                })
+                }}
+                <div class="center-align form-save-customer">
+                    <button id="files_save" class=" col s12 btn waves-effect waves-light" type="submit" name="files[save]">{{ 'submit'|trans|capitalize }}
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            {#<div><button type="submit" id="files_save" name="files[save]">importer</button></div>#}
+            {{ form_end(form) }}
+        </div>
+        <div class="divider mgr-T-15"></div>
+
+        <div class="center-align form-save-customer">
+            <a href="{{ path('export_cutomer') }}">
+            <button class=" col s12 btn waves-effect waves-light">
+                {{ 'export_customer'|trans|capitalize }}
+            </button>
+            </a>
+        </div>
+
+    </div>
+
+{% endblock %}
