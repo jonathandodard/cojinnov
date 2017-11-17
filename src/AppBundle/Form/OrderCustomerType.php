@@ -26,6 +26,7 @@ class OrderCustomerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+//        dump($this->get('translator')->trans('last_order'));die;
         $builder
             ->add('tva' , NumberType::class, ['data'=>'20'])
             ->add('totalHT' , NumberType::class, ['data'=>'0'])

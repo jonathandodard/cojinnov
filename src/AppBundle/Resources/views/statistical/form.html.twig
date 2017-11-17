@@ -3,9 +3,9 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('statistical_list') }}" class="breadcrumb">Liste statistiques</a>
-                <a href="{{ path('product_create') }}" class="breadcrumb">creation statistique</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('statistical_list') }}" class="breadcrumb">{{ ''|trans|capitalize }}Liste statistiques</a>
+                <a href="{{ path('product_create') }}" class="breadcrumb">{{ ''|trans|capitalize }}creation statistique</a>
             </div>
         </div>
     </nav>
@@ -16,7 +16,7 @@
     <div class="row mgr-T-15 ">
         <div class="col s12">
             {{ form_row(form.name, {
-                    'label': 'Periode',
+                    'label': {{ ''|trans|capitalize }}'Periode',
                     'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
@@ -24,7 +24,7 @@
         <div class="col s12">
             <div class="col s6">
                 {{ form_row(form.period, {
-                        'label': 'Periode',
+                        'label': {{ ''|trans|capitalize }}'Periode',
                         'attr': {'style': 'margin-bottom:15px; display:block;'}
                     })
                 }}
@@ -33,14 +33,14 @@
             </div>
             <div class="col s6">
                 {{ form_row(form.entity, {
-                        'label': 'entité',
+                        'label': {{ ''|trans|capitalize }}'entité',
                         'attr': {'style': 'margin-bottom:15px; display:block;'}
                     })
                 }}
             </div>
             <div class="col s12">
                 {{ form_row(form.argument, {
-                    'label': 'argument',
+                    'label': {{ ''|trans|capitalize }}'argument',
                     'attr': {'style': 'margin-bottom:15px; display:block;'}
                 })
                 }}
@@ -50,7 +50,7 @@
                     'attr': {'style': 'display:none'}
                     })
                 }}
-                <button id="appbundle_customer_save" class=" col s12 btn waves-effect waves-light" type="submit" name="appbundle_customer[save]">Submit
+                <button id="appbundle_customer_save" class=" col s12 btn waves-effect waves-light" type="submit" name="appbundle_customer[save]">{{ 'submit'|trans|capitalize }}
                     <i class="material-icons right">send</i>
                 </button>
             </div>

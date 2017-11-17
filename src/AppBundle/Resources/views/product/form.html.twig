@@ -4,9 +4,9 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
-                <a href="{{ path('product_create') }}" class="breadcrumb">creation produit</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
+                <a href="{{ path('product_create') }}" class="breadcrumb">{{ 'product_creation'|trans|capitalize }}</a>
             </div>
         </div>
     </nav>
@@ -20,32 +20,32 @@
         </div>
         <div class="col s6 form-orderCustomer-input">
             {{ form_row(form.type, {
-                'label': 'Type',
+                'label': 'type'|trans|capitalize ,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.reference, {
-                'label': 'Reference',
+                'label': 'reference'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.name, {
-                'label': 'Nom',
+                'label': 'name'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.category, {
-                'label': 'Categorie',
+                'label': 'category'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.conditionProduct, {
-                'label': "condition produit",
+                'label': 'condition'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.duration, {
-                'label': "Durée",
+                'label': 'duration'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
@@ -55,7 +55,7 @@
                 })
             }}
             {{ form_row(form.saleUnit, {
-                'label': "Prix unitaire",
+                'label': 'unit_price'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}

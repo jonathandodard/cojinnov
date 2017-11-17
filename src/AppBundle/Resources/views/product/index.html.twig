@@ -4,28 +4,28 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
             </div>
         </div>
     </nav>
     <div class="center-align search-content">
-        <input placeholder="recherche" class="search" type="text" style="width: 50%" data-url="{{ path('product_search') }}" data-type="product"><i class="material-icons search-icon">search</i>
+        <input placeholder={{ 'search'|trans|capitalize }} class="search" type="text" style="width: 50%" data-url="{{ path('product_search') }}" data-type="product"><i class="material-icons search-icon">search</i>
     </div>
-    <a class="waves-effect waves-light btn-large float-r" href="{{ path('product_import') }}"><i class="material-icons left">file_upload</i>import produits</a>
+    <a class="waves-effect waves-light btn-large float-r" href="{{ path('product_import') }}"><i class="material-icons left">file_upload</i>{{ 'import_products'|trans|capitalize }}</a>
 
     {% if products != null %}
         <table class="table striped">
             <thead>
             <tr>
-                <th class="center">type</th>
-                <th class="center">reference</th>
-                <th class="center">nom commerciale</th>
-                <th class="center">categorie</th>
-                <th class="center">condition</th>
-                <th class="center">durée</th>
+                <th class="center">{{ 'type'|trans|capitalize }}</th>
+                <th class="center">{{ 'reference'|trans|capitalize }}</th>
+                <th class="center">{{ 'trade_name'|trans|capitalize }}</th>
+                <th class="center">{{ 'category'|trans|capitalize }}</th>
+                <th class="center">{{ 'condition'|trans|capitalize }}</th>
+                <th class="center">{{ 'duration'|trans|capitalize }}</th>
                 <th class="center">pcb</th>
-                <th class="center">prix unité</th>
+                <th class="center">{{ 'unit_price'|trans|capitalize }}</th>
                 <th class="center">tg</th>
                 <th class="center">ts</th>
                 <th class="center">tb</th>
@@ -51,10 +51,6 @@
                     <td class="center">{{ product.taOne }}€</td>
                     <td class="center">{{ product.taTwo }}€</td>
                     <td class="center">{{ product.ppdia }}€</td>
-                    {#<td class="center">#}
-                        {#<a href="{{ path('product_update', {'id': product.id })  }}">update</a>#}
-                        {#<a href="{{ path('product_delete', {'id': product.id })  }}">delete</a>#}
-                    {#</td>#}
                 </tr>
             {% endfor %}
             </tbody>

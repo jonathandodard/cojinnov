@@ -4,9 +4,9 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('product_index') }}" class="breadcrumb">Liste produits</a>
-                <a href="{{ path('product_index_by_product', {'id': product.id}) }}" class="breadcrumb">produit : {{ product.reference }}</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
+                <a href="{{ path('product_index_by_product', {'id': product.id}) }}" class="breadcrumb">{{ 'products'|trans|capitalize }} : {{ product.reference }}</a>
             </div>
         </div>
     </nav>
@@ -16,27 +16,27 @@
         </div>
         <div class="col s6">
             <div class="col s6">
-                <label>type</label>
+                <label>{{ 'type'|trans|capitalize }}</label>
                 <p>{{ product.type }}</p>
             </div>
             <div class="col s6">
-                <label>reference</label>
+                <label>{{ 'reference'|trans|capitalize }}</label>
                 <p>{{ product.reference }}</p>
             </div>
             <div class="col s6">
-                <label>nom</label>
+                <label>{{ 'name'|trans|capitalize }}</label>
                 <p>{{ product.name }}</p>
             </div>
             <div class="col s6">
-                <label>catégorie</label>
+                <label>{{ 'category'|trans|capitalize }}</label>
                 <p>{{ product.category }}</p>
             </div>
             <div class="col s6">
-                <label>condition produit</label>
+                <label>{{ 'condition'|trans|capitalize }} </label>
                 <p>{{ product.conditionProduct }}</p>
             </div>
             <div class="col s6">
-                <label>durée</label>
+                <label>{{ 'duration'|trans|capitalize }}</label>
                 <p>{{ product.duration }}</p>
             </div>
             <div class="col s6">
@@ -44,12 +44,12 @@
                 <p>{{ product.pcb }}</p>
             </div>
             <div class="col s6">
-                <label>prix unitaire</label>
+                <label>{{ 'unit_price'|trans|capitalize }}</label>
                 <p>{{ product.saleUnit }}</p>
             </div>
         </div>
         <div class="col s12">
-            <label>prix par classe</label>
+            <label>{{ 'price_per_class'|trans|capitalize }}</label>
             <table class="responsive-table striped">
                 <thead>
                 <tr>

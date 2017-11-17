@@ -4,10 +4,10 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('orderCustomer_index') }}" class="breadcrumb">Liste commandes</a>
-                <a href="{{ path('orderCustomer_index_by_orderCustomer', {'id': orderCustomer.id }) }}" class="breadcrumb">Commande : {{ orderCustomer.name }}</a>
-                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="mgr-L-10">(client: {{ customer.numberAccount }})</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('orderCustomer_index') }}" class="breadcrumb">{{ 'list_of_orders'|trans|capitalize }}</a>
+                <a href="{{ path('orderCustomer_index_by_orderCustomer', {'id': orderCustomer.id }) }}" class="breadcrumb">{{ 'orders'|trans|capitalize }} : {{ orderCustomer.name }}</a>
+                <a href="{{ path('customer_index_by_costumer', {'id': customer.id }) }}" class="mgr-L-10">({{ 'order'|trans|capitalize }}: {{ customer.numberAccount }})</a>
             </div>
         </div>
     </nav>
@@ -16,28 +16,28 @@
             <img class="width-50 center" src="{{ asset('/img/ardi.png') }}" >
         </div>
         <div class="col s6 form-orderCustomer-col">
-            <div><p>Bon de commande N°</p><p>2017</p></div>
-            <label>Société :</label>
+            <div><p>{{ 'purchase_order'|trans|capitalize }}</p><p>{{ orderCustomer.name }}</p></div>
+            <label>{{ 'society'|trans|capitalize }} :</label>
                 <p>{{ customer.ranking }}</p>
-            <label>Facturation :</label>
+            <label>{{ 'billing'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
-            <label>livraison :</label>
+            <label>{{ 'delivery'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
-            <label>Tél :</label>
+            <label>{{ 'phoneNumber'|trans|capitalize }} :</label>
                 <p>{{ customer.phoneNumber }}</p>
-            <label>Fax :</label>
+            <label>{{ 'fax'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
         </div>
     </div>
     <div class="row form-orderCustomer-row">
         <div class="col s6 form-orderCustomer-col">
-            <label>Représentant :</label>
+            <label>{{ 'representative'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
-            <label>Mode de Règlement :</label>
+            <label>{{ 'payment_choice'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
-            <label>date livraison :</label>
+            <label>{{ 'delivery_date'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
-            <label>Commentaire :</label>
+            <label>{{ 'comment'|trans|capitalize }} :</label>
                 <p>{{ customer.id }}</p>
         </div>
         <div class="col s6 form-orderCustomer-col">
@@ -50,12 +50,12 @@
     <table class="table striped mgr-B-100">
         <thead>
             <tr>
-                <th class="center">Reference</th>
-                <th class="center">Nom commercial</th>
-                <th class="center">Prix unitaire</th>
-                <th class="center">Quantité</th>
-                <th class="center">Prix totale HT</th>
-                <th class="center">Prix totale TCC</th>
+                <th class="center">{{ 'reference'|trans|capitalize }}</th>
+                <th class="center">{{ 'trade_name'|trans|capitalize }}</th>
+                <th class="center">{{ 'unit_price'|trans|capitalize }}</th>
+                <th class="center">{{ 'amount'|trans|capitalize }}</th>
+                <th class="center">{{ 'price_wt'|trans|capitalize }}</th>
+                <th class="center">{{ 'price_iot'|trans|capitalize }}</th>
             </tr>
         </thead>
         <tbody class="co-js-search">
@@ -74,19 +74,19 @@
     </table>
     <div class="row index-orderCustomer-footer">
         <div class="col s3">
-            <label>Tva</label>
+            <label>{{ 'vat'|trans|upper }}</label>
             <p>{{ orderCustomer.tva }}</p>
         </div>
         <div class="col s3">
-            <label>Prix Hors Taxe</label>
+            <label>{{ 'price_without_tax'|trans|capitalize }}</label>
             <p>{{ orderCustomer.totalHT }}</p>
         </div>
         <div class="col s3">
-            <label>Prix Tout Taxe Compris</label>
+            <label>{{ 'price_inclusive_of_tax'|trans|capitalize }}</label>
             <p>{{ orderCustomer.totalTTC }}</p>
         </div>
         <div class="col s3">
-            <a class="waves-effect waves-light btn-large float-l" href="{{ path('pdf_by_order', {'orderCustomer' : orderCustomer.id }) }}"><i class="material-icons left">file_download</i>exporter pdf</a>
+            <a class="waves-effect waves-light btn-large float-l" href="{{ path('pdf_by_order', {'orderCustomer' : orderCustomer.id }) }}"><i class="material-icons left">file_download</i>{{ 'export_pdf'|trans|capitalize }}</a>
         </div>
     </div>
 

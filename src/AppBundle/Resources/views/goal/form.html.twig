@@ -4,9 +4,8 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste clients</a>
-                <a href="{{ path('customer_create') }}" class="breadcrumb">creation client</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('goal_update') }}" class="breadcrumb">{{ 'statistics'|trans|capitalize }}</a>
             </div>
         </div>
     </nav>
@@ -19,31 +18,31 @@
             <img width="44%" src="{{ asset('img/office.png') }}">
         </div>
         <div class="col s6 form-orderCustomer-input">
-            <label class="f-s-20 color-text-master">Objectif sur la vente de produit par semestre</label>
+            <label class="f-s-20 color-text-master">{{ 'goal_on_product_sales_by_Semester'|trans|capitalize }}</label>
             {{ form_row(form.goalOneRef, {
-                'label': 'Reference Prouduit',
+                'label': 'product_reference'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
             {{ form_row(form.goalOne, {
-                'label': 'Nombre a réaliser',
+                'label': 'number_to_realize'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
 
 
             <div class="divider mgr-T-15 mgr-B-10"></div>
-            <label class="f-s-20 color-text-master">Objectif chiffre menstruelle</label>
+            <label class="f-s-20 color-text-master">{{ 'goal_menstrual_figure'|trans|capitalize }}</label>
             {{ form_row(form.goalThree, {
-                'label': 'Nombre a réaliser',
+                'label': 'number_to_realize'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
             })
             }}
 
             <div class="divider mgr-T-15 mgr-B-10"></div>
-            <label class="f-s-20 color-text-master">Objectif chiffre annuel</label>
+            <label class="f-s-20 color-text-master">{{ 'objective_on_the_annual_figure'|trans }}</label>
             {{ form_row(form.goalTwo, {
-                'label': 'Nombre a réaliser',
+                'label': 'number_to_realize'|trans|capitalize,
                 'attr': {'style': 'margin-bottom:15px'}
                 })
             }}
@@ -53,7 +52,7 @@
             <div>
                 <div class="center-align form-save-customer">
                     <button id="appbundle_customer_save" class=" col s12 btn waves-effect waves-light" type="submit" name="appbundle_customer[save]">Submit
-                        <i class="material-icons right">send</i>
+                        <i class="material-icons right">{{ 'submit'|trans|capitalize }}</i>
                     </button>
                 </div>
                 {{ form_end(form) }}

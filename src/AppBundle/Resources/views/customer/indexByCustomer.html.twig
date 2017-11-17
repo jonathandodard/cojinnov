@@ -4,9 +4,9 @@
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{ path('home') }}" class="breadcrumb">Home</a>
-                <a href="{{ path('customer_index') }}" class="breadcrumb">Liste clients</a>
-                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id}) }}" class="breadcrumb">client : {{ customer.numberAccount }}</a>
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('customer_index') }}" class="breadcrumb">{{ 'customer_list'|trans|capitalize }}</a>
+                <a href="{{ path('customer_index_by_costumer', {'id' : customer.id}) }}" class="breadcrumb">{{ 'customer'|trans|capitalize }} : {{ customer.numberAccount }}</a>
             </div>
         </div>
     </nav>
@@ -17,57 +17,57 @@
         <div class="col s8">
             <div class="row show-by-client-row">
                 <div class="col s4">
-                    <label>N° Compte Client</label>
+                    <label>{{ 'account_number'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.numberAccount }}</p>
                 </div>
                 <div class="col s4">
-                    <label>Intitulé Client</label>
+                    <label>{{ 'entitled'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.entitled }}</p>
                 </div>
                 <div class="col s4">
-                    <label>Intitulé Client</label>
+                    <label>{{ 'ranking'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.ranking }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s12">
-                    <label>Tarif</label>
+                    <label>{{ 'tariff_category'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">tarif</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
                 <div class="col s12">
-                    <label>Contact</label>
+                    <label>{{ 'name'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.name }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
-                <div class="col s6">
-                    <label>Adresse</label>
+                <div class="col s4">
+                    <label>{{ 'adress'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.address }}</p>
                 </div>
-                <div class="col s6">
-                    <label>Adresse complement</label>
+                <div class="col s4">
+                    <label>{{ 'additional_address'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.additionalAddress }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
-                <div class="col s6">
-                    <label>Code Postal</label>
+                <div class="col s4">
+                    <label>{{ 'city'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.city }}</p>
                 </div>
-                <div class="col s6">
-                    <label>Ville</label>
+                <div class="col s4">
+                    <label>{{ 'zip_code'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.zipCode }}</p>
                 </div>
             </div>
             <div class="row show-by-client-row">
-                <div class="col s6">
-                    <label>Téléphone</label>
+                <div class="col s4">
+                    <label>{{ 'phoneNumber'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.phoneNumber }}</p>
                 </div>
-                <div class="col s6">
-                    <label>E-mail</label>
+                <div class="col s4">
+                    <label>{{ 'email'|trans|capitalize }}</label>
                     <p class="mgr-T-0 mgr-B-5">{{ customer.email }}</p>
                 </div>
             </div>
@@ -77,13 +77,13 @@
         <div class="row">
             <div class="row">
                 <div class="col s12">
-                    <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>creation commande</a>
-                    <a class="waves-effect waves-light btn-large float-r" href="{{ path('pdf_by_customer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>exporter pdf</a>
+                    <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>{{ 'order_creation'|trans|capitalize }}</a>
+                    <a class="waves-effect waves-light btn-large float-r" href="{{ path('pdf_by_customer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>{{ 'export_pdf'|trans|capitalize }}</a>
                 </div>
             </div>
             <div class="row">
                 <div class="card-panel pad-T-0">
-                    <span class="blue-text text-darken-2 f-s-30"> Commandes</span>
+                    <span class="blue-text text-darken-2 f-s-30">{{ 'orders'|trans|capitalize }}</span>
                     <div class="row">
                         <div class="col s12">
                             {% if orders %}
@@ -91,10 +91,10 @@
                                     <table class="table striped">
                                         <thead>
                                         <tr>
-                                            <th class="center">numéro de commande</th>
-                                            <th class="center">date</th>
-                                            <th class="center">prix HT</th>
-                                            <th class="center">prix TTC</th>
+                                            <th class="center">{{ 'order_number'|trans|capitalize }}</th>
+                                            <th class="center">{{ 'date'|trans|capitalize }}</th>
+                                            <th class="center">{{ 'price_without_tax'|trans|capitalize }}</th>
+                                            <th class="center">{{ 'price_inclusive_of_tax'|trans|capitalize }}</th>
                                         </tr>
                                         </thead>
                                         <tbody class="co-js-search">
@@ -111,7 +111,7 @@
                                 </div>
                             {% else %}
                                 <div class="center-align">
-                                    <span class="blue-text text-darken-2 f-s-25">Vous n'avez de commande enregister avec ce client</span>
+                                    <span class="blue-text text-darken-2 f-s-25">{{ 'you_have_no_order_to_register_with_this_customer'|trans|capitalize }}</span>
                                 </div>
                             {% endif %}
                         </div>

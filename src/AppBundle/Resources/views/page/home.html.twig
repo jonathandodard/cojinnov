@@ -3,14 +3,13 @@
     <link rel="stylesheet" href="{{ asset('js/c3/c3.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-
-        <div class="chiffre-salary"><h5 class="center background-color-white color-text-master">chiffre annuel : {{ yearly }} €</h5></div>
+    <div class="chiffre-salary"><h5 class="center background-color-white color-text-master">{{ 'annual_figure'|trans|capitalize }} : {{ yearly }} €</h5></div>
     <div class="row mgr-B-15 pad-0">
         <a class="button-home-link z-depth-2" href="{{ path('customer_index') }}">
             <div class="col s4">
                 <div class="button-home center-align">
                     <img src="{{ asset('img/customers.png') }}">
-                    <p class="center-align mgr-0">Clients</p>
+                    <p class="center-align mgr-0">{{ 'customers'|trans|capitalize }}</p>
                 </div>
             </div>
         </a>
@@ -18,7 +17,7 @@
             <div class="col s4">
                 <div class="button-home center-align">
                     <img src="{{ asset('img/products.png') }}">
-                    <p class="center-align mgr-0">Produits</p>
+                    <p class="center-align mgr-0">{{ 'products'|trans|capitalize }}</p>
                 </div>
             </div>
         </a>
@@ -26,7 +25,7 @@
             <div class="col s4">
                 <div class="button-home center-align">
                     <img src="{{ asset('img/orders.png') }}">
-                    <p class="center-align mgr-0">Commandes</p>
+                    <p class="center-align mgr-0">{{ 'orders'|trans|capitalize }}</p>
                 </div>
             </div>
         </a>
@@ -35,23 +34,22 @@
     <div class="row  mgr-0 pad-0">
         <div class="col s6">
             <div class="card-panel pad-T-0">
-                <span class="blue-text text-darken-2 f-s-30">Objectifs</span>
-
+                <span class="blue-text text-darken-2 f-s-30">{{ 'goals'|trans|capitalize }}</span>
                 {% set goalOnePercent = (goal.goalOne.finishedPercent.max is defined)?goal.goalOne.finishedPercent.max:NULL %}
                 {% set goalTwoPercent = (goal.goalTwo.finishedPercent.max is defined)?goal.goalTwo.finishedPercent.max:NULL %}
                 {% set goalThreePercent = (goal.goalThree.finishedPercent.max is defined)?goal.goalThree.finishedPercent.max:NULL %}
 
                 <ul>
                     <li class="post-r">
-                        <p class="f-s-18 f-w-500">Objectif sur la vente de produit par semestre</p>
+                        <p class="f-s-18 f-w-500">{{ 'goal_on_product_sales_by_Semester'|trans|capitalize }}</p>
                         {% if (goalOnePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
                         <div class="center"> {{ goal.goalOne.total }}/{{ goal.goalOne.goal }}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
-                            <div class="determinate" style="{% if (goalOnePercent)%}width: {{ goal.goalOne.finishedPercent.percent }}%;{% else %}width: {{ goal.goalOne.finishedPercent }}% {% endif %} background-color: #3a629e;"></div>
+                            <div class="determinate" style="{% if (goalOnePercent)%}width: {{ goal.goalOne.finishedPercent.percent }}%;{% else %}width: {{ goal.goalOne.finishedPercent }}% ;&é{% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
                     <li class="post-r">
-                        <p class="f-s-18 f-w-500">Objectif chiffre menstruelle</p>
+                        <p class="f-s-18 f-w-500">{{ 'goal_menstrual_figure'|trans|capitalize }}</p>
                         {% if (goalThreePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
                         <div class="center"> {{ goal.goalThree.total }}/{{ goal.goalThree.goal }}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
@@ -60,28 +58,14 @@
                     </li>
 
                     <li class="post-r">
-                        <p class="f-s-18 f-w-500">Objectif sur le chiffre annuel</p>
+                        <p class="f-s-18 f-w-500">{{ 'objective_on_the_annual_figure'|trans|capitalize }}</p>
                         {% if (goalTwoPercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
                         <div class="center"> {{ goal.goalTwo.total }}/{{ goal.goalTwo.goal }}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
                             <div class="determinate" style="{% if (goalTwoPercent)%}width:{{ goal.goalTwo.finishedPercent.percent }}%;{% else %}width:{{ goal.goalTwo.finishedPercent }}%; {% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
-
-                    {#<li>#}
-                        {#<p>objectif 1</p>#}
-                        {#<div class="progress" style="background-color: #b5ccca;">#}
-                            {#<div class="determinate" style="width: 90%; background-color: #3a629e;"></div>#}
-                        {#</div>#}
-                    {#</li>#}
-                    {#<li class="goal-ok">#}
-                        {#<p>objectif 1</p>#}
-                        {#<div class="progress" style="background-color: #b5ccca;">#}
-                            {#<div class="determinate" style="width: 100%; background-color: #3a629e;"></div>#}
-                        {#</div>#}
-                    {#</li>#}
                 </ul>
-                {#<a href="#">Voir plus ...</a>#}
             </div>
         </div>
         <div class="col s6 co-js-size">

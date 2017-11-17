@@ -2,8 +2,10 @@ fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 home:
-    path: /
+    path: /{_locale}
     defaults: { _controller: AppBundle:Home:index }
+    requirements:
+        _locale: en|fr
 
 set_name_user:
     path: /user/name
@@ -17,12 +19,14 @@ set_email_user:
 ################################customer##############################
 
 customer_index:
-    path: /customers/index
+    path: /{_locale}/customers/index
     defaults: { _controller: AppBundle:Customer:index }
 
 customer_create:
-    path: /customer/create
+    path: /{_locale}/customer/create
     defaults: { _controller: AppBundle:Customer:create }
+    requirements:
+        _locale: en|fr
 
 customer_update:
     path: /customer/update/{id}
@@ -37,9 +41,10 @@ customer_delete:
         page: '\d+'
 
 customer_index_by_costumer:
-    path: /customer/show/{id}
+    path: /{_locale}/customer/show/{id}
     defaults: { _controller: AppBundle:Customer:indexByCustomer }
     requirements:
+        _locale: en|fr
         page: '\d+'
 
 customer_sort:
@@ -59,17 +64,22 @@ pdf_by_customer:
 ################################product##############################
 
 product_index:
-    path: /products/index
+    path: /{_locale}/products/index
     defaults: { _controller: AppBundle:Product:index }
+    requirements:
+        _locale: en|fr
 
 product_create:
-    path: /product/create
+    path: /{_locale}/product/create
     defaults: { _controller: AppBundle:Product:create }
+    requirements:
+        _locale: en|fr
 
 product_update:
-   path: /product/update/{id}
+   path: /{_locale}/product/update/{id}
    defaults: { _controller: AppBundle:Product:update }
    requirements:
+      _locale: en|fr
       id: '\d+'
 
 product_delete:
@@ -79,9 +89,10 @@ product_delete:
          id: '\d+'
 
 product_index_by_product:
-   path: /product/show/{id}
+   path: /{_locale}/product/show/{id}
    defaults: { _controller: AppBundle:Product:indexByCustomer }
    requirements:
+         _locale: en|fr
          id: '\d+'
 
 product_search:
@@ -96,14 +107,17 @@ product_import:
 ################################order##############################
 
 orderCustomer_index:
-    path: /ordersCustomer/index
+    path: /{_locale}/ordersCustomer/index
     defaults: { _controller: AppBundle:OrderCustomer:index }
+    requirements:
+        _locale: en|fr
 
 orderCustomer_create:
-    path: /orderCustomer/create/{id}
+    path: /{_locale}/orderCustomer/create/{id}
     defaults: { _controller: AppBundle:OrderCustomer:create }
     requirements:
-          id: '\d+'
+        _locale: en|fr
+        id: '\d+'
 
 orderCustomer_update:
    path: /orderCustomer/update/{id}
@@ -118,7 +132,7 @@ orderCustomer_delete:
          id: '\d+'
 
 orderCustomer_index_by_orderCustomer:
-   path: /orderCustomer/show/product/{id}
+   path: /{_locale}/orderCustomer/show/product/{id}
    defaults: { _controller: AppBundle:OrderCustomer:indexByOrderCustomer }
    requirements:
          id: '\d+'
@@ -171,5 +185,5 @@ export_order:
 ####################################goal##################################
 
 goal_update:
-   path: /goal/update
+   path: /{_locale}/goal/update
    defaults: { _controller: AppBundle:Goal:update }

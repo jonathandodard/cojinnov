@@ -23,6 +23,7 @@ class User extends BaseUser
     public function __construct()
     {
         $this->customers = new ArrayCollection();
+        $this->language = 'fr';
 
         parent::__construct();
     }
@@ -48,6 +49,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Statistical", mappedBy="statistical")
      */
     public $statistical;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    public $language;
 
 
     /**
@@ -158,6 +164,19 @@ class User extends BaseUser
         return $this->products;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 
-
+    /**
+     * @param mixed $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
 }
