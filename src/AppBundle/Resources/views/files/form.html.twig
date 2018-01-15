@@ -4,19 +4,16 @@
     <div class="container">
         <h1 class="center">{{ 'import_export_customer'|trans }}</h1>
         {{ form_start(form) }}
-        <div class="center">
-            <div class="file-field input-field width-50 center dp-ib">
-                <div class="btn">
-                    <span>{{ 'files'|trans|capitalize }}</span>
-                    {{ form_row(form.files, {'label' : ' '})}}
+            <div class="center">
+                <div class="file-field input-field width-50 center dp-ib">
+                    <div class="btn">
+                        <span>{{ 'files'|trans|capitalize }}</span>
+                        {{ form_row(form.files, {'label' : ' '})}}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
-                </div>
-            </div>
-
-
-
                 {{ form_row(form.save, {
                     'attr': {'style': 'display:none'}
                 })
@@ -26,9 +23,8 @@
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
-            {#<div><button type="submit" id="files_save" name="files[save]">importer</button></div>#}
-            {{ form_end(form) }}
-        </div>
+            </div>
+        {{ form_end(form) }}
         <div class="divider mgr-T-15"></div>
 
         <div class="center-align form-save-customer">

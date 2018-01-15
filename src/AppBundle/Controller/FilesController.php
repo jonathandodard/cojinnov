@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use PHPExcel_Shared_ZipArchive;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Date;
 
 class FilesController extends Controller
 {
@@ -98,7 +99,7 @@ class FilesController extends Controller
         ));
     }
 
-    public function exportCustomerAction()
+    public function exportCustomerListAction()
     {
 
         $workbook = new \PHPExcel;
@@ -157,10 +158,78 @@ class FilesController extends Controller
 
         $writer = new \PHPExcel_Writer_Excel2007($workbook);
 
-        $records = '/home/jonathan/Documents/fichier.xlsx';
-        $writer->save($records);
+//        $records = '/home/jonathan/Documents/fichier.xlsx';
+//        $writer->save($records);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="nomfichier.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer = \PHPExcel_IOFactory::createWriter($workbook, 'Excel2007');
+        $writer->save('php://output');
 
         return $this->redirect($this->generateUrl('import_cutomer'));
+    }
+
+    public function exportByCustomerAction(Customer $customer)
+    {
+
+        $user = $this->getUser();
+
+        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findBy(
+            [
+                'customer' =>$customer,
+                'user' => $user
+            ]
+        );
+
+
+        $workbook = new \PHPExcel;
+
+        $sheet = $workbook->getActiveSheet();
+
+        $styleA1 = $sheet->getStyle('2');
+        $styleFont = $styleA1->getFont();
+        $styleFont->setBold(true);
+        $style = array(
+            'alignment' => array(
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            )
+        );
+
+        $sheet->getStyle("A1")->applyFromArray($style);
+
+
+        $sheet->mergeCells('A1:D1');
+        $sheet->setCellValueByColumnAndRow(0,1, 'Client : '.$customer->getNumberAccount());
+        $sheet->setCellValueByColumnAndRow(0,2, 'NumberOrder');
+        $sheet->setCellValueByColumnAndRow(1,2, 'date');
+        $sheet->setCellValueByColumnAndRow(2,2, 'price_wt');
+        $sheet->setCellValueByColumnAndRow(3,2, 'price_iot');
+
+        $row = 0;
+        for ($counter = 0; $counter <  count($orders); $counter++) {
+            $row = ($counter == 0) ? 3 : $row + 1;
+
+            $sheet->getColumnDimension('A')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(0, $row, $orders[$counter]->getName());
+            $sheet->getColumnDimension('B')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(1, $row, $orders[$counter]->getCreatedAt());
+            $sheet->getColumnDimension('C')->setWidth("15");
+            $sheet->setCellValueByColumnAndRow(2, $row, $orders[$counter]->getTotalHT()." €");
+            $sheet->getColumnDimension('D')->setWidth("15");
+            $sheet->setCellValueByColumnAndRow(3, $row, $orders[$counter]->getTotalTTC()." €");
+
+        }
+        $writer = new \PHPExcel_Writer_Excel2007($workbook);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Export.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer = \PHPExcel_IOFactory::createWriter($workbook, 'Excel2007');
+        $writer->save('php://output');
+
+        return $this->redirect($this->generateUrl('import_cutomer'));
+
     }
 
     public function importOrderAction()
@@ -170,8 +239,77 @@ class FilesController extends Controller
 
     public function exportOrderAction()
     {
-        die('test');
+        $user = $this->getUser();
+
+        $orders = $this->getDoctrine()->getRepository('AppBundle:OrderCustomer')->findBy(
+            [
+                'user' => $user
+            ]
+        );
+
+
+        $workbook = new \PHPExcel;
+
+        $sheet = $workbook->getActiveSheet();
+
+        $styleA1 = $sheet->getStyle('0');
+        $styleB1 = $sheet->getStyle('2');
+        $styleFontA1 = $styleA1->getFont();
+        $styleFontB2 = $styleB1->getFont();
+        $styleFontA1->setBold(true);
+        $styleFontB2->setBold(true);
+
+        $sheet->mergeCells('A1:E1');
+        $sheet->setCellValueByColumnAndRow(0,1, $this->translate('list_of_orders'));
+
+        $style = array(
+            'alignment' => array(
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            )
+        );
+
+        $sheet->getStyle("A1")->applyFromArray($style);
+
+        $sheet->setCellValueByColumnAndRow(0,2, 'NumberOrder');
+        $sheet->setCellValueByColumnAndRow(1,2, 'Customer');
+        $sheet->setCellValueByColumnAndRow(2,2, 'date');
+        $sheet->setCellValueByColumnAndRow(3,2, 'price_wt');
+        $sheet->setCellValueByColumnAndRow(4,2, 'price_iot');
+//        dump($orders);die;
+
+        $row = 0;
+        for ($counter = 0; $counter <  count($orders); $counter++) {
+            $row = ($counter == 0) ? 3 : $row + 1;
+
+            $sheet->getColumnDimension('A')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(0, $row, $orders[$counter]->getName());
+            $sheet->getColumnDimension('B')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(1, $row, $orders[$counter]->getCustomer()->getNumberAccount());
+            $sheet->getColumnDimension('C')->setWidth("20");
+            $sheet->setCellValueByColumnAndRow(2, $row, $orders[$counter]->getCreatedAt());
+            $sheet->getColumnDimension('D')->setWidth("15");
+            $sheet->setCellValueByColumnAndRow(3, $row, $orders[$counter]->getTotalHT()." €");
+            $sheet->getColumnDimension('E')->setWidth("15");
+            $sheet->setCellValueByColumnAndRow(4, $row, $orders[$counter]->getTotalTTC()." €");
+
+        }
+        $writer = new \PHPExcel_Writer_Excel2007($workbook);
+
+//        $records = '/home/jonathan/Documents/fichier.xlsx';
+//        $writer->save($records);
+        $dateNow = new \DateTime('NOW');
+
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Export_orders_'.$dateNow->format('Y-n-d').'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer = \PHPExcel_IOFactory::createWriter($workbook, 'Excel2007');
+        $writer->save('php://output');
+
+        return $this->redirect($this->generateUrl('import_cutomer'));
     }
+
+
      public function importProductsAction(Request $request)
     {
         $files = new Files();
@@ -264,6 +402,11 @@ class FilesController extends Controller
         }
 
         return $name.'-'.$counter;
+    }
+
+    public function translate($value)
+    {
+        return $this->get('translator')->trans($value);
     }
 
     public function repositoryFiles()

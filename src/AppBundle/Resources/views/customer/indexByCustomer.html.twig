@@ -78,7 +78,8 @@
             <div class="row">
                 <div class="col s12">
                     <a class="waves-effect waves-light btn-large float-l" href="{{ path('orderCustomer_create', {'id' : customer.id }) }}"><i class="material-icons left">euro_symbol</i>{{ 'order_creation'|trans|capitalize }}</a>
-                    <a class="waves-effect waves-light btn-large float-r" href="{{ path('pdf_by_customer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>{{ 'export_pdf'|trans|capitalize }}</a>
+                    <a class="waves-effect waves-light btn-large float-r btn modal-trigger" href="#modalExportImport">{{ 'import_export'|trans }}</a>
+
                 </div>
             </div>
             <div class="row">
@@ -119,4 +120,15 @@
                 </div>
             </div>
         </div>
+    <div id="modalExportImport" class="modal">
+        <div class="modal-content">
+            <h4>{{ 'import_export'|trans|upper }}</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-light btn-large float-l" href="{{ path('export_by_cutomer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>{{ 'export_excel'|trans|capitalize }}</a>
+            <a class="waves-effect waves-light btn-large float-r" href="{{ path('pdf_by_customer', {'customer' : customer.id }) }}"><i class="material-icons left">file_download</i>{{ 'export_pdf'|trans|capitalize }}</a>
+        </div>
+    </div>
+
 {% endblock %}

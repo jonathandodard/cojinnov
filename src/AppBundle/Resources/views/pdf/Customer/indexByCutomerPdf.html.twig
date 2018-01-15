@@ -1,5 +1,5 @@
 {% block stylesheets %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/material-icons.css') }}">
     <link rel="stylesheet" href="{{ absolute_url(asset('css/materialize.min.css') }}" media="screen,projection"/>
     <link rel="stylesheet" href="{{ absolute_url(asset('css/master.css') }}"/>
 {% endblock %}
@@ -103,7 +103,7 @@
                         </div>
                     {% else %}
                         <div class="center-align">
-                            <span class="blue-text text-darken-2 f-s-25">Vous n'avez de commande enregister avec ce client</span>
+                            <span class="blue-text text-darken-2 f-s-25">{{ 'you_have_no_order_to_register_with_this_customer'|trans|capitalize }}</span>
                         </div>
                     {% endif %}
                 </div>
@@ -112,7 +112,7 @@
     </div>
 </div>
 {% block javascripts %}
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js') }}"></script>
     <script src="{{ absolute_url(asset('js/mains.js') }}"></script>
     <script src="{{ absolute_url(asset('js/showList.js') }}"></script>

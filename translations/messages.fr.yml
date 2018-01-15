@@ -86,3 +86,6 @@ product_reference: "reference produit"
 import_export_customer: "import export clients"
 export_customer: "exporter clients"
 files: "fichiers"
+import_export: "importé & exporté"
+export_excel: "export excel"
+

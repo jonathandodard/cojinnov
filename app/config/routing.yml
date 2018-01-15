@@ -172,15 +172,21 @@ import_cutomer:
 
 export_cutomer:
    path: /export/customer
-   defaults: { _controller: AppBundle:Files:exportCustomer }
+   defaults: { _controller: AppBundle:Files:exportCustomerList }
+
+export_by_cutomer:
+   path: /export/customer/{customer}
+   defaults: { _controller: AppBundle:Files:exportByCustomer }
+   requirements:
+      customer: '\d+'
 
 import_order:
    path: /import/customer
    defaults: { _controller: AppBundle:Files:importCustomer }
 
 export_order:
-   path: /export/customer
-   defaults: { _controller: AppBundle:Files:exportCustomer }
+   path: /export/orders
+   defaults: { _controller: AppBundle:Files:exportOrder }
 
 ####################################goal##################################
 

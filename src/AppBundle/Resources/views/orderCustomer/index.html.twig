@@ -10,6 +10,8 @@
             </div>
         </div>
     </nav>
+    <a class="waves-effect waves-light btn-large float-l" href="{{ path('export_order') }}"><i class="material-icons left">file_download</i>{{ 'export_excel'|trans|capitalize }}</a>
+
     {% if  orderCustomers != null %}
         <table class="table striped">
             <thead>
