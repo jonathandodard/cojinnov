@@ -159,24 +159,29 @@ class Statistical
     {
         $count = 0;
         $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
-        $time = Date('n');
-        $semestre = ($time <= 6)?true:false;
 
-        $product = $this->doctrine->getRepository('AppBundle:Product')->findOneByReference($goal->getGoalOneRef());
-        $tabProductOrder = $this->doctrine->getRepository('AppBundle:ProductsOrder')->findCountProductId($product->getId(),$semestre, $user);
-        foreach ($tabProductOrder as $value) {
-            $count = $count + $value->getQuantity();
+        if ($goal) {
+            $time = Date('n');
+            $semestre = ($time <= 6)?true:false;
+
+            $product = $this->doctrine->getRepository('AppBundle:Product')->findOneByReference($goal->getGoalOneRef());
+            $tabProductOrder = $this->doctrine->getRepository('AppBundle:ProductsOrder')->findCountProductId($product->getId(),$semestre, $user);
+            foreach ($tabProductOrder as $value) {
+                $count = $count + $value->getQuantity();
+            }
+
+            $percent = round((100 * $count)/$goal->getGoalOne(), 0);
+            $percentMax = ($percent > 100 )? 100 : false;
+
+            $parameters = [
+                'reference' => $product->getReference(),
+                'total' => $count,
+                'goal' => $goal->getGoalOne(),
+                'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=>$percentMax]
+            ];
+        } else {
+            $parameters = null;
         }
-
-        $percent = round((100 * $count)/$goal->getGoalOne(), 0);
-        $percentMax = ($percent > 100 )? 100 : false;
-
-        $parameters = [
-            'reference' => $product->getReference(),
-            'total' => $count,
-            'goal' => $goal->getGoalOne(),
-            'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=>$percentMax]
-        ];
 
         return $parameters;
     }
@@ -185,7 +190,10 @@ class Statistical
     public function turnoverYear(User $user)
     {
         $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
-        $percent = round((100 *  $this->getYearlyByUser($user))/$goal->getGoalTwo(), 0);
+
+        if ($goal) {
+
+            $percent = round((100 *  $this->getYearlyByUser($user))/$goal->getGoalTwo(), 0);
         $percentMax = ($percent > 100 )? 100 : false;
 
 
@@ -195,6 +203,10 @@ class Statistical
             'finishedPercent' => (!$percentMax)?$percent:['percent'=>$percent,'max'=>$percentMax]
         ];
 
+        } else {
+            $parameters = null;
+        }
+
         return $parameters;
     }
 
@@ -202,14 +214,19 @@ class Statistical
     public function turnoverMonth(User $user)
     {
         $goal = $this->doctrine->getRepository('AppBundle:Goal')->findOneByUser($user);
-        $percent = round((100 *  $this->getMenstrualByUser($user))/$goal->getGoalThree(), 0);
-        $percentMax = ($percent > 100 )? 100 : false;
 
-        $parameters = [
-            'goal' => $goal->getGoalThree(),
-            'total' =>         $numberMenstrual = $this->getMenstrualByUser($user),
-            'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=> $percentMax]
-        ];
+        if ($goal) {
+            $percent = round((100 *  $this->getMenstrualByUser($user))/$goal->getGoalThree(), 0);
+            $percentMax = ($percent > 100 )? 100 : false;
+
+            $parameters = [
+                'goal' => $goal->getGoalThree(),
+                'total' =>         $numberMenstrual = $this->getMenstrualByUser($user),
+                'finishedPercent' => (!$percentMax)?$percent:['percent'=>round($percent, 0),'max'=> $percentMax]
+            ];
+        } else {
+            $parameters = null;
+        }
 
         return $parameters;
     }

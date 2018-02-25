@@ -35,34 +35,36 @@
         <div class="col s6">
             <div class="card-panel pad-T-0">
                 <span class="blue-text text-darken-2 f-s-30">{{ 'goals'|trans|capitalize }}</span>
-                {% set goalOnePercent = (goal.goalOne.finishedPercent.max is defined)?goal.goalOne.finishedPercent.max:NULL %}
-                {% set goalTwoPercent = (goal.goalTwo.finishedPercent.max is defined)?goal.goalTwo.finishedPercent.max:NULL %}
-                {% set goalThreePercent = (goal.goalThree.finishedPercent.max is defined)?goal.goalThree.finishedPercent.max:NULL %}
+                {% if (goal.goalOne and goal.goalTwo and goal.goalThree) %}
+                    {% set goalOnePercent = (goal.goalOne.finishedPercent.max is defined)?goal.goalOne.finishedPercent.max:NULL %}
+                    {% set goalTwoPercent = (goal.goalTwo.finishedPercent.max is defined)?goal.goalTwo.finishedPercent.max:NULL %}
+                    {% set goalThreePercent = (goal.goalThree.finishedPercent.max is defined)?goal.goalThree.finishedPercent.max:NULL %}
+                {% endif %}
 
                 <ul>
                     <li class="post-r">
                         <p class="f-s-18 f-w-500">{{ 'goal_on_product_sales_by_Semester'|trans|capitalize }}</p>
-                        {% if (goalOnePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
-                        <div class="center"> {{ goal.goalOne.total }}/{{ goal.goalOne.goal }}</div>
+                        {% if (goalOnePercent is defined)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center">{% if (goal.goalOne) %}{{ goal.goalOne.total }}/{{ goal.goalOne.goal }}{% endif %}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
-                            <div class="determinate" style="{% if (goalOnePercent)%}width: {{ goal.goalOne.finishedPercent.percent }}%;{% else %}width: {{ goal.goalOne.finishedPercent }}% ;&é{% endif %} background-color: #3a629e;"></div>
+                            <div class="determinate" style="{% if (goal.goalOne)%}width: {{ goal.goalOne.finishedPercent.percent }}%; {% else %} {% if (goal.goalOne) %}width: {{ goal.goalOne.finishedPercent }}%; {% endif %}{% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
                     <li class="post-r">
                         <p class="f-s-18 f-w-500">{{ 'goal_menstrual_figure'|trans|capitalize }}</p>
-                        {% if (goalThreePercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
-                        <div class="center"> {{ goal.goalThree.total }}/{{ goal.goalThree.goal }}</div>
+                        {% if (goalThreePercent is defined)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center">{% if (goal.goalThree) %} {{ goal.goalThree.total }}/{{ goal.goalThree.goal }} {% endif %}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
-                            <div class="determinate" style="{% if (goalThreePercent)%}width:{{ goal.goalThree.finishedPercent.percent }}%;{% else %}width:{{ goal.goalThree.finishedPercent }}%; {% endif %} background-color: #3a629e;"></div>
+                            <div class="determinate" style="{% if (goal.goalThree) %}width:{{ goal.goalThree.finishedPercent.percent }}%;{% else %} {% if (goal.goalThree) %}width:{{ goal.goalThree.finishedPercent }}%; {% endif %}{% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
 
                     <li class="post-r">
                         <p class="f-s-18 f-w-500">{{ 'objective_on_the_annual_figure'|trans|capitalize }}</p>
-                        {% if (goalTwoPercent)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
-                        <div class="center"> {{ goal.goalTwo.total }}/{{ goal.goalTwo.goal }}</div>
+                        {% if (goalTwoPercent is defined)%}<i class="material-icons float-r icon-goal post-a f-s-40">check</i>{% endif %}
+                        <div class="center"> {% if (goal.goalTwo) %}{{ goal.goalTwo.total }}/{{ goal.goalTwo.goal }} {% endif %}</div>
                         <div class="progress" style="background-color: #b5ccca; height: 6px!important;">
-                            <div class="determinate" style="{% if (goalTwoPercent)%}width:{{ goal.goalTwo.finishedPercent.percent }}%;{% else %}width:{{ goal.goalTwo.finishedPercent }}%; {% endif %} background-color: #3a629e;"></div>
+                            <div class="determinate" style="{% if (goal.goalTwo) %}width:{{ goal.goalTwo.finishedPercent.percent }}%;{% else %}{% if (goal.goalTwo) %}width:{{ goal.goalTwo.finishedPercent }}%; {% endif %}{% endif %} background-color: #3a629e;"></div>
                         </div>
                     </li>
                 </ul>
