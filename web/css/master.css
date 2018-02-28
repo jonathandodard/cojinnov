@@ -174,8 +174,13 @@ header {
 .mgr-B-15 {
     margin-bottom: 15px;
 }
+
 .mgr-B-30 {
     margin-bottom: 30px;
+}
+
+.mgr-B-50 {
+    margin-bottom: 50px;
 }
 
 .mgr-B-100 {
