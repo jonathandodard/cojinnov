@@ -193,3 +193,31 @@ export_order:
 goal_update:
    path: /{_locale}/goal/update
    defaults: { _controller: AppBundle:Goal:update }
+
+##################################provider################################
+
+provider_index:
+    path: /{_locale}/provider/index
+    defaults : { _controller: AppBundle:Provider:index }
+
+provider_index_by_provider:
+    path: /{_locale}/provider/show/{id}
+    defaults : { _controller: AppBundle:Provider:indexByProvider }
+    requirements:
+        id: '\d+'
+
+provider_create:
+    path: /{_locale}/provider/create
+    defaults : { _controller: AppBundle:Provider:create }
+
+provider_update:
+    path: /{_locale}/provider/update/{id}
+    defaults : { _controller: AppBundle:Provider:update }
+    requirements:
+        id: '\d+'
+
+provider_delete:
+    path: /{_locale}/provider/delete/{id}
+    defaults : { _controller: AppBundle:Provider:delete }
+    requirements:
+        id: '\d+'

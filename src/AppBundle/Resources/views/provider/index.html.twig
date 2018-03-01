@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+{% block title %}CJ Liste fournisseur{% endblock %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
+            </div>
+        </div>
+    </nav>
+    {# search bar #}
+    {#<div class="center-align search-content">#}
+        {#<input placeholder={{ 'search'|trans|capitalize }} class="search" type="text" style="width: 50%" data-url="{{ path('customer_search') }}" data-type="customer"><i class="material-icons search-icon">search</i>#}
+    {#</div>#}
+
+    {# button #}
+    <div class="mgr-T-10">
+        <a class="waves-effect waves-light btn-large" href="{{ path('provider_create') }}"><i class="material-icons left">person_add</i>{{ 'customer_creation'|trans|capitalize }}</a>
+        {#<a class="waves-effect waves-light btn-large float-r" href="{{ path('import_cutomer') }}"><i class="material-icons left">file_upload</i>{{ 'import_customers'|trans|capitalize }}</a>#}
+        {#<a class="waves-effect waves-light btn-large float-r" href="{{ path('customer_index') }}"><i class="material-icons left">cloud</i>supprimer selection</a>#}
+    </div>
+
+    {# providers list #}
+    {% if providers != null %}
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th class="center" >name</th>
+                <th class="center" >type</th>
+                <th class="center" >siret</th>
+                <th class="center" >addresse</th>
+                <th class="center" >zip code</th>
+            </tr>
+            </thead>
+            <tbody class="co-js-search">
+            {% for provider in providers %}
+                <tr class="co-js-remove-sort">
+                    <td class="center"><a href="{{ path('provider_index_by_provider', {id: provider.id}) }}">{{ provider.name }}</a></td>
+                    <td class="center">{{ provider.type }}</td>
+                    <td class="center">{{ provider.siret }}</td>
+                    <td class="center">{{ provider.address }}</td>
+                    <td class="center">{{ provider.zipcode }}</td>
+                    <td class="center">
+                        <a href="{{ path('provider_update', {id: provider.id })  }}"><i class="material-icons left">edit</i></a>
+                        <a href="{{ path('provider_delete', {id: provider.id })  }}"><i class="material-icons left">delete</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="row s12 mgr-T-150">
+
+        <div class="center-align">
+            <span class="blue-text text-darken-2 f-s-25">{{ 'you_do_not_have_a_customer_register'|trans|capitalize }}</span>
+        </div>
+
+    {% endif %}
+{% endblock %}

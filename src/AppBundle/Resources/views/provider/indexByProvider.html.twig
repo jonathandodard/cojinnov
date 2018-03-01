@@ -1,0 +1,97 @@
+{% extends '::base.html.twig' %}
+{% block title %}CJ Provideur{% endblock %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row mgr-T-15 ">
+        <div class="col s6 center-align form-orderCustomer-img">
+            <img width="44%" src="{{ asset('img/office.png') }}">
+        </div>
+        <div class="col s6">
+            <div class="col s6">
+                <label>name</label>
+                <p>{{ provider.name }}</p>
+            </div>
+            <div class="col s6">
+                <label>addresse</label>
+                <p>{{ provider.address }}</p>
+            </div>
+            <div class="col s6">
+                <label>type</label>
+                <p>{{ provider.zipCode }}</p>
+            </div>
+            <div class="col s6">
+                <label>siret</label>
+                <p>{{ provider.siret }}</p>
+            </div>
+            <div class="col s6">
+                <label>franco</label>
+                <p>{{ provider.franco }}</p>
+            </div>
+            <div class="col s6">
+                <label>payment Condition</label>
+                <p>{{ provider.paymentCondition }}</p>
+            </div>
+            <div class="col s6">
+                <label>delivery time</label>
+                <p>{{ provider.deliveryTime }}</p>
+            </div>
+        </div>
+        <div class="col s12  mgr-B-50">
+            <label>price</label>
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                </tr>
+                </thead>
+                <tbody class="co-js-search">
+                <tr>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col s12">
+            <label>definition du produit</label>
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                    <th class="center"></th>
+                </tr>
+                </thead>
+                <tbody class="co-js-search">
+                <tr>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                    <td class="center"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
