@@ -45,52 +45,26 @@
         </div>
         <div class="col s12  mgr-B-50">
             <label>price</label>
-            <table class="responsive-table striped">
+            <table class="striped">
                 <thead>
                 <tr>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
+                    {% for price in provider.priceDefinition %}
+                        <th class="center">{{ price }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
-                <tbody class="co-js-search">
-                <tr>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
-                </tbody>
             </table>
         </div>
         <div class="col s12">
             <label>definition du produit</label>
-            <table class="responsive-table striped">
+            <table class="striped">
                 <thead>
                 <tr>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
-                    <th class="center"></th>
+                    {% for definition in provider.productDefinition %}
+                        <th class="center">{{ definition }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
-                <tbody class="co-js-search">
-                <tr>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>

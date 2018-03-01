@@ -11,73 +11,96 @@
     </nav>
     {{ form_start(form) }}
     <div class="row mgr-T-15 ">
-    <div class="col s12">
-        <div class="col s6 center-align form-orderCustomer-img">
-                <img width="44%" src="{{ asset('img/office.png') }}">
-        </div>
-        <div class="col s6 form-orderCustomer-input">
-            {{ form_row(form.name, {
-                'label': 'name'|trans|capitalize,
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-            {{ form_row(form.address, {
-                'label': 'addresse',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-            {{ form_row(form.zipCode, {
-                'label': 'zip code',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
+        <div class="col s12">
+            <div class="col s6 center-align form-orderCustomer-img">
+                    <img width="44%" src="{{ asset('img/office.png') }}">
+            </div>
+            <div class="col s6 form-orderCustomer-input">
+                {{ form_row(form.name, {
+                    'label': 'name'|trans|capitalize,
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+                {{ form_row(form.address, {
+                    'label': 'addresse',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+                {{ form_row(form.zipCode, {
+                    'label': 'zip code',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
 
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="col s6 form-orderCustomer-input">
+                {{ form_row(form.siret, {
+                    'label': 'siret',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+                {{ form_row(form.type, {
+                    'label': 'type',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+                {{ form_row(form.franco, {
+                    'label': 'franco',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+            </div>
+            <div class="col s6 form-orderCustomer-input">
+                {{ form_row(form.paymentCondition, {
+                    'label': 'payment condition',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+                {{ form_row(form.deliveryTime, {
+                    'label': 'delivery time',
+                    'attr': {'style': 'margin-bottom:15px'}
+                })
+                }}
+            </div>
         </div>
     </div>
-
-    <div class="col s12">
-        <div class="col s6 form-orderCustomer-input">
-            {{ form_row(form.siret, {
-                'label': 'siret',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-            {{ form_row(form.type, {
-                'label': 'type',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-            {{ form_row(form.franco, {
-                'label': 'franco',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-            {{ form_row(form.paymentCondition, {
-                'label': 'payment condition',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
-        </div>
-        <div class="col s6 form-orderCustomer-input">
-            {{ form_row(form.deliveryTime, {
-                'label': 'delivery time',
-                'attr': {'style': 'margin-bottom:15px'}
-            })
-            }}
+    <div class="row mgr-T-15 ">
+        <div class="col s6">
             {{ form_row(form.productDefinition, {
-                'label': 'product definition',
-                'attr': {'style': 'margin-bottom:15px'}
+                'attr': {'style': 'display:none'}
             })
             }}
+            <input type="text" class="input_def_product width-88" ><a class="waves-effect waves-light btn float-r mgr-T-5" id="add_def_product"><i class="material-icons">add</i></a>
+
+            <!-- list elements -->
+            <div>
+                <ul id="list_def_product" class="collection">
+                </ul>
+            </div>
+        </div>
+
+        <div class="col s6">
             {{ form_row(form.priceDefinition, {
-                'label': 'price definition',
-                'attr': {'style': 'margin-bottom:15px'}
+                'attr': {'style': 'display:none'}
             })
             }}
+            <input type="text" class="input_add_price width-88" ><a class="waves-effect waves-light btn float-r mgr-T-5" id="add_price"><i class="material-icons">add</i></a>
+
+            <!-- list elements -->
+            <div>
+                <ul id="list_price" class="collection">
+                </ul>
+            </div>
         </div>
     </div>
+
 
     {{ form_errors(form) }}
 
     {{ form_end(form) }}
+{% endblock %}
+{% block more_js %}
+    <script src="{{ asset('js/multipleAttributes.js') }}"></script>
 {% endblock %}

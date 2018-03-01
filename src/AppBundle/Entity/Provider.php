@@ -349,7 +349,7 @@ class Provider
      */
     public function getProductDefinition()
     {
-        return $this->productDefinition;
+        return json_decode($this->productDefinition);
     }
 
     /**
@@ -373,7 +373,7 @@ class Provider
      */
     public function getPriceDefinition()
     {
-        return $this->priceDefinition;
+        return json_decode($this->priceDefinition);
     }
 }
 
