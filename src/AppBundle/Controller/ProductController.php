@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Provider;
 use AppBundle\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,16 +20,39 @@ class ProductController extends Controller
 {
     public function indexAction()
     {
-        $product = $this->repositoryCustomer()->findByUser($this->getUser());
+        $providers = $this->getDoctrine()->getRepository('AppBundle:Provider')->findByUser($this->getUser());
+        $products = $this->repositoryCustomer()->findByUser($this->getUser());
 
         return $this->render('AppBundle:product:index.html.twig', [
-            'products' => $product,
+            'products' => $products,
+            'providers' => $providers,
             'user' => $this->getUser()
         ]);
     }
 
-    public function indexByCustomerAction(Product $product)
+    public function indexByProviderAction(Provider $provider)
     {
+        $providers = $this->getDoctrine()->getRepository('AppBundle:Provider')->findByUser($this->getUser());
+
+        $products = $this->repositoryCustomer()->findBy(
+            [
+                'user' => $this->getUser(),
+                'provider' => $provider,
+            ]
+        );
+
+        return $this->render('AppBundle:product:indexByProductsProvider.html.twig', [
+            'products' => $products,
+            'providers' => $providers,
+            'provider' => $provider,
+            'productDefinitions' => $provider->getProductDefinition(),
+        ]);
+    }
+
+    public function indexByProductAction(Product $product)
+    {
+        $test = "{'tg': '288.79', 'ts' : '246.91', 'tb' : '222.22', 'ta':'210.53', 'taOne:'200', 'ppdia':'189.47'}";
+//        dump(json_decode($product->getPrices()->getPrices()));die;
         return $this->render('AppBundle:product:indexByProduct.html.twig', [
             'product' => $product,
             'user' => $this->getUser()

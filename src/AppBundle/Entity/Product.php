@@ -125,6 +125,23 @@ class Product
      */
     protected $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Provider")
+     */
+    protected $provider;
+
+    /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ProductDefinition", inversedBy="product")
+     */
+    protected $definition;
+
+    /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\productPrice", inversedBy="product")
+     */
+    protected $prices;
+
 
     /**
      * Get id
@@ -489,5 +506,52 @@ class Product
         $this->user = $user;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param mixed $provider
+     */
+    public function setProvider($provider)
+    {
+        $this->provider = $provider;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefinition()
+    {
+        return $this->definition;
+    }
+
+    /**
+     * @param mixed $definition
+     */
+    public function setDefinition($definition): void
+    {
+        $this->definition = $definition;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param mixed $prices
+     */
+    public function setPrices($prices): void
+    {
+        $this->prices = $prices;
+    }
 }
 

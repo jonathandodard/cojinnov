@@ -90,14 +90,14 @@ class Provider
      *
      * @ORM\Column(name="product_definition", type="string", length=255)
      */
-    private $productDefinition;
+    protected $productDefinition;
 
     /**
      * @var string
      *
      * @ORM\Column(name="price_definition", type="string", length=255)
      */
-    private $priceDefinition;
+    protected $priceDefinition;
 
 
     /**

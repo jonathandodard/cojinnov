@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+{% block title %}CJ Liste Produits{% endblock %}
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{ path('home') }}" class="breadcrumb">{{ 'home'|trans|capitalize }}</a>
+                <a href="{{ path('product_index') }}" class="breadcrumb">{{ 'list_of_products'|trans|capitalize }}</a>
+            </div>
+        </div>
+    </nav>
+    {# search #}
+    <div class="center-align search-content">
+        <input placeholder={{ 'search'|trans|capitalize }} class="search" type="text" style="width: 50%" data-url="{{ path('product_search') }}" data-type="product"><i class="material-icons search-icon">search</i>
+    </div>
+
+    {# button action #}
+    <a class="waves-effect waves-light btn-large float-r" href="{{ path('product_import') }}"><i class="material-icons left">file_upload</i>{{ 'import_products'|trans|capitalize }}</a>
+
+    {# button provider#}
+    <div class="col s12 mgr-T-60">
+        <a class="waves-effect waves-light btn" href="{{ path('product_index') }}" >all</a>
+        {% for provider in providers %}
+            <a class="{% if (app.request.attributes.get('_route_params').id == provider.id) %}btn-flat disabled{% else %}waves-effect waves-light{% endif %} btn" href="{{ path('product_index_by_provider', {'id': provider.id}) }}" >{{ provider.name }}</a>
+        {% endfor %}
+    </div>
+    {% if products != null %}
+        <table class="table striped">
+            <thead>
+            <tr>
+                <th class="center">{{ 'reference'|trans|capitalize }}</th>
+                <th class="center">{{ 'trade_name'|trans|capitalize }}</th>
+                {% for productDefinition in productDefinitions %}
+                    <th class="center">{{ productDefinition }}</th>
+                {% endfor %}
+                <th class="center">ppdia</th>
+            </tr>
+            </thead>
+            <tbody class="co-js-search">
+            {% if (app.request.attributes.get('_route_params').id is null) %}
+                {% for product in products %}
+                    <tr class="all-provider">
+                        <td class="center"><a href="{{ path('product_index_by_product', {'id': product.id}) }}">{{ product.reference }}</a></td>
+                        <td class="center">{{ product.name }}</td>
+                        <td class="center">{{ product.ppdia }}€</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                {% for product in products %}
+                    <tr class="all-provider {{ loop.index }}">
+                        <td class="center"><a href="{{ path('product_index_by_product', {'id': product.id}) }}">{{ product.reference }}</a></td>
+                        <td class="center">{{ product.name }}</td>
+                        {% if product.definition %}
+                            {% for key, definition in product.definition.definition|jsonDecode %}
+                                <td class="center">{{ definition }}</td>
+                            {% endfor %}
+                        {% endif %}
+                        <td class="center">{{ product.ppdia }}€</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="row s12 mgr-T-150">
+            <div class="center-align">
+                <span class="blue-text text-darken-2 f-s-25">Vous n'avez pas de produits enregister</span>
+            </div>
+        </div>
+    {% endif %}
+    {#<ul class="pagination center-align">#}
+    {#<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>#}
+    {#<li class="active"><a href="#!">1</a></li>#}
+    {#<li class="waves-effect"><a href="#!">2</a></li>#}
+    {#<li class="waves-effect"><a href="#!">3</a></li>#}
+    {#<li class="waves-effect"><a href="#!">4</a></li>#}
+    {#<li class="waves-effect"><a href="#!">5</a></li>#}
+    {#<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>#}
+    {#</ul>#}
+{% endblock %}

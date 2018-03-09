@@ -69,6 +69,13 @@ product_index:
     requirements:
         _locale: en|fr
 
+product_index_by_provider:
+    path: /{_locale}/products/index/provider/{id}
+    defaults: { _controller: AppBundle:Product:indexByProvider }
+    requirements:
+        _locale: en|fr
+        id: '\d+'
+
 product_create:
     path: /{_locale}/product/create
     defaults: { _controller: AppBundle:Product:create }
@@ -90,7 +97,7 @@ product_delete:
 
 product_index_by_product:
    path: /{_locale}/product/show/{id}
-   defaults: { _controller: AppBundle:Product:indexByCustomer }
+   defaults: { _controller: AppBundle:Product:indexByProduct }
    requirements:
          _locale: en|fr
          id: '\d+'

@@ -14,11 +14,17 @@ class FilterTwig extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('trans', array($this, 'translate')),
+            new \Twig_SimpleFilter('jsonDecode', array($this, 'jsonDecode')),
         );
     }
 
     public function translate($value)
     {
         return $this->get('translator')->trans($value);
+    }
+
+    public function jsonDecode($value)
+    {
+        return json_decode($value, true);
     }
 }

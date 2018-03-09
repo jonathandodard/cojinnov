@@ -9,30 +9,26 @@
             </div>
         </div>
     </nav>
+    {# search #}
     <div class="center-align search-content">
         <input placeholder={{ 'search'|trans|capitalize }} class="search" type="text" style="width: 50%" data-url="{{ path('product_search') }}" data-type="product"><i class="material-icons search-icon">search</i>
     </div>
-    <a class="waves-effect waves-light btn-large float-r" href="{{ path('product_import') }}"><i class="material-icons left">file_upload</i>{{ 'import_products'|trans|capitalize }}</a>
 
+    {# button action #}
+    <div class="col s12 mgr-T-60">
+        <a class="btn-flat disabled btn" href="{{ path('product_index') }}" >all</a>
+        {% for provider in providers %}
+                <a class="waves-effect waves-light btn" href="{{ path('product_index_by_provider', {'id': provider.id}) }}" >{{ provider.name }}</a>
+        {% endfor %}
+    </div>
     {% if products != null %}
         <table class="table striped">
             <thead>
-            <tr>
-                <th class="center">{{ 'type'|trans|capitalize }}</th>
-                <th class="center">{{ 'reference'|trans|capitalize }}</th>
-                <th class="center">{{ 'trade_name'|trans|capitalize }}</th>
-                <th class="center">{{ 'category'|trans|capitalize }}</th>
-                <th class="center">{{ 'condition'|trans|capitalize }}</th>
-                <th class="center">{{ 'duration'|trans|capitalize }}</th>
-                <th class="center">pcb</th>
-                <th class="center">{{ 'unit_price'|trans|capitalize }}</th>
-                <th class="center">tg</th>
-                <th class="center">ts</th>
-                <th class="center">tb</th>
-                <th class="center">taOne</th>
-                <th class="center">taTwo</th>
-                <th class="center">ppdia</th>
-            </tr>
+                <tr>
+                    <th class="center">{{ 'reference'|trans|capitalize }}</th>
+                    <th class="center">{{ 'trade_name'|trans|capitalize }}</th>
+                    <th class="center">ppdia</th>
+                </tr>
             </thead>
             <tbody class="co-js-search">
             {% for product in products %}
@@ -40,16 +36,6 @@
                     <td class="center">{{ product.type }}</td>
                     <td class="center"><a href="{{ path('product_index_by_product', {'id': product.id}) }}">{{ product.reference }}</a></td>
                     <td class="center">{{ product.name }}</td>
-                    <td class="center">{{ product.category }}</td>
-                    <td class="center">{{ product.conditionProduct }}</td>
-                    <td class="center">{{ product.duration }}</td>
-                    <td class="center">{{ product.pcb }}</td>
-                    <td class="center">{{ product.saleUnit }}</td>
-                    <td class="center">{{ product.tg }}€</td>
-                    <td class="center">{{ product.ts }}€</td>
-                    <td class="center">{{ product.tb }}€</td>
-                    <td class="center">{{ product.taOne }}€</td>
-                    <td class="center">{{ product.taTwo }}€</td>
                     <td class="center">{{ product.ppdia }}€</td>
                 </tr>
             {% endfor %}
@@ -57,11 +43,10 @@
         </table>
     {% else %}
         <div class="row s12 mgr-T-150">
-
-        <div class="center-align">
-            <span class="blue-text text-darken-2 f-s-25">Vous n'avez pas de produits enregister</span>
+            <div class="center-align">
+                <span class="blue-text text-darken-2 f-s-25">Vous n'avez pas de produits enregister</span>
+            </div>
         </div>
-
     {% endif %}
     {#<ul class="pagination center-align">#}
         {#<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>#}

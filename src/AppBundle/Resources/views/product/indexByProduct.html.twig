@@ -14,7 +14,37 @@
         <div class="col s6 center-align form-orderCustomer-img">
             <img width="44%" src="{{ asset('img/office.png') }}">
         </div>
+
         <div class="col s6">
+
+            <div class="col s6">
+                <label>{{ 'reference'|trans|capitalize }}</label>
+                <p>{{ product.reference }}</p>
+            </div>
+            <div class="col s6">
+                <label>{{ 'name'|trans|capitalize }}</label>
+                <p>{{ product.name }}</p>
+            </div>
+            <div class="col s6">
+                <label>{{ 'category'|trans|capitalize }}</label>
+                <p>{{ product.category }}</p>
+            </div>
+            <div class="col s6">
+                <label>{{ 'condition'|trans|capitalize }} </label>
+                <p>{{ product.conditionProduct }}</p>
+            </div>
+            <div class="col s6">
+                <label>{{ 'duration'|trans|capitalize }}</label>
+                <p>{{ product.duration }}</p>
+            </div>
+            <div class="col s6">
+                <label>pcb</label>
+                <p>{{ product.pcb }}</p>
+            </div>
+            <div class="col s6">
+                <label>{{ 'unit_price'|trans|capitalize }}</label>
+                <p>{{ product.saleUnit }}</p>
+            </div>
             <div class="col s6">
                 <label>{{ 'type'|trans|capitalize }}</label>
                 <p>{{ product.type }}</p>
@@ -53,22 +83,16 @@
             <table class="responsive-table striped">
                 <thead>
                 <tr>
-                    <th class="center">tg</th>
-                    <th class="center">ts</th>
-                    <th class="center">tb</th>
-                    <th class="center">taOne</th>
-                    <th class="center">taTwo</th>
-                    <th class="center">ppdia</th>
+                    {% for definitionPrice in product.provider.priceDefinition %}
+                        <th class="center">{{ definitionPrice }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
                 <tbody class="co-js-search">
                     <tr>
-                        <td class="center">{{ product.tg }}</td>
-                        <td class="center">{{ product.ts }}</td>
-                        <td class="center">{{ product.tb }}</td>
-                        <td class="center">{{ product.taOne }}</td>
-                        <td class="center">{{ product.taTwo }}</td>
-                        <td class="center">{{ product.ppdia }}</td>
+                        {% for price in product.prices.prices|jsonDecode %}
+                            <th class="center">{{ price }}</th>
+                        {% endfor %}
                     </tr>
                 </tbody>
             </table>
