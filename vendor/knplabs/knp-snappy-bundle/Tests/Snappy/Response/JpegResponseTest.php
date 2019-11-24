@@ -3,8 +3,9 @@
 namespace Knp\Bundle\SnappyBundle\Tests\Snappy;
 
 use Knp\Bundle\SnappyBundle\Snappy\Response\JpegResponse;
+use PHPUnit\Framework\TestCase;
 
-class JpegResponseTest extends \PHPUnit_Framework_TestCase
+class JpegResponseTest extends TestCase
 {
     public function testDefaultParameters()
     {
@@ -13,7 +14,7 @@ class JpegResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('some_binary_output', $response->getContent());
         $this->assertSame('image/jpg', $response->headers->get('Content-Type'));
-        $this->assertSame('inline; filename="output.jpg"', $response->headers->get('Content-Disposition'));
+        $this->assertSame('inline; filename=output.jpg', str_replace('"', '', $response->headers->get('Content-Disposition')));
     }
 
     public function testSetDifferentMimeType()
@@ -27,9 +28,9 @@ class JpegResponseTest extends \PHPUnit_Framework_TestCase
     {
         $fileName = 'test.jpg';
         $response = new JpegResponse('some_binary_output', $fileName);
-        $fileNameFromDispositionRegex = '/.*filename="([^"]+)"/';
+        $fileNameFromDispositionRegex = '/.*filename=([^"]+)/';
 
-        $this->assertSame(1, preg_match($fileNameFromDispositionRegex, $response->headers->get('Content-Disposition'), $matches), 1);
+        $this->assertSame(1, preg_match($fileNameFromDispositionRegex, str_replace('"', '', $response->headers->get('Content-Disposition')), $matches), 1);
 
         $this->assertSame($fileName, $matches[1]);
     }

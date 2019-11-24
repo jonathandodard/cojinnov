@@ -27,23 +27,23 @@ security:
         - { path: ^/login$,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/,                        role: ROLE_ADMIN }
-        - { path: ^/,                              role: ROLE_USER }
-        - { path: ^/customer/index,                role: ROLE_USER }
-        - { path: ^/customer/create,               role: ROLE_USER }
-        - { path: ^/customer/update,               role: ROLE_USER }
-        - { path: ^/customer/delete,               role: ROLE_USER }
-        - { path: ^/statistical/index,             role: ROLE_USER }
-        - { path: ^/customers/index,               role: ROLE_USER }
-        - { path: ^/customer/create,               role: ROLE_USER }
-        - { path: ^/customer/sort,                 role: ROLE_USER }
-        - { path: ^/customer/search,               role: ROLE_USER }
-        - { path: ^/products/index,                role: ROLE_USER }
-        - { path: ^/product/create,                role: ROLE_USER }
-        - { path: ^/product/search,                role: ROLE_USER }
-        - { path: /ordersCustomer/index,           role: ROLE_USER }
-        - { path: /order/product/insert,           role: ROLE_USER }
-        - { path: /order/product/update/price,     role: ROLE_USER }
-        - { path: /order/product/update/quantity,  role: ROLE_USER }
-        - { path: /order/product/delete,           role: ROLE_USER }
-        - { path: /statistical/index,              role: ROLE_USER }
+        - { path: ^/admin/,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,                              role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/index,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/create,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/update,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/delete,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/statistical/index,             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customers/index,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/create,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/sort,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/customer/search,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/products/index,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/product/create,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/product/search,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /ordersCustomer/index,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /order/product/insert,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /order/product/update/price,     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /order/product/update/quantity,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /order/product/delete,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /statistical/index,              role: IS_AUTHENTICATED_ANONYMOUSLY }

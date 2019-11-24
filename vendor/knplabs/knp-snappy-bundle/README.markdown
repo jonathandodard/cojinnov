@@ -6,7 +6,7 @@ KnpSnappyBundle
 [![StyleCI](https://styleci.io/repos/743218/shield?branch=master)](https://styleci.io/repos/743218)
 [![knpbundles.com](http://knpbundles.com/KnpLabs/KnpSnappyBundle/badge-short)](http://knpbundles.com/KnpLabs/KnpSnappyBundle)
 
-[Snappy][snappy] is a PHP (5.3+) wrapper for the [wkhtmltopdf][wkhtmltopdf] conversion utility.
+[Snappy][snappy] is a PHP (5.6+) wrapper for the [wkhtmltopdf][wkhtmltopdf] conversion utility.
 It allows you to generate either pdf or image files from your html documents, using the webkit engine.
 
 The KnpSnappyBundle provides a simple integration for your Symfony project.
@@ -19,7 +19,7 @@ Current maintainer(s)
 Installation
 ------------
 
-With [composer](http://packagist.org), require:
+With [composer](https://getcomposer.org), require:
 
 `composer require knplabs/knp-snappy-bundle`
 
@@ -57,7 +57,7 @@ If you want to change temporary folder which is ```sys_get_temp_dir()``` by defa
 ```yaml
 # app/config/config.yml
 knp_snappy:
-    temporary_folder: %kernel.cache_dir%/snappy
+    temporary_folder: "%kernel.cache_dir%/snappy"
 ```
 
 You can also configure the timeout used by the generators with `process_timeout`:
@@ -134,7 +134,7 @@ class SomeController
 ```php
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
-class SomeController
+class SomeController extends Controller
 {
     public function pdfAction()
     {
@@ -155,14 +155,14 @@ class SomeController
 ```php
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
-class SomeController
+class SomeController extends Controller
 {
     public function pdfAction()
     {
         $pageUrl = $this->generateUrl('homepage', array(), true); // use absolute path!
 
         return new PdfResponse(
-            $this->get('knp_snappy.pdf')->getOutput($html),
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
             'file.pdf'
         );
     }

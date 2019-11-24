@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="cojinnov@127.0.0.1">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.16">
     <root id="1"/>
     <schema id="2" parent="1" name="cojinnov">
       <Current>1</Current>
-      <Visible>1</Visible>
     </schema>
     <schema id="3" parent="1" name="conjinnov"/>
     <schema id="4" parent="1" name="information_schema"/>
@@ -22,73 +21,73 @@
     <table id="16" parent="2" name="statistical"/>
     <column id="17" parent="10" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="18" parent="10" name="number_account">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="19" parent="10" name="entitled">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="20" parent="10" name="ranking">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="21" parent="10" name="name_representative">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="22" parent="10" name="name">
       <Position>6</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="23" parent="10" name="email">
       <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="24" parent="10" name="address">
       <Position>8</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="25" parent="10" name="additional_address">
       <Position>9</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="26" parent="10" name="zip_code">
       <Position>10</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="27" parent="10" name="city">
       <Position>11</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="28" parent="10" name="phone_number">
       <Position>12</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="29" parent="10" name="user_id">
       <Position>13</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="30" parent="10" name="price">
       <Position>14</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="31" parent="10" name="createdAt">
       <Position>15</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="32" parent="10" name="updatedAt">
       <Position>16</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <index id="33" parent="10" name="IDX_81398E09A76ED395">
       <ColNames>user_id</ColNames>
@@ -114,60 +113,60 @@
     </foreign-key>
     <column id="38" parent="11" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="39" parent="11" name="username">
       <Position>2</Position>
-      <DataType>varchar(180)|0</DataType>
+      <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="40" parent="11" name="username_canonical">
       <Position>3</Position>
-      <DataType>varchar(180)|0</DataType>
+      <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="41" parent="11" name="email">
       <Position>4</Position>
-      <DataType>varchar(180)|0</DataType>
+      <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="42" parent="11" name="email_canonical">
       <Position>5</Position>
-      <DataType>varchar(180)|0</DataType>
+      <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="43" parent="11" name="enabled">
       <Position>6</Position>
-      <DataType>tinyint(1)|0</DataType>
+      <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="44" parent="11" name="salt">
       <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="45" parent="11" name="password">
       <Position>8</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="46" parent="11" name="last_login">
       <Position>9</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <column id="47" parent="11" name="confirmation_token">
       <Position>10</Position>
-      <DataType>varchar(180)|0</DataType>
+      <DataType>varchar(180)|0s</DataType>
     </column>
     <column id="48" parent="11" name="password_requested_at">
       <Position>11</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <column id="49" parent="11" name="roles">
       <Position>12</Position>
       <Comment>(DC2Type:array)</Comment>
-      <DataType>longtext|0</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="50" parent="11" name="UNIQ_957A647992FC23A8">
@@ -201,18 +200,18 @@
     </key>
     <column id="57" parent="12" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="58" parent="12" name="createdAt">
       <Position>2</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="59" parent="12" name="updatedAt">
       <Position>3</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <key id="60" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -221,41 +220,41 @@
     </key>
     <column id="61" parent="13" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="62" parent="13" name="user_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="63" parent="13" name="Customer_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="64" parent="13" name="total_ht">
       <Position>4</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="65" parent="13" name="total_ttc">
       <Position>5</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="66" parent="13" name="tva">
       <Position>6</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="67" parent="13" name="createdAt">
       <Position>7</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="68" parent="13" name="updatedAt">
       <Position>8</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <index id="69" parent="13" name="IDX_60C16CB815094C24">
       <ColNames>Customer_id</ColNames>
@@ -282,78 +281,78 @@
     </foreign-key>
     <column id="74" parent="14" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="75" parent="14" name="type">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="76" parent="14" name="reference">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="77" parent="14" name="name">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="78" parent="14" name="category">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="79" parent="14" name="conditionProduct">
       <Position>6</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="80" parent="14" name="duration">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="81" parent="14" name="pcb">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="82" parent="14" name="saleUnit">
       <Position>9</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="83" parent="14" name="tg">
       <Position>10</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="84" parent="14" name="ts">
       <Position>11</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="85" parent="14" name="tb">
       <Position>12</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="86" parent="14" name="taOne">
       <Position>13</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="87" parent="14" name="taTwo">
       <Position>14</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="88" parent="14" name="ppdia">
       <Position>15</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="89" parent="14" name="PRIMARY">
@@ -363,59 +362,59 @@
     </key>
     <column id="90" parent="15" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="91" parent="15" name="product_id">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="92" parent="15" name="customer_id">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="93" parent="15" name="order_id">
       <Position>4</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <column id="94" parent="15" name="quantity">
       <Position>5</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="95" parent="15" name="price">
       <Position>6</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="96" parent="15" name="status">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="97" parent="15" name="createdAt">
       <Position>8</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="98" parent="15" name="updatedAt">
       <Position>9</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <column id="99" parent="15" name="tva">
       <Position>10</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="100" parent="15" name="price_ht">
       <Position>11</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="101" parent="15" name="price_ttc">
       <Position>12</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="102" parent="15" name="IDX_15706D484584665A">
@@ -452,42 +451,42 @@
     </foreign-key>
     <column id="109" parent="16" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="110" parent="16" name="period">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="111" parent="16" name="entity">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="112" parent="16" name="argument">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="113" parent="16" name="createdAt">
       <Position>5</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="114" parent="16" name="updatedAt">
       <Position>6</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
     <column id="115" parent="16" name="name">
       <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="116" parent="16" name="user_id">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
     </column>
     <index id="117" parent="16" name="IDX_3B702042A76ED395">
       <ColNames>user_id</ColNames>
